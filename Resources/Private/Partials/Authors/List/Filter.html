@@ -1,0 +1,32 @@
+{namespace rkwAuthors=RKW\RkwAuthors\ViewHelpers}
+
+<f:form noCacheHash="true" action="filter" controller="Ajax" extensionName="RkwAuthors" pluginName="Rkwauthors" class="ajax" name="filter" object="{filter}" >
+	<div class="filter search-filter">
+		<!-- <div>
+			<fieldset>
+				<legend class="hide"><f:translate key="partials_authors_list_filter.topics" extensionName="rkwAuthors" /></legend>
+				<ul>
+					<li class="description"><f:translate key="partials_authors_list_filter.topics" extensionName="rkwAuthors" />:</li>
+					<li>
+						<f:form.radio property="department" id="alle-themen" value="0" name="filter-theme" />
+						<label for="alle-themen"><f:translate key="partials_authors_list_filter.all" extensionName="rkwAuthors" /></label>
+					</li>
+
+					<f:for each="{departmentList}" as="department">
+						<li>
+							<f:form.radio property="department" id="{department.name}" value="{department.uid}" name="filter-theme" />
+							<label class="{department.cssClass}" for="{department.name}">{department.name}</label>
+						</li>
+					</f:for>
+				</ul>
+			</fieldset>
+		</div> -->
+		<p>
+			<label class="hide" for="publications-select"><f:translate key="partials_authors_list_filter.letters" extensionName="rkwAuthors" /></label>
+			<f:form.select property="letter" id="publications-select" class="secondary jcf-hidden" prependOptionLabel="{f:translate(key: 'partials_authors_list_filter.empty', extensionName: 'rkwAuthors')}" prependOptionValue="0" options="<rkwAuthors:GetFirstLetterList authors=\"{authors}\" />" />
+		</p>
+	</div>
+
+	<!-- Override typeNum for AJAX -->
+	<input type="hidden" name="type" value="1467895932">
+</f:form>

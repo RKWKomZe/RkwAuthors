@@ -1,0 +1,33 @@
+{namespace rkwAuthors=RKW\RkwAuthors\ViewHelpers}
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+
+	<f:flashMessages renderMode="div" />
+
+	<!--<header class="page-headings">
+		<h1>
+			<f:translate key="templates_authors_list.experts" extensionName="rkwAuthors" />
+		</h1>
+	</header> -->
+
+	<!-- filter form -->
+	<f:render partial="Authors/List/Filter" arguments="{_all}"/>
+
+	<!-- Expert list -->
+	<div id="expert-list">
+		<f:render partial="Authors/List/Authors" arguments="{_all}"/>
+	</div>
+
+</f:section>

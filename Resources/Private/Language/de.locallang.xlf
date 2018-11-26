@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-08-11T15:48:43Z" product-name="rkw_authors">
+		<header/>
+		<body>
+
+			<!-- tx_rkwauthors_domain_model_authors -->
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.1">
+				<source>Department 1</source>
+				<target>Gründung und Innovation</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.2">
+				<source>Department 2</source>
+				<target>Unternehmensentwicklung und Fachkräftesicherung</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.3">
+				<source>Department 3</source>
+				<target>RG-Bau</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.4">
+				<source>Department 4</source>
+				<target>Zentralbereich</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.5">
+				<source>Department 5</source>
+				<target>Geschäftsführung</target>
+			</trans-unit>
+
+			<!-- ############################## -->
+			<!-- Fluid -->
+			<!-- ##############################  -->
+
+			<!-- Partials/Authors/Box -->
+			<trans-unit id="partials_authors_box.expertLabel">
+				<source>Expert</source>
+				<target>Kontakt</target>
+			</trans-unit>
+			<trans-unit id="partials_authors_box.noImageAvailable">
+				<source>No image available.</source>
+				<target>Kein Bild verfügbar.</target>
+			</trans-unit>
+            <trans-unit id="partials_authors_box.phone">
+                <source>Phone</source>
+                <target>Telefon</target>
+            </trans-unit>
+            <trans-unit id="partials_authors_box.clickToWriteEmail">
+                <source>Write me an E-Mail.</source>
+                <target>Hier klicken, um E-Mail zu schreiben</target>
+            </trans-unit>
+
+            <!-- Templates/Authors/List.html -->
+			<trans-unit id="templates_authors_list.experts">
+				<source>Experts of RKW </source>
+				<target>Ansprechpartner des RKW </target>
+			</trans-unit>
+
+			<!-- Partials/Authors/List/Authors.html -->
+			<trans-unit id="partials_authors_list_authors.noResult">
+				<source>Sorry, but there are currently no results.</source>
+				<target>Es gibt aktuell keinen Ansprechpartner, der den ausgewählten Kriterien entspricht.</target>
+			</trans-unit>
+			<trans-unit id="partials_authors_list_authors.contact">
+				<source>Contact</source>
+				<target>Kontakt</target>
+			</trans-unit>
+
+			<!-- Partials/Authors/List/Filter.html -->
+			<trans-unit id="partials_authors_list_filter.topics">
+				<source>Topics</source>
+				<target>Themen</target>
+			</trans-unit>
+			<trans-unit id="partials_authors_list_filter.undefined">
+				<source>undefined</source>
+				<target>undefined</target>
+			</trans-unit>
+			<trans-unit id="partials_authors_list_filter.all">
+				<source>All</source>
+				<target>Alle</target>
+			</trans-unit>
+			<trans-unit id="partials_authors_list_filter.empty">
+				<source>-- Please Select --</source>
+				<target>-- Anfangsbuchstabe --</target>
+			</trans-unit>
+			<trans-unit id="partials_authors_list_filter.letter">
+				<source>Letter</source>
+				<target>Anfangsbuchstabe</target>
+			</trans-unit>
+			<trans-unit id="partials_authors_list_filter.letterPrepend">
+				<source>Letter</source>
+				<target>Buchstabe</target>
+			</trans-unit>
+
+			<!-- Partials/Authors/Details/Headline.html -->
+			<trans-unit id="partials_authors_details_headline.back">
+				<source>Back to List</source>
+				<target>Zurück zur Liste</target>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

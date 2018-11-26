@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-08-11T15:48:43Z" product-name="rkw_authors">
+		<header/>
+		<body>
+
+			<!-- tx_rkwauthors_domain_model_authors -->
+			<trans-unit id="tx_rkwauthors_domain_model_authors">
+				<source>RKW Authors: Authors</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.first_name">
+				<source>First Name</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.middle_name">
+				<source>Middle Name</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.last_name">
+				<source>Last Name</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.title_after">
+				<source>Title After</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.title_before">
+				<source>Title Before</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.street">
+				<source>Street</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.company">
+				<source>Company</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.number">
+				<source>Number</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.city">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.zip">
+				<source>Zip</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.function_title">
+				<source>Function Title</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.function_title_short">
+				<source>Function Title Short</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.function_description">
+				<source>Function</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.email">
+				<source>E-mail</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.phone">
+				<source>Phone</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.phone2">
+				<source>Phone2</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.fax">
+				<source>Fax</source>
+			</trans-unit>
+            <trans-unit id="tx_rkwauthors_domain_model_authors.url">
+                <source>Url</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwauthors_domain_model_authors.facebook_url">
+				<source>Facebook Url</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.twitter_url">
+				<source>Twitter Url</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.xing_url">
+				<source>Xing Url</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.internal">
+				<source>Internal</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.internal.I.enabled" xml:space="preserve">
+				<source>Internal Author</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.show_work">
+				<source>Show Work</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.show_work.I.enabled" xml:space="preserve">
+				<source>Show Work in Detailpage</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.image_small">
+				<source>Image small</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.image_big">
+				<source>Image big</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.image_boxes">
+				<source>Image boxes</source>
+			</trans-unit>
+            <trans-unit id="tx_rkwauthors_domain_model_authors.image_boxes_is_logo">
+                <source>Image Boxes Is Logo</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwauthors_domain_model_authors.image_boxes_is_logo.I.enabled" xml:space="preserve">
+				<source>Yes</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department">
+				<source>Department</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name">
+				<source>Department</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.1">
+				<source>Department 1</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.2">
+				<source>Department 2</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.3">
+				<source>Department 3</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.4">
+				<source>Department 4</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.5">
+				<source>Department 5</source>
+			</trans-unit>
+
+
+			<!-- tx_rkwauthors_domain_model_pages -->
+			<trans-unit id="tx_rkwauthors_domain_model_pages">
+				<source>Pages</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_pages.tx_rkwauthors_authorship">
+				<source>Author</source>
+			</trans-unit>
+			<trans-unit id="pages.tx_extbase_type.Tx_RkwAuthors_Pages">
+				<source>RKW Authors Pages</source>
+			</trans-unit>
+
+
+			<!-- sys_file_reference -->
+			<trans-unit id="sys_file_reference.ratio.list_image">
+				<source>Author List-Image</source>
+			</trans-unit>
+
+
+			<!-- palettes -->
+			<trans-unit id="tx_rkwauthors_domain_model_authors.palettes.names" xml:space="preserve">
+				<source>Names</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.palettes.addition" xml:space="preserve">
+				<source>Addition</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.palettes.address" xml:space="preserve">
+				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.palettes.phones" xml:space="preserve">
+				<source>Phones</source>
+			</trans-unit>
+
+
+			<!-- flexForm -->
+			<trans-unit id="flexform.contactBox.sheetTitle">
+				<source>Options</source>
+			</trans-unit>
+			<trans-unit id="flexform.contactBox.headline">
+				<source>Headline</source>
+			</trans-unit>
+			<trans-unit id="flexform.contactBox.text">
+				<source>Text</source>
+			</trans-unit>
+			<trans-unit id="flexform.contactBox.contactLink">
+				<source>Link</source>
+			</trans-unit>
+			<trans-unit id="flexform.contactBox.linkText">
+				<source>Linktext</source>
+			</trans-unit>
+			<trans-unit id="flexform.contactBox.author1">
+				<source>Author 1</source>
+			</trans-unit>
+			<trans-unit id="flexform.contactBox.author2">
+				<source>Author 2</source>
+			</trans-unit>
+
+
+		</body>
+	</file>
+</xliff>

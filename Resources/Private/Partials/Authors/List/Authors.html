@@ -1,0 +1,95 @@
+{namespace rkwAuthors=RKW\RkwAuthors\ViewHelpers}
+
+<f:if condition="<f:count>{authors}</f:count>">
+	<f:then>
+		<div class="boxes-experts">
+			<f:for each="{authors}" as="author" iteration="iteration">
+				<div>
+					<!-- of no department is set, choose general (topic-1) -->
+					<f:if condition="{author.department}">
+						<f:then>
+							<!-- department is organized as ObjectStorage -->
+							<div class="box publication expert {author.department.0.cssClass} show-letter">
+						</f:then>
+						<f:else>
+							<div class="box publication expert topic-1 show-letter">
+						</f:else>
+					</f:if>
+						<f:link.action pageUid="{showPid}" action="show" controller="Authors" pluginName="Rkwauthorsdetail" extensionName="RkwAuthors" arguments="{author:author}" noCacheHash="TRUE" >
+
+							<div class="cover">
+
+								<!-- big letter -->
+								<f:if condition='<rkwAuthors:CompareFirstLetter author="{author}" authorList="{authors}" iter="{iteration.index}" />'>
+									<p class="letter"><f:format.crop maxCharacters="1" append="">{author.lastName}</f:format.crop></p>
+								</f:if>
+
+								<!-- image -->
+								<figure>
+									<f:if condition="{author.imageSmall}">
+										<f:then>
+											<f:image image="{author.imageSmall}" treatIdAsReference="TRUE" height="254" width="200"/>
+										</f:then>
+										<f:else>
+											<!-- ### set dummy if no image is available ### -->
+											<f:image alt="Placeholder" src="EXT:rkw_authors/Resources/Public/Images/author-list-fallback.png" width="200" height="254"/>
+										</f:else>
+									</f:if>
+								</figure>
+							</div>
+
+							<header>
+								<p><rkwAuthors:GetCombinedName author='{author}'/></p>
+							</header>
+							<f:if condition="{author.departmentName}">
+								<f:then>
+									<div class="box-content"><f:translate key="tx_rkwauthors_domain_model_authors.department_name.I.{author.departmentName}" extensionName="rkwAuthors" /></div>
+								</f:then>
+								<f:else>
+									<!-- For same height of boxes -->
+									<div class="box-content">&nbsp;</div>
+								</f:else>
+							</f:if>
+
+						</f:link.action>
+
+						<!-- contact box -->
+						<div class="contact-info-box" style="display: none; bottom: 186px;">
+							<f:if condition="{author.phone}">
+								<p>
+									<span class="icon-phone">&nbsp;&nbsp;<rkwAuthors:GetFormattedPhoneNumber phoneExtensionLength="{settings.phoneExtensionLength}" author="{author}"/></span>
+								</p>
+							</f:if>
+							<f:if condition="{author.email}">
+								<p>
+									<f:link.email class="icon-mail" email="{author.email}">&nbsp;&nbsp;E-Mail</f:link.email>
+								</p>
+							</f:if>
+						</div>
+
+						<!-- button -->
+						<footer>
+							<p>
+								<!-- of no department is set, choose general (topic-1) -->
+								<f:if condition="{author.department}">
+									<f:then>
+										<!-- department is organized as ObjectStorage -->
+										<a class="button {author.department.0.cssClass} contact-box-toggle" href="#"><f:translate key="partials_authors_list_authors.contact" extensionName="rkwAuthors" /></a>
+									</f:then>
+									<f:else>
+										<a class="button topic-1 contact-box-toggle" href="#"><f:translate key="partials_authors_list_authors.contact" extensionName="rkwAuthors" /></a>
+									</f:else>
+								</f:if>
+							</p>
+						</footer>
+					</div>
+				</div>
+			</f:for>
+		</div>
+	</f:then>
+
+	<f:else>
+		<p class="text-message"><f:translate key="partials_authors_list_authors.noResult" extensionName="rkwAuthors" /></p>
+	</f:else>
+
+</f:if>

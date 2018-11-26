@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-08-11T15:48:43Z" product-name="rkw_authors">
+		<header/>
+		<body>
+
+			<!-- tx_rkwauthors_domain_model_authors -->
+			<trans-unit id="tx_rkwauthors_domain_model_authors">
+				<source>RKW Authors: Authors</source>
+				<target>RKW Authors: Autoren / Ansprechpartner </target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.first_name">
+				<source>First Name</source>
+				<target>Vorname</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.middle_name">
+				<source>Middle Name</source>
+				<target>Mittlerer Name</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.last_name">
+				<source>Last Name</source>
+				<target>Nachname</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.title_after">
+				<source>Title After</source>
+                <target>Titel nach dem Namen (z.B. "M.A.")</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.title_before">
+				<source>Title Before</source>
+                <target>Titel vor dem Namen (z.B. "Dr.")</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.street">
+				<source>Street</source>
+				<target>Straße</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.company">
+				<source>Company</source>
+				<target>Firma</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.number">
+				<source>Number</source>
+				<target>Nummer</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.city">
+				<source>City</source>
+				<target>Stadt</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.zip">
+				<source>Zip</source>
+				<target>PLZ</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.function_title">
+				<source>Function Title</source>
+				<target>Funktion</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.function_title_short">
+				<source>Function Title Short</source>
+				<target>Funktion (Kurz-Version, max. 20-25 Zeichen)</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.function_description">
+				<source>Function</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.email">
+				<source>E-mail</source>
+				<target>E-Mail</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.phone">
+				<source>Area Code</source>
+				<target>Vorwahl</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.phone2">
+				<source>Phone</source>
+				<target>Telefon (ohne Vorwahl)</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.fax">
+				<source>Fax</source>
+				<target>Fax</target>
+			</trans-unit>
+            <trans-unit id="tx_rkwauthors_domain_model_authors.url">
+                <source>Url</source>
+                <target>Website</target>
+            </trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.facebook_url">
+				<source>Facebook Url</source>
+				<target>Facebook Url</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.twitter_url">
+				<source>Twitter Url</source>
+				<target>Twitter Url</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.xing_url">
+				<source>Xing Url</source>
+				<target>Xing Url</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.internal">
+				<source>Internal</source>
+				<target>Intern</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.internal.I.enabled" xml:space="preserve">
+				<source>Internal Author</source>
+				<target>Interner Autor/Ansprechpartner des RKW Netzwerks</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.show_work">
+				<source>Show Work</source>
+				<target>Arbeiten anzeigen</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.show_work.I.enabled" xml:space="preserve">
+				<source>Show Work in Detailpage</source>
+				<target>Zeige die Arbeiten des Autors in seiner Detailseite an</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.image_small">
+				<source>Image small</source>
+				<target>Bild für Autorenliste</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.image_big">
+				<source>Image big</source>
+				<target>Bild für Detailansicht</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.image_boxes">
+				<source>Image boxes</source>
+				<target>Standardbild für Boxen (Teaser)</target>
+			</trans-unit>
+            <trans-unit id="tx_rkwauthors_domain_model_authors.image_boxes_is_logo">
+                <source>Image Boxes Is Logo</source>
+                <target>Standardbild für Boxen (Teaser) ist ein Logo</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwauthors_domain_model_authors.image_boxes_is_logo.I.enabled" xml:space="preserve">
+				<source>Yes</source>
+                <target>Ja</target>
+			</trans-unit>
+            <trans-unit id="tx_rkwauthors_domain_model_authors.department">
+				<source>Department</source>
+				<target>Thema</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name">
+				<source>Department</source>
+				<target>Fachbereich</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.1">
+				<source>Department 1</source>
+				<target>Gründung und Innovation</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.2">
+				<source>Department 2</source>
+				<target>Unternehmensentwicklung und Fachkräftesicherung</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.3">
+				<source>Department 3</source>
+				<target>RG-Bau</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.4">
+				<source>Department 4</source>
+				<target>Zentralbereich</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.5">
+				<source>Department 5</source>
+				<target>Geschäftsführung</target>
+			</trans-unit>
+
+
+			<!-- tx_rkwauthors_domain_model_pages -->
+			<trans-unit id="tx_rkwauthors_domain_model_pages">
+				<source>Pages</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_pages.tx_rkwauthors_authorship">
+				<source>Author</source>
+				<target>Autor</target>
+			</trans-unit>
+			<trans-unit id="pages.tx_extbase_type.Tx_RkwAuthors_Pages">
+				<source>RKW Authors Pages</source>
+			</trans-unit>
+
+
+			<!-- sys_file_reference -->
+			<trans-unit id="sys_file_reference.ratio.list_image">
+				<source>Author List-Image</source>
+				<target>Autorenbild Liste</target>
+			</trans-unit>
+
+
+			<!-- palettes -->
+			<trans-unit id="tx_rkwauthors_domain_model_authors.palettes.names" xml:space="preserve">
+				<source>Names</source>
+				<target>Namen</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.palettes.addition" xml:space="preserve">
+				<source>Addition</source>
+				<target>Ergänzung</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.palettes.address" xml:space="preserve">
+				<source>Address</source>
+				<target>Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.palettes.phones" xml:space="preserve">
+				<source>Phones</source>
+				<target>Telefon</target>
+			</trans-unit>
+
+
+
+			<!-- flexForm -->
+			<trans-unit id="flexform.contactBox.sheetTitle">
+				<source>Options</source>
+				<target>Einstellungsoptionen</target>
+			</trans-unit>
+			<trans-unit id="flexform.contactBox.headline">
+				<source>Headline</source>
+				<target>Überschrift</target>
+			</trans-unit>
+			<trans-unit id="flexform.contactBox.text">
+				<source>Text</source>
+				<target>Text</target>
+			</trans-unit>
+			<trans-unit id="flexform.contactBox.contactLink">
+				<source>Link</source>
+				<target>Link</target>
+			</trans-unit>
+			<trans-unit id="flexform.contactBox.linkText">
+				<source>Linktext</source>
+				<target>Angezeigter Linktext (Optional: Falls nicht gesetzt, wird der Typolink-Linktext verwendet)</target>
+			</trans-unit>
+			<trans-unit id="flexform.contactBox.author1">
+				<source>Author 1</source>
+				<target>Autor 1</target>
+			</trans-unit>
+			<trans-unit id="flexform.contactBox.author2">
+				<source>Author 2</source>
+				<target>Autor 2</target>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

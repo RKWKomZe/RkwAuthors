@@ -1,0 +1,111 @@
+{namespace rkwAuthors=RKW\RkwAuthors\ViewHelpers}
+
+<f:section name="Default">
+	<f:if condition="{author}" >
+        <f:if condition="<rkwAuthors:and and1='{author.internal}' and2='{showPid}' />">
+			<f:then>
+				<f:link.action action="show" pageUid="{showPid}" arguments="{author: '{author}'}" target="{f:if(condition: '{settings.detailLinkTargetBlank} == 1', then: '_blank')}" class="box big expert {f:if(condition: '{author.imageBoxes}', else: 'no-image')}" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
+					<f:render section="Internal"  arguments="{_all}" />
+				</f:link.action>
+			</f:then>
+			<f:else>
+                <f:if condition="{author.url}">
+                    <f:then>
+                        <f:link.external uri="{author.url}" target="_blank" class="box big expert {f:if(condition: '{author.imageBoxes}', else: 'no-image')}" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
+                            <f:render section="External"  arguments="{_all}" />
+                        </f:link.external>
+                    </f:then>
+                    <f:else>
+                        <f:link.email email="{author.email}" class="box big expert {f:if(condition: '{author.imageBoxes}', else: 'no-image')}" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
+                            <f:render section="External"  arguments="{_all}" />
+                        </f:link.email>
+                    </f:else>
+                </f:if>
+
+			</f:else>
+		</f:if>
+	</f:if>
+</f:section>
+
+<!-- ========================================================================= -->
+
+<f:section name="Internal">
+	<header>
+		<p>
+			<f:format.crop maxCharacters="60" respectWordBoundaries="FALSE"><rkwAuthors:GetCombinedName author="{author}" /></f:format.crop>
+			<!-- <span>{author.functionTitle}</span> -->
+		</p>
+	</header>
+	<div class="box-content">
+		<f:if condition="{author.imageBoxes}" >
+			<f:then>
+				<figure><f:image src="{author.imageBoxes.uid}" treatIdAsReference="1"  alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="320"  /></figure>
+			</f:then>
+			<f:else>
+				<div class="wysiwyg">
+					<f:translate key="partials_authors_box.noImageAvailable" />
+				</div>
+			</f:else>
+		</f:if>
+	</div>
+	<footer>
+		<p class="icon-id" title="<rkwAuthors:GetCombinedName author='{author}'/>">
+			<f:format.crop maxCharacters="21" respectWordBoundaries="FALSE"><f:translate key="partials_authors_box.expertLabel" /></f:format.crop>
+		</p>
+	</footer>
+</f:section>
+
+<!-- ========================================================================= -->
+
+<f:section name="External">
+    <header>
+        <p>
+            <f:format.crop maxCharacters="60" respectWordBoundaries="FALSE"><rkwAuthors:GetCombinedName author="{author}" /></f:format.crop>
+            <span>{author.functionTitle}</span>
+        </p>
+    </header>
+    <div class="box-content {f:if(condition: '{author.imageBoxesIsLogo}', then: 'powered-by')}">
+        <f:if condition="{author.imageBoxes}" >
+            <f:then>
+                <f:if condition="{author.imageBoxesIsLogo}">
+                    <f:then>
+                        <picture><f:image src="{author.imageBoxes.uid}" treatIdAsReference="1"  alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="320"  /></picture>
+                    </f:then>
+                    <f:else>
+                        <figure><f:image src="{author.imageBoxes.uid}" treatIdAsReference="1"  alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="320"  /></figure>
+                    </f:else>
+                </f:if>
+            </f:then>
+            <f:else>
+                <div class="wysiwyg">
+                    <f:if condition="{author.company}">
+                        <strong>{author.company}</strong><br>
+                    </f:if>
+                    <f:if condition="{author.street}">
+                        {author.street} {author.number}<br>
+                    </f:if>
+                    <f:if condition="{author.zip}">
+                        {author.zip} </f:if><f:if condition="{author.city}">{author.city}<br>
+                    </f:if>
+                    <f:if condition="{author.number}">
+                        <f:translate key="partials_authors_box.phone" />: <rkwAuthors:GetFormattedPhoneNumber phoneExtensionLength="0" author="{author}"/><br>
+                    </f:if>
+                    <f:comment>
+                        <f:if condition="{author.email}">
+                            <br><f:translate key="partials_authors_box.clickToWriteEmail" />
+                        </f:if>
+                    </f:comment>
+                </div>
+            </f:else>
+        </f:if>
+    </div>
+    <footer>
+        <p class="icon-id" title="<rkwAuthors:GetCombinedName author='{author}'/>">
+            <f:format.crop maxCharacters="21" respectWordBoundaries="FALSE"><f:translate key="partials_authors_box.expertLabel" /></f:format.crop>
+        </p>
+    </footer>
+</f:section>
+
+
+
+
