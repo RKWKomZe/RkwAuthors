@@ -45,6 +45,23 @@ config.tx_extbase.persistence{
                 recordType =
             }
         }
+
+
+        #===============================================
+        # Optional dependency for rkw_shop!
+        RKW\RkwAuthors\Domain\Model\Authors {
+            subclasses {
+                Tx_RkwShop_Authors = RKW\RkwShop\Domain\Model\Author
+
+            }
+        }
+
+        RKW\RkwShop\Domain\Model\Author {
+            mapping {
+                tableName = tx_rkwauthors_domain_model_authors
+                recordType =
+            }
+        }
     }
 }
 
