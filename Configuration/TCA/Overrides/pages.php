@@ -1,16 +1,11 @@
 <?php
-if (!defined ('TYPO3_MODE')) {
-	die ('Access denied.');
-}
+$tempPagesColumns = [
 
-
-$tempPagesColumns = array(
-
-    'tx_rkwauthors_authorship' => array(
+    'tx_rkwauthors_authorship' => [
         'exclude' => 0,
         'displayCond' => 'FIELD:tx_bmpdf2content_is_import_sub:=:0',
         'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_pages.tx_rkwauthors_authorship',
-        'config' => array(
+        'config' => [
             'type' => 'select',
             'renderType' => 'selectMultipleSideBySide',
             'foreign_table' => 'tx_rkwauthors_domain_model_authors',
@@ -21,9 +16,10 @@ $tempPagesColumns = array(
             'maxitems' => 9999,
             'minitems' => 0,
             'multiple' => 0,
-        ),
-    ),
-);
+        ],
+    ],
+];
+
 // Add TCA
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tempPagesColumns);
 
