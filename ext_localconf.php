@@ -70,12 +70,15 @@ call_user_func(
                 'Authors' => 'contactBox',
             )
         );
-        
+
+        //=================================================================
+        // Add Rootline Fields
+        //=================================================================
+        $rootlineFields = &$GLOBALS['TYPO3_CONF_VARS']['FE']['addRootLineFields'];
+        $newRootlineFields = 'tx_rkwauthors_authorship';
+        $rootlineFields .= (empty($rootlineFields))? $newRootlineFields : ',' . $newRootlineFields;
     },
     $_EXTKEY
 );
 
-
-// Add rootline-Fields
-$TYPO3_CONF_VARS['FE']['addRootLineFields'] .= ',tx_rkwauthors_authorship';
 
