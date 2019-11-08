@@ -10,7 +10,7 @@
  * "version" and "dependencies" must not be touched!
  ***************************************************************/
 
-$EM_CONF[$_EXTKEY] = array(
+$EM_CONF[$_EXTKEY] = [
 	'title' => 'RKW Authors',
 	'description' => 'Extension for handling authorship of pages',
 	'category' => 'plugin',
@@ -27,17 +27,15 @@ $EM_CONF[$_EXTKEY] = array(
     'modify_tables' => '',
     'clearCacheOnLoad' => 0,
     'lockType' => '',
-    'version' => '7.6.14',
-	'constraints' => array(
-		'depends' => array(
-            'extbase' => '7.6.0-8.7.99',
-            'fluid' => '7.6.0-8.7.99',
-            'typo3' => '7.6.0-8.7.99',
-            'rkw_basics' => '7.6.12-8.7.99'
-		),
-		'conflicts' => array(
-		),
-		'suggests' => array(
-		),
-	),
-);
+    'version' => '8.7.0',
+	'constraints' => [
+		'depends' => [
+            'typo3' => '8.7.0-8.7.99',
+            'rkw_basics' => '8.7.0-8.7.99'
+		],
+		'conflicts' => [
+		],
+		'suggests' => [
+		],
+	],
+];
