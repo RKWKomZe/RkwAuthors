@@ -1,35 +1,6 @@
 
-plugin.tx_rkwauthors {
-	view {
-		# cat=plugin.tx_rkwauthors/file; type=string; label=Path to template root (FE)
-		templateRootPath = EXT:rkw_authors/Resources/Private/Templates/
-		# cat=plugin.tx_rkwauthors/file; type=string; label=Path to template partials (FE)
-		partialRootPath = EXT:rkw_authors/Resources/Private/Partials/
-		# cat=plugin.tx_rkwauthors/file; type=string; label=Path to template layouts (FE)
-		layoutRootPath = EXT:rkw_authors/Resources/Private/Layouts/
-	}
-	persistence {
-		# cat=plugin.tx_rkwauthors//a; type=string; label=Default storage PID
-		storagePid = 11, 132
+# !!! DEPRECATED – only for compatibility reasons !!!
+# We're moving from ".ts" and ".txt" to ".typoscript".
+# @see: https://docs.typo3.org/c/typo3/cms-core/master/en-us/Changelog/8.7.x/Feature-78161-IntroduceTypoScriptFileExtension.html
 
-	}
-
-	settings {
-
-		# cat=plugin.tx_rkwauthors//a; type=string; label=BaseUrl for schema.org images of authors
-		baseUrlSchemaOrg = http://www.example.com/
-
-		# cat=plugin.tx_rkwauthors//a; type=boolean; label=list pid
-		listPid = 2778
-
-		# cat=plugin.tx_rkwauthors//a; type=boolean; label=show pid
-		showPid = 2777
-
-        # cat=plugin.tx_rkwauthors//a; type=boolean; label=Sets all detail-link with target=_blank
-        detailLinkTargetBlank = 0
-
-        # cat=plugin.tx_rkwauthors//a; type=integer; label=Phone extension length
-        phoneExtensionLength = 4
-	}
-
-}
+<INCLUDE_TYPOSCRIPT: source="FILE:./constants.typoscript">
