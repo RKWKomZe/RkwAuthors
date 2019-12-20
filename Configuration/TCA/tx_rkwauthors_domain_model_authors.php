@@ -646,7 +646,8 @@ return [
 					['LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.department_name.I.3', 3],
 					['LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.department_name.I.4', 4],
 					['LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.department_name.I.5', 5],
-				],
+                    ['LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.department_name.I.6', 6],
+                ],
 			]
 		]
 	]

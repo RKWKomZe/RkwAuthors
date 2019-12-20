@@ -119,7 +119,9 @@
 			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.5">
 				<source>Department 5</source>
 			</trans-unit>
-
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.6">
+				<source>Department 6</source>
+			</trans-unit>
 
 			<!-- tx_rkwauthors_domain_model_pages -->
 			<trans-unit id="tx_rkwauthors_domain_model_pages">
