@@ -7,11 +7,11 @@
 			<!-- tx_rkwauthors_domain_model_authors -->
 			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.1">
 				<source>Department 1</source>
-				<target>Gründung und Innovation</target>
+				<target>Gründung</target>
 			</trans-unit>
 			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.2">
 				<source>Department 2</source>
-				<target>Unternehmensentwicklung und Fachkräftesicherung</target>
+				<target>Fachkräftesicherung</target>
 			</trans-unit>
 			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.3">
 				<source>Department 3</source>
@@ -24,6 +24,10 @@
 			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.5">
 				<source>Department 5</source>
 				<target>Geschäftsführung</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.6">
+				<source>Department 6</source>
+				<target>Digitalisierung und Innovation</target>
 			</trans-unit>
 
 			<!-- ############################## -->
