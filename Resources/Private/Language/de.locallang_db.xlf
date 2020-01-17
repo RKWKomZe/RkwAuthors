@@ -129,38 +129,11 @@
 				<source>Yes</source>
                 <target>Ja</target>
 			</trans-unit>
-            <trans-unit id="tx_rkwauthors_domain_model_authors.department">
-				<source>Department</source>
-				<target>Thema</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name">
+			<trans-unit id="tx_rkwauthors_domain_model_authors.department">
 				<source>Department</source>
 				<target>Fachbereich</target>
 			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.1">
-				<source>Department 1</source>
-				<target>Gründung</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.2">
-				<source>Department 2</source>
-				<target>Fachkräftesicherung</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.3">
-				<source>Department 3</source>
-				<target>RG-Bau</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.4">
-				<source>Department 4</source>
-				<target>Zentralbereich</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.5">
-				<source>Department 5</source>
-				<target>Geschäftsführung</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.6">
-				<source>Department 6</source>
-				<target>Digitalisierung und Innovation</target>
-			</trans-unit>
+
 
 
 			<!-- tx_rkwauthors_domain_model_pages -->
@@ -200,6 +173,22 @@
 				<source>Phones</source>
 				<target>Telefon</target>
 			</trans-unit>
+
+
+			<!-- tx_rkwauthors_domain_model_department -->
+            <trans-unit id="tx_rkwauthors_domain_model_department">
+                <source>RKW Authors: Department</source>
+                <target>RKW Authors: Abteilung/Bereich</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwauthors_domain_model_department.name">
+                <source>Name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwauthors_domain_model_department.description">
+                <source>Description</source>
+                <target>Beschreibung</target>
+            </trans-unit>
+
 
 
 
