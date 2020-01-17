@@ -101,27 +101,7 @@
 			<trans-unit id="tx_rkwauthors_domain_model_authors.department">
 				<source>Department</source>
 			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name">
-				<source>Department</source>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.1">
-				<source>Department 1</source>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.2">
-				<source>Department 2</source>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.3">
-				<source>Department 3</source>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.4">
-				<source>Department 4</source>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.5">
-				<source>Department 5</source>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.department_name.I.6">
-				<source>Department 6</source>
-			</trans-unit>
+
 
 			<!-- tx_rkwauthors_domain_model_pages -->
 			<trans-unit id="tx_rkwauthors_domain_model_pages">
@@ -154,6 +134,18 @@
 			<trans-unit id="tx_rkwauthors_domain_model_authors.palettes.phones" xml:space="preserve">
 				<source>Phones</source>
 			</trans-unit>
+
+
+			<!-- tx_rkwauthors_domain_model_department -->
+            <trans-unit id="tx_rkwauthors_domain_model_department">
+                <source>RKW Authors: Department</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwauthors_domain_model_department.name">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwauthors_domain_model_department.description">
+                <source>Description</source>
+            </trans-unit>
 
 
 			<!-- flexForm -->

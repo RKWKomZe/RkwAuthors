@@ -62,7 +62,7 @@
     <header>
         <p>
             <f:format.crop maxCharacters="60" respectWordBoundaries="FALSE"><rkwAuthors:GetCombinedName author="{author}" /></f:format.crop>
-            <span>{author.functionTitle}</span>
+            <span><f:format.nl2br>{author.functionTitle}</f:format.nl2br></span>
         </p>
     </header>
     <div class="box-content {f:if(condition: '{author.imageBoxesIsLogo}', then: 'powered-by')}">

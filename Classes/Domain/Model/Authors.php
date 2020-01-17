@@ -223,17 +223,10 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * department
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwBasics\Domain\Model\Department>
+     * @var \RKW\RkwAuthors\Domain\Model\Department
      */
     protected $department = null;
 
-
-    /**
-     * departmentName
-     *
-     * @var integer
-     */
-    protected $departmentName = 0;
 
 
     /**
@@ -827,32 +820,11 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         return $this->imageBoxesIsLogo;
     }
 
-    /**
-     * Adds a department
-     *
-     * @param \RKW\RkwBasics\Domain\Model\Department $department
-     * @return void
-     */
-    public function addDepartment(\RKW\RkwBasics\Domain\Model\Department $department)
-    {
-        $this->department->attach($department);
-    }
-
-    /**
-     * Removes a department
-     *
-     * @param \RKW\RkwBasics\Domain\Model\Department $departmentToRemove The department to be removed
-     * @return void
-     */
-    public function removeDepartment(\RKW\RkwBasics\Domain\Model\Department $departmentToRemove)
-    {
-        $this->department->detach($departmentToRemove);
-    }
 
     /**
      * Returns the department
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwBasics\Domain\Model\Department> $department
+     * @return \RKW\RkwAuthors\Domain\Model\Department $department
      */
     public function getDepartment()
     {
@@ -862,33 +834,13 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the department
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwBasics\Domain\Model\Department> $department
+     * @param \RKW\RkwAuthors\Domain\Model\Department $department
      * @return void
      */
-    public function setDepartment(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $department)
+    public function setDepartment(\RKW\RkwAuthors\Domain\Model\Department $department)
     {
         $this->department = $department;
     }
 
-    /**
-     * Returns the departmentName
-     *
-     * @return integer
-     */
-    public function getDepartmentName()
-    {
-        return $this->departmentName;
-    }
-
-    /**
-     * Sets the departmentName
-     *
-     * @param integer
-     * @return void
-     */
-    public function setDepartmentName($department)
-    {
-        $this->departmentName = $department;
-    }
 
 }
