@@ -10,8 +10,6 @@ return [
 		'cruser_id' => 'cruser_id',
 		'dividers2tabs' => TRUE,
 		'default_sortby' => 'ORDER BY internal DESC, last_name ASC',
-		'versioningWS' => 2,
-		'versioning_followPages' => TRUE,
 
 		'languageField' => 'sys_language_uid',
 		'transOrigPointerField' => 'l10n_parent',
@@ -22,14 +20,14 @@ return [
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		],
-		'searchFields' => 'first_name,middle_name,last_name,title_after,title_before,street,company,number,city,zip,function_title,function_description,email,phone,phone2,fax,facebook_url,twitter_url,xing_url,internal,show_work,image_boxes_is_logo,image_boxes,image_big,image_small,department,',
+		'searchFields' => 'first_name, middle_name, last_name, title_before, title_after, street, company, number, city, zip, email, department, function_title, phone, phone2, fax, function_description, url, facebook_url, twitter_url, xing_url, internal, show_work, image_boxes, image_big, image_small,',
 		'iconfile' => 'EXT:rkw_authors/Resources/Public/Icons/tx_rkwauthors_domain_model_authors.gif'
 	],
 	'interface' => [
-		'showRecordFieldList' => 'sys_langufunctiage_uid, l10n_parent, l10n_diffsource, hidden, first_name, middle_name, last_name, title_before, title_after, street, company, number, city, zip, email, department_name, function_title, phone, phone2, fax, function_description, url, facebook_url, twitter_url, xing_url, internal, show_work, image_boxes, image_big, image_small',
+		'showRecordFieldList' => 'sys_langufunctiage_uid, l10n_parent, l10n_diffsource, hidden, first_name, middle_name, last_name, title_before, title_after, street, company, number, city, zip, email, department, function_title, phone, phone2, fax, function_description, url, facebook_url, twitter_url, xing_url, internal, show_work, image_boxes, image_big, image_small',
 	],
 	'types' => [
-		'1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, --palette--;;1, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.names;names, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.addition;addition, department_name, function_title, email, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.address;address, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.phones;phones, image_boxes, image_boxes_is_logo, image_big, image_small, function_description, url, facebook_url, twitter_url, xing_url, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'],
+		'1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, --palette--;;1, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.names;names, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.addition;addition, department, function_title, email, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.address;address, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.phones;phones, image_boxes, image_boxes_is_logo, image_big, image_small, function_description, url, facebook_url, twitter_url, xing_url, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'],
 	],
 	'palettes' => [
 		'names' => [
@@ -86,14 +84,6 @@ return [
 			],
 		],
 
-		't3ver_label' => [
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
-			'config' => [
-				'type' => 'input',
-				'size' => 30,
-				'max' => 255,
-			]
-        ],	
 		'hidden' => [
 			'exclude' => 0,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
@@ -228,8 +218,8 @@ return [
 			'exclude' => 0,
 			'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.function_title',
 			'config' => [
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+                'rows' => 2,
 				'eval' => 'trim'
 			],
 		],
@@ -614,24 +604,10 @@ return [
 				$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),
 		],
+
 		'department' => [
 			'exclude' => 0,
 			'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.department',
-			'config' => [
-				'type' => 'select',
-				'renderType' => 'selectSingle',
-				'size' => 8,
-				'eval' => 'int',
-				'minitems' => 0,
-				'maxitems' => 1,
-				'foreign_table' => 'tx_rkwbasics_domain_model_department',
-				'foreign_table_where' => 'AND tx_rkwbasics_domain_model_department.deleted = 0 AND tx_rkwbasics_domain_model_department.hidden = 0',
-			]
-		],
-
-		'department_name' => [
-			'exclude' => 0,
-			'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.department_name',
 			'config' => [
 				'type' => 'select',
 				'renderType' => 'selectSingle',
@@ -640,14 +616,10 @@ return [
 				'minitems' => 1,
 				'maxitems' => 1,
 				'items' => [
-					['---', NULL],
-					['LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.department_name.I.1', 1],
-					['LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.department_name.I.2', 2],
-					['LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.department_name.I.3', 3],
-					['LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.department_name.I.4', 4],
-					['LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.department_name.I.5', 5],
-                    ['LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.department_name.I.6', 6],
+					['---', 0],
                 ],
+                'foreign_table' => 'tx_rkwauthors_domain_model_department',
+                'foreign_table_where' => 'AND ((\'###PAGE_TSCONFIG_IDLIST###\' <> \'0\' AND FIND_IN_SET(tx_rkwauthors_domain_model_department.pid,\'###PAGE_TSCONFIG_IDLIST###\')) OR (\'###PAGE_TSCONFIG_IDLIST###\' = \'0\')) AND tx_rkwauthors_domain_model_department.deleted = 0 AND tx_rkwauthors_domain_model_department.hidden = 0',
 			]
 		]
 	]

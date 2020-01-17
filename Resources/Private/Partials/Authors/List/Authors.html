@@ -5,16 +5,9 @@
 		<div class="boxes-experts">
 			<f:for each="{authors}" as="author" iteration="iteration">
 				<div>
-					<!-- of no department is set, choose general (topic-1) -->
-					<f:if condition="{author.department}">
-						<f:then>
-							<!-- department is organized as ObjectStorage -->
-							<div class="box publication expert {author.department.0.cssClass} show-letter">
-						</f:then>
-						<f:else>
-							<div class="box publication expert topic-1 show-letter">
-						</f:else>
-					</f:if>
+
+					<div class="box publication expert topic-1 show-letter">
+
 						<f:link.action pageUid="{showPid}" action="show" controller="Authors" pluginName="Rkwauthorsdetail" extensionName="RkwAuthors" arguments="{author:author}"  >
 
 							<div class="cover">
@@ -41,9 +34,9 @@
 							<header>
 								<p><rkwAuthors:GetCombinedName author='{author}'/></p>
 							</header>
-							<f:if condition="{author.departmentName}">
+							<f:if condition="{author.department}">
 								<f:then>
-									<div class="box-content"><f:translate key="tx_rkwauthors_domain_model_authors.department_name.I.{author.departmentName}" extensionName="rkwAuthors" /></div>
+									<div class="box-content">{author.department.name}</div>
 								</f:then>
 								<f:else>
 									<!-- For same height of boxes -->
@@ -70,16 +63,9 @@
 						<!-- button -->
 						<footer>
 							<p>
-								<!-- of no department is set, choose general (topic-1) -->
-								<f:if condition="{author.department}">
-									<f:then>
-										<!-- department is organized as ObjectStorage -->
-										<a class="button {author.department.0.cssClass} contact-box-toggle" href="#"><f:translate key="partials_authors_list_authors.contact" extensionName="rkwAuthors" /></a>
-									</f:then>
-									<f:else>
-										<a class="button topic-1 contact-box-toggle" href="#"><f:translate key="partials_authors_list_authors.contact" extensionName="rkwAuthors" /></a>
-									</f:else>
-								</f:if>
+
+								<a class="button topic-1 contact-box-toggle" href="#"><f:translate key="partials_authors_list_authors.contact" extensionName="rkwAuthors" /></a>
+
 							</p>
 						</footer>
 					</div>

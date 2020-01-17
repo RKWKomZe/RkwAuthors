@@ -1,8 +1,8 @@
 {namespace rkwAuthors=RKW\RkwAuthors\ViewHelpers}
 <f:if condition="{author}">
 	<h1><rkwAuthors:GetCombinedName author='{author}' addTitleAfter="TRUE"/></h1>
-	<f:if condition="{author.departmentName}">
-		<h2><f:translate key="tx_rkwauthors_domain_model_authors.department_name.I.{author.departmentName}" extensionName="rkwAuthors" /></h2>
+	<f:if condition="{author.department}">
+		<h2>{author.department.name}</h2>
 	</f:if>
 	<p class="text-smaller"><f:link.page pageUid="{listPid}" class="topic-1"><f:translate key="partials_authors_details_headline.back" extensionName="rkwAuthors" /></f:link.page></p>
 </f:if>
