@@ -231,6 +231,15 @@
                 <target>PID Detailseite</target>
             </trans-unit>
 
+            <trans-unit id="flexform.detail.sheetTitle">
+                <source>Options</source>
+                <target>Einstellungsoptionen</target>
+            </trans-unit>
+            <trans-unit id="flexform.detail.listPid">
+                <source>PID List Page</source>
+                <target>PID Listenansicht</target>
+            </trans-unit>
+
             <trans-unit id="flexform.headline.sheetTitle">
                 <source>Options</source>
                 <target>Einstellungsoptionen</target>

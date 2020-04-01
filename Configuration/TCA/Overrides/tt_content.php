@@ -62,6 +62,19 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignat
     'FILE:EXT:'.$extKey . '/Configuration/FlexForms/List.xml'
 );
 
+/*
+ *  Does not have a return pid yet. Maybe usable in future?
+// Rkwauthorsdetail
+$pluginName = strtolower('Rkwauthorsdetail');
+$pluginSignature = $extensionName.'_'.$pluginName;
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+    $pluginSignature,
+    'FILE:EXT:'.$extKey . '/Configuration/FlexForms/Detail.xml'
+);
+*/
+
 // Rkwauthorsheadline
 $pluginName = strtolower('Rkwauthorsheadline');
 $pluginSignature = $extensionName.'_'.$pluginName;
