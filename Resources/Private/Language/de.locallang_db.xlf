@@ -222,6 +222,24 @@
 				<target>Autor 2</target>
 			</trans-unit>
 
+			<trans-unit id="flexform.list.sheetTitle">
+                <source>Options</source>
+                <target>Einstellungsoptionen</target>
+            </trans-unit>
+            <trans-unit id="flexform.list.showPid">
+                <source>PID Detail Page</source>
+                <target>PID Detailseite</target>
+            </trans-unit>
+
+            <trans-unit id="flexform.headline.sheetTitle">
+                <source>Options</source>
+                <target>Einstellungsoptionen</target>
+            </trans-unit>
+            <trans-unit id="flexform.headline.listPid">
+                <source>PID List Page</source>
+                <target>PID Listenansicht</target>
+            </trans-unit>
+
 		</body>
 	</file>
 </xliff>
