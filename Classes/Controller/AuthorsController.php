@@ -13,6 +13,7 @@ namespace RKW\RkwAuthors\Controller;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 
 /**
@@ -279,5 +280,51 @@ class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         $this->view->assign('author1', $this->authorsRepository->findByIdentifier(intval($this->settings['author1'])));
         $this->view->assign('author2', $this->authorsRepository->findByIdentifier(intval($this->settings['author2'])));
+    }
+
+
+    /**
+     * action contactForm
+     *
+     * @param \RKW\RkwAuthors\Domain\Model\Authors $author
+     * @ignorevalidation $author
+     * @return void
+     */
+    public function contactFormAction(\RKW\RkwAuthors\Domain\Model\Authors $author)
+    {
+        $this->view->assign('author', $author);
+    }
+
+
+    /**
+     * action contactFormSend
+     *
+     * @param array $contactForm
+     * @validate $contactForm \RKW\RkwAuthors\Validation\Validator\ContactFormValidator
+     * @return void
+     */
+    public function contactFormSendAction($contactForm)
+    {
+        DebuggerUtility::var_dump('huhu'); exit;
+
+        // 4. Check for terms
+        if (!$terms) {
+
+            $this->addFlashMessage(
+                \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                    'eventReservationController.error.acceptTerms', 'rkw_events'
+                ),
+                '',
+                \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+            );
+
+            $this->forward('new', null, null, array('newEventReservation' => $newEventReservation, 'event' => $newEventReservation->getEvent()));
+            //===
+        }
+
+
+
+
+    //    $this->view->assign('author', $author);
     }
 }
