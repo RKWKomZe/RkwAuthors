@@ -39,6 +39,9 @@ plugin.tx_rkwauthors {
             # cat=plugin.tx_rkwauthors//a; type=boolean; label=Send copy of message to users e-mail address
             allowSendCopyToUser = 0
             mail {
+                # cat=plugin.tx_rkwauthors//a; type=string; label=set language for author email with "de", or "en" etc
+                # @toDo: Maybe we should use authors sys_language_uid with correct lang code instead? Just an option...
+                language = de
                 # if an author has no mail address
                 fallback {
                     # cat=plugin.tx_rkwauthors//a; type=string; label=global mail to address if no author address is set

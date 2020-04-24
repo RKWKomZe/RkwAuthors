@@ -5,15 +5,37 @@
 
     <f:if condition='<rkwAuthors:ifContactFormIsActive author="{author}" />'>
         <f:else>
-            <div class="v320-1">
-                <p>Diese Funktion steht aktuell nicht zur Verfügung.</p>
-            </div>
+            <p class="text-message"><f:translate key="templates_authors_contactform.notAvailable" extensionName="rkwAuthors" /></p>
         </f:else>
         <f:then>
 
             <f:render partial="FormErrors" arguments="{object:contactForm}" />
 
-            <f:render section="formArea" arguments="{_all}" />
+            <f:form action="contactFormSend" name="contactForm" object="{contactForm}" class="form-fields">
+                <f:form.hidden property="author" value="{author.uid}" />
+                <div class="v320-1-of-2">
+
+                    <f:if condition="{finished}">
+                        <f:then>
+                            <div class="v320-1">
+                                <p class="text-message"><f:translate key="templates_authors_contactformsend.success" extensionName="rkwAuthors" /></p>
+                            </div>
+                        </f:then>
+                        <f:else>
+                            <f:render section="formArea" arguments="{_all}" />
+                        </f:else>
+                    </f:if>
+
+                </div>
+                <div class="v320-2-of-2">
+                    <div class="v320-1">
+                        <div class="box-wrapper">
+                            <f:render partial="Authors/Pages/Box" arguments="{author:author}" section="Default" />
+                        </div>
+                    </div>
+                </div>
+
+            </f:form>
         </f:then>
     </f:if>
 
@@ -21,88 +43,55 @@
 
 
 <f:section name="formArea">
-    <f:form action="contactFormSend" name="contactForm" object="{contactForm}" class="form-fields">
-        <f:form.hidden property="author" value="{author.uid}" />
-        <div class="v320-1-of-2">
+    <f:comment>
+        <!-- not needed? -->
+        <div class="v320-1">
+            <label class="form-label" for="subject">
+                Betreff
+            </label>
+            <f:form.textfield id="subject" property="subject" value="{contactForm.subject}" />
+        </div>
+    </f:comment>
 
-            <f:comment>
-                <!-- not needed? -->
-                <div class="v320-1">
-                    <label class="form-label" for="subject">
-                        Betreff
-                    </label>
-                    <f:form.textfield id="subject" property="subject" value="{contactForm.subject}" />
-                </div>
-            </f:comment>
+    <!-- not needed? -->
+    <div class="v320-1">
+        <label class="form-label" for="subject">
+            Ihre E-Mail Adresse
+        </label>
+        <f:form.textfield id="email" property="email" value="{contactForm.email}" />
+    </div>
 
-            <!-- not needed? -->
-            <div class="v320-1">
-                <label class="form-label" for="subject">
-                    Ihre E-Mail Adresse
-                </label>
-                <f:form.textfield id="email" property="email" value="{contactForm.email}" />
-            </div>
+    <div class="v320-1">
+        <label class="form-label" for="message">
+            Nachricht
+        </label>
+        <f:form.textarea id="message" property="message" value="{contactForm.message}" rows="7" />
+    </div>
 
-            <div class="v320-1">
-                <label class="form-label" for="message">
-                    Nachricht
-                </label>
-                <f:form.textarea id="message" property="message" value="{contactForm.message}" rows="7" />
-            </div>
+    <f:if condition="{settings.contactForm.allowSendCopyToUser}">
 
-            <f:if condition="{settings.contactForm.allowSendCopyToUser}">
-
-                <div class="v320-1">
+        <div class="v320-1">
                     <span class="checkbox">
                         <label>
                             <f:form.checkbox class="feedback-field" property="copyToUser" value="1" />
                             <span class="text-smaller">
-                                Ich möchte eine Kopie der Nachricht per E-Mail erhalten
+                                <f:translate key="templates_authors_contactform.sendCopy" extensionName="rkwAuthors" />
                             </span>
                         </label>
                     </span>
-                </div>
-            </f:if>
+        </div>
+    </f:if>
 
-            <f:if condition="{settings.contactForm.termsPid}">
+    <f:if condition="{settings.contactForm.termsPid}">
                 <span class="checkbox">
 				<label>
 					<f:form.checkbox property="terms" value="1" />
 					<span class="text-smaller"><f:link.page pageUid="{settings.contactForm.termsPid}" target="_blank">Ich akzeptiere die Nutzungsbedingungen.</f:link.page></span>
 				</label>
 			</span>
-            </f:if>
+    </f:if>
 
-            <button type="submit" class="button">
-                <span>Senden</span>
-            </button>
-        </div>
-        <div class="v320-2-of-2">
-            <div class="box-wrapper">
-                <a href="#" class="box big expert">
-                    <header>
-                        <p>
-                            <f:format.crop maxCharacters="60" respectWordBoundaries="FALSE"><rkwAuthors:GetCombinedName author="{author}" /></f:format.crop>
-                            <!-- <span>{author.functionTitle}</span> -->
-                        </p>
-                    </header>
-                    <f:if condition="{author.imageBoxes}" >
-                        <f:then>
-                            <div class="box-content">
-                                <figure><f:image src="{author.imageBoxes.uid}" treatIdAsReference="1"  alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="320"  /></figure>
-                            </div>
-                        </f:then>
-                        <f:else>
-                            <div class="box-content" style="background-image:url('EXT:rkw_authors/Resources/Public/Images/author-list-fallback.png'); background-size: contain; background-position-x: center; background-repeat:no-repeat;">
-                                &nbsp;
-                            </div>
-                        </f:else>
-                    </f:if>
-                </a>
-            </div>
-
-        </div>
-
-        <div class="v320-1">
-    </f:form>
+    <button type="submit" class="button">
+        <span><f:translate key="templates_authors_contactform.submit" extensionName="rkwAuthors" /></span>
+    </button>
 </f:section>

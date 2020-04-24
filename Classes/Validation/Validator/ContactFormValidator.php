@@ -50,7 +50,7 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
    //    DebuggerUtility::var_dump($contactForm); exit;
 
         // initialize typoscript settings
-        $this->getSettings();
+        $settings = $this->getSettings();
 
 
         $isValid = true;
@@ -101,18 +101,19 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
             $isValid = false;
         }
 
-        // TERMS
-        if (!$contactForm['terms']) {
-            $this->result->forProperty('terms')->addError(
-                new \TYPO3\CMS\Extbase\Error\Error(
-                    \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-                        'form.error.terms', 'rkw_authors'
-                    ), 1587566588
-                )
-            );
-            $isValid = false;
+        // TERMS (check only, if terms pid is set via TS)
+        if ($settings['contactForm']['termsPid']) {
+            if (!$contactForm['terms']) {
+                $this->result->forProperty('terms')->addError(
+                    new \TYPO3\CMS\Extbase\Error\Error(
+                        \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                            'form.error.terms', 'rkw_authors'
+                        ), 1587566588
+                    )
+                );
+                $isValid = false;
+            }
         }
-
 
         return $isValid;
         //===

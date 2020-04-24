@@ -42,9 +42,10 @@ class IfContactFormIsActiveViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\A
         if ($settings['contactForm']['pageUid']) {
 
             // Warning: Log if function is activated, but not usable
-            // makes only sense, if the rkw_mailer extension is optional to the rkw_authors
-            if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('rkw_mailer')) {
-                $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::WARNING, sprintf('The optional contact form function of the rkw_authors extension is only available, if also the additional rkw_mailer extension is activated.'));
+            if (
+                !\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('rkw_mailer')
+            ) {
+                $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::WARNING, sprintf('The optional contact form function of the rkw_authors extension is only available, if also the additional extension rkw_mailer are activated.'));
                 return false;
                 //===
             }
@@ -59,7 +60,7 @@ class IfContactFormIsActiveViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\A
                 //===
             }
 
-            // if nothing happen: show contact form link
+            // if nothing happen: show link to contact form
             return true;
             //===
         }

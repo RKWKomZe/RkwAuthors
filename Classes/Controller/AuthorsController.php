@@ -287,12 +287,14 @@ class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * action contactForm
      *
      * @param \RKW\RkwAuthors\Domain\Model\Authors $author
+     * @param bool $finished Set this flag to show success message instead the contact form
      * @ignorevalidation $author
      * @return void
      */
-    public function contactFormAction(\RKW\RkwAuthors\Domain\Model\Authors $author)
+    public function contactFormAction(\RKW\RkwAuthors\Domain\Model\Authors $author, $finished = false)
     {
         $this->view->assign('author', $author);
+        $this->view->assign('finished', $finished);
     }
 
 
@@ -305,26 +307,28 @@ class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function contactFormSendAction($contactForm)
     {
-        DebuggerUtility::var_dump('huhu'); exit;
+        /** @var \RKW\RkwAuthors\Domain\Model\Authors $author */
+        $author = $this->authorsRepository->findByIdentifier((intval($contactForm['author'])));
 
-        // 4. Check for terms
-        if (!$terms) {
+        if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('rkw_mailer')) {
 
-            $this->addFlashMessage(
-                \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-                    'eventReservationController.error.acceptTerms', 'rkw_events'
-                ),
-                '',
-                \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
-            );
+            // send message author
+            /** @var \RKW\RkwAuthors\Service\RkwMailService $mailService */
+            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwAuthors\\Service\\RkwMailService');
+            $mailService->contactFormAuthor($author, $contactForm);
 
-            $this->forward('new', null, null, array('newEventReservation' => $newEventReservation, 'event' => $newEventReservation->getEvent()));
-            //===
+            // if wished & allowed: send copy to user
+            if (
+                !empty($contactForm['copyToUser'])
+                && $this->settings['contactForm']['allowSendCopyToUser']
+            ) {
+                /** @var \RKW\RkwAuthors\Service\RkwMailService $mailService */
+                $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwAuthors\\Service\\RkwMailService');
+                $mailService->contactFormUser($author, $contactForm);
+            }
         }
 
-
-
-
-    //    $this->view->assign('author', $author);
+        // send back with finished flag
+        $this->forward('contactForm', null, null, ['author' => $author, 'finished' => true]);
     }
 }

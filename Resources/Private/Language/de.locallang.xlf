@@ -104,6 +104,26 @@
 				<target>Zurück zur Liste</target>
 			</trans-unit>
 
+			<!-- Templates/Authors/ContactForm.html -->
+            <trans-unit id="templates_authors_contactform.notAvailable">
+                <source>This service is currently not available</source>
+                <target>Diese Funktion steht aktuell nicht zur Verfügung.</target>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.sendCopy">
+                <source>Send me a copy</source>
+                <target>Ich möchte eine Kopie der Nachricht per E-Mail erhalten</target>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.submit">
+                <source>Submit</source>
+                <target>Nachricht senden</target>
+            </trans-unit>
+
+            <!-- Templates/Authors/ContactFormSend.html -->
+            <trans-unit id="templates_authors_contactformsend.success">
+                <source>Message was send successfully</source>
+                <target>Vielen Dank für Ihre Nachricht! Wir werden uns zeitnah bei Ihnen melden.</target>
+            </trans-unit>
+
 
 			<!-- VALIDATION -->
 			<trans-unit id="tx_rkwauthors_validator.not_filled">
@@ -121,6 +141,58 @@
             <trans-unit id="form.error.terms">
                 <source>You have to accept our terms and conditions to register.</source>
                 <target>Das muss leider sein: Um dieses Angebot nutzen zu können, müssen Sie unseren Nutzungsbedingungen zustimmen.</target>
+            </trans-unit>
+
+            <!-- E-Mail subjects -->
+            <trans-unit id="rkwMailService.contactformUser.subject" >
+                <source>Your contact request</source>
+                <target>Ihre Kontaktanfrage</target>
+            </trans-unit>
+            <trans-unit id="rkwMailService.contactformAuthor.subjectFor" >
+                <source>Contact request for</source>
+                <target>Kontaktanfrage für</target>
+            </trans-unit>
+            <trans-unit id="rkwMailService.contactformAuthor.subjectBy" >
+                <source>Contact request by</source>
+                <target>Kontaktanfrage von</target>
+            </trans-unit>
+
+
+            <!-- Templates/Email/ContactformAuthor.html -->
+            <trans-unit id="templates_email_contactformAuthor.headline">
+                <source>Hello,</source>
+                <target>Hallo,</target>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformAuthor.text1">
+                <source>a new contact request has arrived.</source>
+                <target>eine neue Kontaktanfrage ist eingetroffen.</target>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformAuthor.text2">
+                <source>Request content:</source>
+                <target>Inhalt der Anfrage:</target>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformAuthor.email">
+                <source>E-Mail: </source>
+                <target>E-Mail: </target>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformAuthor.message">
+                <source>Message: </source>
+                <target>Nachricht: </target>
+            </trans-unit>
+
+
+            <!-- Templates/Email/ContactformUser.html -->
+            <trans-unit id="templates_email_contactformUser.headline">
+                <source>Hello,</source>
+                <target>Hallo,</target>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformUser.text1">
+                <source>thanks for your contact request to  %s. We'll contact you as soon as possible.</source>
+                <target>vielen Dank für Ihre Kontaktanfrage an %s. Ihre Anfrage wird schnellstmöglich bearbeitet.</target>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformUser.text2">
+                <source>Request content:</source>
+                <target>Inhalt Ihrer Anfrage:</target>
             </trans-unit>
 
 		</body>

@@ -1,0 +1,24 @@
+{namespace vh=RKW\RkwMailer\ViewHelpers}
+{namespace rkwAuthors=RKW\RkwAuthors\ViewHelpers}
+<f:layout name="Email/{mailType}" />
+
+
+<!-- PLAINTEXT -->
+<f:section name="Plaintext">
+    <vh:frontend.translate key="templates_email_contactformUser.headline" languageKey="{language}" extensionName="rkwAuthors" arguments="{0 : fullName}" />
+
+    <vh:frontend.translate key="templates_email_contactformUser.text1" languageKey="{language}" extensionName="rkwAuthors" arguments="{0: '<rkwAuthors:GetCombinedName author=\'{author}\'/>'}" />
+
+    <vh:frontend.translate key="templates_email_contactformUser.text2" languageKey="{language}" extensionName="rkwAuthors" />
+
+    <p>{message}</p>
+</f:section>
+
+<!-- HTML -->
+<f:section name="Html">
+    <h1><vh:frontend.translate key="templates_email_contactformUser.headline" languageKey="{language}" extensionName="rkwAuthors" arguments="{0 : fullName}" /></h1>
+    <p><vh:frontend.translate key="templates_email_contactformUser.text1" languageKey="{language}" extensionName="rkwAuthors" arguments="{0: '<rkwAuthors:GetCombinedName author=\'{author}\'/>'}" /></p>
+    <p class="important"><vh:frontend.translate key="templates_email_contactformUser.text2" languageKey="{language}" extensionName="rkwAuthors" /></p>
+
+    <p>{message}</p>
+</f:section>
