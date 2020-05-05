@@ -10,12 +10,16 @@
 *   )
 */
 
-$GLOBALS['TCA']['sys_file_reference']['columns']['crop']['config'] = [
-    'type' => 'imageManipulation',
-    'ratios' => array_merge(
-        $GLOBALS['TCA']['sys_file_reference']['columns']['crop']['config']['ratios'],
-        [
-            '0.787401575' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:sys_file_reference.ratio.list_image',
-        ]
-    )
-];
+$currentVersion = TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version);
+if ($currentVersion < 8000000) {
+
+    $GLOBALS['TCA']['sys_file_reference']['columns']['crop']['config'] = [
+        'type'   => 'imageManipulation',
+        'ratios' => array_merge(
+            $GLOBALS['TCA']['sys_file_reference']['columns']['crop']['config']['ratios'],
+            [
+                '0.787401575' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:sys_file_reference.ratio.list_image',
+            ]
+        )
+    ];
+}
