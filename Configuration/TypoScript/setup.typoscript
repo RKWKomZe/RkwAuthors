@@ -120,8 +120,10 @@ plugin.tx_rkwauthors {
             pageUid = {$plugin.tx_rkwauthors.settings.contactForm.pageUid}
             # cat=plugin.tx_rkwauthors//a; type=integer; label=pid of terms
             termsPid = {$plugin.tx_rkwauthors.settings.contactForm.termsPid}
-            # cat=plugin.tx_rkwauthors//a; type=boolean; label=Send copy of message to users e-mail address
-            allowSendCopyToUser = {$plugin.tx_rkwauthors.settings.contactForm.allowSendCopyToUser}
+            # cat=plugin.tx_rkwauthors//a; type=integer; label=pid of privacy
+            privacyPid = {$plugin.tx_rkwauthors.settings.contactForm.privacyPid}
+            # cat=plugin.tx_rkwauthors//f; type=string; label=mandatory fields for contactform (e.g. email, message)
+            mandatoryFields = {$plugin.tx_rkwauthors.settings.contactForm.mandatoryFields}
             mail {
                 # cat=plugin.tx_rkwauthors//a; type=string; label=set language for author email with "de", or "en" etc
                 language = {$plugin.tx_rkwauthors.settings.contactForm.mail.language}

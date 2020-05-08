@@ -117,6 +117,34 @@
                 <source>Submit</source>
                 <target>Nachricht senden</target>
             </trans-unit>
+            <trans-unit id="templates_authors_contactform.field_email">
+                <source>Your email address</source>
+                <target>Ihre E-Mail Adresse</target>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.field_message">
+                <source>Message</source>
+                <target>Nachricht</target>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.label_optional">
+                <source>(optional)</source>
+                <target>(optional)</target>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.terms">
+                <source>I accept the terms.</source>
+                <target>Ich akzeptiere die Nutzungsbedingungen.</target>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.firstPart">
+                <source>Yes, I agree that RKW will use my personal data for the above purpose and to create a free user account.  Furthermore, I have read and agree to the extended notes in the</source>
+                <target>Ja, ich stimme zu, dass das RKW meine persönlichen Daten zum oben genannten Zweck, sowie zur Erzeugung eines kostenlosen Nutzerkontos verwendet.  Ferner habe ich die erweiterten Hinweise in der</target>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.secondPart">
+                <source>data protection declaration</source>
+                <target>Datenschutzerklärung </target>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.thirdPart">
+                <source>. This consent can be revoked at any time.</source>
+                <target>gelesen und bin damit einverstanden. Diese Einwilligung kann jederzeit widerrufen werden.</target>
+            </trans-unit>
 
             <!-- Templates/Authors/ContactFormSend.html -->
             <trans-unit id="templates_authors_contactformsend.success">
@@ -142,6 +170,10 @@
                 <source>You have to accept our terms and conditions to register.</source>
                 <target>Das muss leider sein: Um dieses Angebot nutzen zu können, müssen Sie unseren Nutzungsbedingungen zustimmen.</target>
             </trans-unit>
+            <trans-unit id="form.error.privacy">
+                <source>The protection of your data is important to us. Therefore we ask you to agree to the storage of your personal data.</source>
+                <target>Der Schutz Ihrer Daten ist uns wichtig. Daher bitten wir Sie, der Speicherung Ihrer persönlichen Daten zuzustimmen.</target>
+            </trans-unit>
 
             <!-- E-Mail subjects -->
             <trans-unit id="rkwMailService.contactformUser.subject" >
@@ -158,14 +190,15 @@
             </trans-unit>
 
 
+
             <!-- Templates/Email/ContactformAuthor.html -->
             <trans-unit id="templates_email_contactformAuthor.headline">
                 <source>Hello,</source>
                 <target>Hallo,</target>
             </trans-unit>
             <trans-unit id="templates_email_contactformAuthor.text1">
-                <source>a new contact request has arrived.</source>
-                <target>eine neue Kontaktanfrage ist eingetroffen.</target>
+                <source>a new contact request has arrived for %s.</source>
+                <target>eine neue Kontaktanfrage ist eingetroffen für %s.</target>
             </trans-unit>
             <trans-unit id="templates_email_contactformAuthor.text2">
                 <source>Request content:</source>

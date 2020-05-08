@@ -32,12 +32,16 @@ plugin.tx_rkwauthors {
         phoneExtensionLength = 4
 
         contactForm {
-            # cat=plugin.tx_rkwauthors//a; type=integer; label=pid of contact form
+            # cat=plugin.tx_rkwauthors//a; type=integer; label=pid of contact form (setting the PID activates the form!)
             pageUid =
             # cat=plugin.tx_rkwauthors//a; type=integer; label=pid of terms
             termsPid =
-            # cat=plugin.tx_rkwauthors//a; type=boolean; label=Send copy of message to users e-mail address
-            allowSendCopyToUser = 0
+            # cat=plugin.tx_rkwauthors//a; type=integer; label=pid of privacy
+            privacyPid =
+            # cat=plugin.tx_rkwauthors//a; type=boolean; label=Make sending copy of message to users e-mail address optional
+            sendCopyToUserOptional = 0
+            # cat=plugin.tx_rkwauthors//f; type=string; label=mandatory fields for contactform (e.g. email, message)
+            mandatoryFields = email, message
             mail {
                 # cat=plugin.tx_rkwauthors//a; type=string; label=set language for author email with "de", or "en" etc
                 # @toDo: Maybe we should use authors sys_language_uid with correct lang code instead? Just an option...

@@ -235,7 +235,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                         'rkw_authors',
                         null,
                         $settingsDefault['contactForm']['mail']['language']
-                    ) . ' ' . $author->getFirstName() . ' ' . $author->getLastName()
+                    ) . ' ' . $author->getFirstName() . ' ' . $author->getLastName() . ' ' . $author->getEmail()
                 );
             } else {
                 // to author directly: Just wrote "contact request by (user-email)" to subject

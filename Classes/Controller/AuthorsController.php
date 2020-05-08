@@ -301,6 +301,8 @@ class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * action contactFormSend
      *
+     * privacy hint: There are no persistent form or frontendUser: So we'll created NO privacy entry (would be senseless)
+     *
      * @param array $contactForm
      * @validate $contactForm \RKW\RkwAuthors\Validation\Validator\ContactFormValidator
      * @return void
@@ -317,15 +319,10 @@ class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwAuthors\\Service\\RkwMailService');
             $mailService->contactFormAuthor($author, $contactForm);
 
-            // if wished & allowed: send copy to user
-            if (
-                !empty($contactForm['copyToUser'])
-                && $this->settings['contactForm']['allowSendCopyToUser']
-            ) {
-                /** @var \RKW\RkwAuthors\Service\RkwMailService $mailService */
-                $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwAuthors\\Service\\RkwMailService');
-                $mailService->contactFormUser($author, $contactForm);
-            }
+            // send copy to user
+            /** @var \RKW\RkwAuthors\Service\RkwMailService $mailService */
+            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwAuthors\\Service\\RkwMailService');
+            $mailService->contactFormUser($author, $contactForm);
         }
 
         // send back with finished flag

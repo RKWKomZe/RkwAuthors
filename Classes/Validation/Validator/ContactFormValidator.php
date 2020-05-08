@@ -2,6 +2,7 @@
 
 namespace RKW\RkwAuthors\Validation\Validator;
 
+use \TYPO3\CMS\Core\Utility\GeneralUtility;
 use \RKW\RkwBasics\Helper\Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
@@ -46,28 +47,38 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
      */
     public function isValid($contactForm)
     {
-
-   //    DebuggerUtility::var_dump($contactForm); exit;
-
         // initialize typoscript settings
         $settings = $this->getSettings();
 
+        $mandatoryFieldsArray = GeneralUtility::trimExplode(',', $settings['contactForm']['mandatoryFields'], TRUE);
 
         $isValid = true;
 
-        // E-MAIL
-        if (!$contactForm['email']) {
-            $this->result->forProperty('email')->addError(
-                new \TYPO3\CMS\Extbase\Error\Error(
-                    \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-                        'tx_rkwauthors_validator.not_filled',
-                        'rkw_authors',
-                        array('email')
-                    ), 1587566321
-                )
-            );
-            $isValid = false;
-        } else {
+        // iterate given form fields
+        foreach ($contactForm as $key => $formField) {
+            // check if field is mandatory (set via TS)
+            if (in_array($key, $mandatoryFieldsArray)) {
+
+                // if empty: throw error
+                if (!$formField) {
+                    $this->result->forProperty($key)->addError(
+                        new \TYPO3\CMS\Extbase\Error\Error(
+                            \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                                'tx_rkwauthors_validator.not_filled',
+                                'rkw_authors',
+                                array(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                                    'form.error.' . $key, 'rkw_authors'
+                                ))
+                            ), 1587566321
+                        )
+                    );
+                    $isValid = false;
+                }
+            }
+        }
+
+        // E-MAIL (if filled -> looks valid?)
+        if ($contactForm['email']) {
             $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
             /** @var \TYPO3\CMS\Extbase\Validation\ValidatorResolver $validatorResolver */
             $validatorResolver = $objectManager->get('TYPO3\\CMS\\Extbase\\Validation\\ValidatorResolver');
@@ -78,27 +89,12 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
             if (count($result->getErrors())) {
                 $this->result->forProperty('email')->addError(
                     new \TYPO3\CMS\Extbase\Error\Error(
-                        $result->getFirstError()->getMessage() , 1449314603
+                        $result->getFirstError()->getMessage() .'.'
+                        , 1449314603
                     )
                 );
                 $isValid = false;
             }
-        }
-
-        // MESSAGE
-        if (!$contactForm['message']) {
-            $this->result->forProperty('message')->addError(
-                new \TYPO3\CMS\Extbase\Error\Error(
-                    \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-                        'tx_rkwauthors_validator.not_filled',
-                        'rkw_authors',
-                        array(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-                            'form.error.message', 'rkw_authors'
-                        ))
-                    ), 1587566333
-                )
-            );
-            $isValid = false;
         }
 
         // TERMS (check only, if terms pid is set via TS)
@@ -109,6 +105,20 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
                         \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                             'form.error.terms', 'rkw_authors'
                         ), 1587566588
+                    )
+                );
+                $isValid = false;
+            }
+        }
+
+        // PRIVACY (check only, if privacy pid is set via TS)
+        if ($settings['contactForm']['privacyPid']) {
+            if (!$contactForm['privacy']) {
+                $this->result->forProperty('privacy')->addError(
+                    new \TYPO3\CMS\Extbase\Error\Error(
+                        \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                            'form.error.privacy', 'rkw_authors'
+                        ), 1588941914
                     )
                 );
                 $isValid = false;
