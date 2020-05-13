@@ -53,6 +53,9 @@
 			<trans-unit id="partials_authors_list_authors.contact">
 				<source>Contact</source>
 			</trans-unit>
+			<trans-unit id="partials_authors_list_authors.contactForm">
+                <source>Message</source>
+            </trans-unit>
 
 			<!-- Templates/Authors/List.html -->
 			<trans-unit id="templates_authors_list.experts">
@@ -84,6 +87,102 @@
 				<source>Back to List</source>
 			</trans-unit>
 
+			<!-- Templates/Authors/ContactForm.html -->
+            <trans-unit id="templates_authors_contactform.notAvailable">
+                <source>This service is currently not available</source>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.sendCopy">
+                <source>Send me a copy</source>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.submit">
+                <source>Submit</source>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.field_email">
+                <source>Your email address</source>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.field_message">
+                <source>Message</source>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.label_optional">
+                <source>(optional)</source>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.terms">
+                <source>I accept the terms.</source>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.firstPart">
+                <source>Yes, I agree that RKW will use my personal data for the above purpose and to create a free user account.  Furthermore, I have read and agree to the extended notes in the</source>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.secondPart">
+                <source>data protection declaration</source>
+            </trans-unit>
+            <trans-unit id="templates_authors_contactform.thirdPart">
+                <source>. This consent can be revoked at any time.</source>
+            </trans-unit>
+
+            <!-- Templates/Authors/ContactFormSend.html -->
+            <trans-unit id="templates_authors_contactformsend.success">
+                <source>Message was send successfully</source>
+            </trans-unit>
+
+
+            <!-- VALIDATION -->
+			<trans-unit id="tx_rkwauthors_validator.not_filled">
+                <source>Please fill out the field '%s'.</source>
+            </trans-unit>
+            <trans-unit id="form.error.email">
+                <source>E-Mail</source>
+            </trans-unit>
+            <trans-unit id="form.error.message">
+                <source>Message</source>
+            </trans-unit>
+            <trans-unit id="form.error.terms">
+                <source>You have to accept our terms and conditions to register.</source>
+            </trans-unit>
+            <trans-unit id="form.error.privacy">
+                <source>The protection of your data is important to us. Therefore we ask you to agree to the storage of your personal data.</source>
+            </trans-unit>
+
+
+           <!-- E-Mail subjects -->
+            <trans-unit id="rkwMailService.contactformUser.subject" >
+                <source>Your contact request</source>
+            </trans-unit>
+            <trans-unit id="rkwMailService.contactformAuthor.subjectFor" >
+                <source>Contact request for</source>
+            </trans-unit>
+            <trans-unit id="rkwMailService.contactformAuthor.subjectBy" >
+                <source>Contact request by</source>
+            </trans-unit>
+
+
+            <!-- Templates/Email/ContactformAuthor.html -->
+            <trans-unit id="templates_email_contactformAuthor.headline">
+                <source>Hello,</source>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformAuthor.text1">
+                <source>a new contact request has arrived for %s.</source>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformAuthor.text2">
+                <source>Request content:</source>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformAuthor.email">
+                <source>E-Mail: </source>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformAuthor.message">
+                <source>Message: </source>
+            </trans-unit>
+
+
+            <!-- Templates/Email/ContactformUser.html -->
+            <trans-unit id="templates_email_contactformUser.headline">
+                <source>Hello,</source>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformUser.text1">
+                <source>thanks for your contact request to %s. We'll contact you as soon as possible.</source>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformUser.text2">
+                <source>Request content:</source>
+            </trans-unit>
 
 		</body>
 	</file>

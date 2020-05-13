@@ -69,9 +69,18 @@ config.tx_extbase.persistence{
 
 plugin.tx_rkwauthors {
 	view {
-		templateRootPath = {$plugin.tx_rkwauthors.view.templateRootPath}
-		partialRootPath = {$plugin.tx_rkwauthors.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_rkwauthors.view.layoutRootPath}
+        layoutRootPaths {
+            0 = EXT:rkw_authors/Resources/Private/Layouts/
+            1 = {$plugin.tx_rkwauthors.view.layoutRootPath}
+        }
+        templateRootPaths {
+            0 = EXT:rkw_authors/Resources/Private/Templates/
+            1 = {$plugin.tx_rkwauthors.view.templateRootPath}
+        }
+        partialRootPaths {
+            0 = EXT:rkw_authors/Resources/Private/Partials/
+            1 = {$plugin.tx_rkwauthors.view.partialRootPath}
+        }
 	}
 	persistence {
 		storagePid = {$plugin.tx_rkwauthors.persistence.storagePid}
@@ -103,8 +112,36 @@ plugin.tx_rkwauthors {
 
         # cat=plugin.tx_rkwauthors//a; type=integer; label=Phone extension length
         phoneExtensionLength = {$plugin.tx_rkwauthors.settings.phoneExtensionLength}
-	}
 
+        # optional: Use contact form instead of the direct authors email links
+        contactForm {
+            # cat=plugin.tx_rkwauthors//a; type=integer; label=pid of contact form
+            # HINT: If the pageUid is set, the contactForm link will replace the authors direct email-link!
+            pageUid = {$plugin.tx_rkwauthors.settings.contactForm.pageUid}
+            # cat=plugin.tx_rkwauthors//a; type=integer; label=pid of terms
+            termsPid = {$plugin.tx_rkwauthors.settings.contactForm.termsPid}
+            # cat=plugin.tx_rkwauthors//a; type=integer; label=pid of privacy
+            privacyPid = {$plugin.tx_rkwauthors.settings.contactForm.privacyPid}
+            # cat=plugin.tx_rkwauthors//f; type=string; label=mandatory fields for contactform (e.g. email, message)
+            mandatoryFields = {$plugin.tx_rkwauthors.settings.contactForm.mandatoryFields}
+            mail {
+                # cat=plugin.tx_rkwauthors//a; type=string; label=set language for author email with "de", or "en" etc
+                language = {$plugin.tx_rkwauthors.settings.contactForm.mail.language}
+                # if an author has no mail address
+                fallback {
+                    # cat=plugin.tx_rkwauthors//a; type=string; label=global mail to address if no author address is set
+                    address = {$plugin.tx_rkwauthors.settings.contactForm.mail.fallback.address}
+                }
+                # override the authors mail address and mail name
+                override {
+                    # cat=plugin.tx_rkwauthors//a; type=string; label=global mail to address (overrides authors mail address!)
+                    address = {$plugin.tx_rkwauthors.settings.contactForm.mail.override.address}
+                    # cat=plugin.tx_rkwauthors//a; type=string; label=global mail to name (overrides authors name!)
+                    name = {$plugin.tx_rkwauthors.settings.contactForm.mail.override.name}
+                }
+            }
+        }
+	}
 }
 
 

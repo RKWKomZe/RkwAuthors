@@ -13,6 +13,7 @@ namespace RKW\RkwAuthors\Controller;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 
 /**
@@ -279,5 +280,52 @@ class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         $this->view->assign('author1', $this->authorsRepository->findByIdentifier(intval($this->settings['author1'])));
         $this->view->assign('author2', $this->authorsRepository->findByIdentifier(intval($this->settings['author2'])));
+    }
+
+
+    /**
+     * action contactForm
+     *
+     * @param \RKW\RkwAuthors\Domain\Model\Authors $author
+     * @param bool $finished Set this flag to show success message instead the contact form
+     * @ignorevalidation $author
+     * @return void
+     */
+    public function contactFormAction(\RKW\RkwAuthors\Domain\Model\Authors $author, $finished = false)
+    {
+        $this->view->assign('author', $author);
+        $this->view->assign('finished', $finished);
+    }
+
+
+    /**
+     * action contactFormSend
+     *
+     * privacy hint: There are no persistent form or frontendUser: So we'll created NO privacy entry (would be senseless)
+     *
+     * @param array $contactForm
+     * @validate $contactForm \RKW\RkwAuthors\Validation\Validator\ContactFormValidator
+     * @return void
+     */
+    public function contactFormSendAction($contactForm)
+    {
+        /** @var \RKW\RkwAuthors\Domain\Model\Authors $author */
+        $author = $this->authorsRepository->findByIdentifier((intval($contactForm['author'])));
+
+        if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('rkw_mailer')) {
+
+            // send message author
+            /** @var \RKW\RkwAuthors\Service\RkwMailService $mailService */
+            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwAuthors\\Service\\RkwMailService');
+            $mailService->contactFormAuthor($author, $contactForm);
+
+            // send copy to user
+            /** @var \RKW\RkwAuthors\Service\RkwMailService $mailService */
+            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwAuthors\\Service\\RkwMailService');
+            $mailService->contactFormUser($author, $contactForm);
+        }
+
+        // send back with finished flag
+        $this->forward('contactForm', null, null, ['author' => $author, 'finished' => true]);
     }
 }
