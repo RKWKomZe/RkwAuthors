@@ -39,6 +39,12 @@ call_user_func(
             'RKW Authors - Call-To-Action'
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            $extKey,
+            'Rkwauthorscontactform',
+            'RKW Authors - Kontaktformular'
+        );
+
         //=================================================================
         // Add Tables
         //=================================================================

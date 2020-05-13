@@ -30,13 +30,20 @@
 					<a href="#" class="phone icon-phone text-hide"><span><rkwAuthors:GetFormattedPhoneNumber phoneExtensionLength="{settings.phoneExtensionLength}" author="{author}"/></span></a>
 				</p>
 			</f:if>
-			<f:if condition="{author.email}">
-				<p class="contact">
-                    <f:link.email email="{author.email}" class="mail icon-mail text-hide">
-                        E-Mail
-                    </f:link.email>
-				</p>
-			</f:if>
+            <f:if condition='<rkwAuthors:ifContactFormIsActive author="{author}" />'>
+                <f:then>
+                    <f:link.page class="mail icon-mail text-hide" pageUid="{settings.contactForm.pageUid}" additionalParams="{tx_rkwauthors_rkwauthorscontactform: {author: author}}">&nbsp;&nbsp;<f:translate key="partials_authors_list_authors.contactForm" extensionName="rkwAuthors" /></f:link.page>
+                </f:then>
+                <f:else>
+                    <f:if condition="{author.email}">
+                        <p class="contact">
+                            <f:link.email email="{author.email}" class="mail icon-mail text-hide">
+                                E-Mail
+                            </f:link.email>
+                        </p>
+                    </f:if>
+                </f:else>
+            </f:if>
 		</div>
 		<!--<p class="position">
 			<f:format.crop maxCharacters="21" respectWordBoundaries="FALSE">{author.functionTitleShort}</f:format.crop>

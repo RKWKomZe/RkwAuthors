@@ -16,9 +16,18 @@
                         </f:link.external>
                     </f:then>
                     <f:else>
-                        <f:link.email email="{author.email}" class="box big expert {f:if(condition: '{author.imageBoxes}', else: 'no-image')}" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
-                            <f:render section="External"  arguments="{_all}" />
-                        </f:link.email>
+                        <f:if condition='<rkwAuthors:ifContactFormIsActive author="{author}" />'>
+                            <f:then>
+                                <f:link.page pageUid="{settings.contactForm.pageUid}" class="box big expert {f:if(condition: '{author.imageBoxes}', else: 'no-image')}" additionalParams="{tx_rkwauthors_rkwauthorscontactform: {author: author}}">
+                                    <f:render section="External"  arguments="{_all}" />
+                                </f:link.page>
+                            </f:then>
+                            <f:else>
+                                <f:link.email email="{author.email}" class="box big expert {f:if(condition: '{author.imageBoxes}', else: 'no-image')}" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
+                                    <f:render section="External"  arguments="{_all}" />
+                                </f:link.email>
+                            </f:else>
+                        </f:if>
                     </f:else>
                 </f:if>
 

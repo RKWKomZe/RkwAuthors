@@ -31,13 +31,22 @@
 						<span class="icon-phone">&nbsp;<rkwAuthors:GetFormattedPhoneNumber phoneExtensionLength="{settings.phoneExtensionLength}" author="{author}"/></span>
 					</p>
 				</f:if>
-				<f:if condition="{author.email}">
-					<p>
-                        <f:link.email class="icon-mail" email="{author.email}">&nbsp;
-                            E-Mail
-                        </f:link.email>
-					</p>
-				</f:if>
+                <f:if condition='<rkwAuthors:ifContactFormIsActive author="{author}" />'>
+                    <f:then>
+                        <p>
+                            <f:link.page class="icon-mail" pageUid="{settings.contactForm.pageUid}" additionalParams="{tx_rkwauthors_rkwauthorscontactform: {author: author}}">&nbsp;&nbsp;<f:translate key="partials_authors_list_authors.contactForm" extensionName="rkwAuthors" /></f:link.page>
+                        </p>
+                    </f:then>
+                    <f:else>
+                        <f:if condition="{author.email}">
+                            <p>
+                                <f:link.email class="icon-mail" email="{author.email}">&nbsp;
+                                    E-Mail
+                                </f:link.email>
+                            </p>
+                        </f:if>
+                    </f:else>
+                </f:if>
 			</div>
 		</div>
 	</div>
