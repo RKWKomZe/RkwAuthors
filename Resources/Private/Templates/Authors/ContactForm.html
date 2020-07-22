@@ -1,0 +1,111 @@
+{namespace rkwAuthors=RKW\RkwAuthors\ViewHelpers}
+<f:layout name="Default" />
+
+<f:section name="main">
+
+    <f:if condition='<rkwAuthors:ifContactFormIsActive author="{author}" />'>
+        <f:else>
+            <p class="text-message"><f:translate key="templates_authors_contactform.notAvailable" extensionName="rkwAuthors" /></p>
+        </f:else>
+        <f:then>
+
+            <f:render partial="FormErrors" arguments="{object:contactForm}" />
+
+            <f:form action="contactFormSend" name="contactForm" object="{contactForm}" class="form-fields">
+                <f:form.hidden property="author" value="{author.uid}" />
+                <div class="v320-1-of-2">
+
+                    <f:if condition="{finished}">
+                        <f:then>
+                            <div class="v320-1">
+                                <p class="text-message"><f:translate key="templates_authors_contactformsend.success" extensionName="rkwAuthors" /></p>
+                            </div>
+                        </f:then>
+                        <f:else>
+                            <f:render section="formArea" arguments="{_all}" />
+                        </f:else>
+                    </f:if>
+
+                </div>
+                <div class="v320-2-of-2">
+                    <div class="v320-1">
+                        <div class="box-wrapper">
+                            <f:render partial="Authors/Pages/Box" arguments="{author:author}" section="Default" />
+                        </div>
+                    </div>
+                </div>
+
+            </f:form>
+        </f:then>
+    </f:if>
+
+</f:section>
+
+
+<f:section name="formArea">
+
+    <div class="v320-1">
+        <label class="form-label" for="email">
+            <f:translate key="templates_authors_contactform.field_email" />
+            <f:if condition="<rkwAuthors:isMandatoryField fieldName='email' mandatoryFields='{settings.contactForm.mandatoryFields}' />">
+                <span class='optional'>&nbsp;<f:translate key="templates_authors_contactform.label_optional" /></span>
+            </f:if>
+        </label>
+        <f:form.textfield id="email" property="email" value="{contactForm.email}" />
+    </div>
+
+    <div class="v320-1">
+        <label class="form-label" for="message">
+            <f:translate key="templates_authors_contactform.field_message" />
+            <f:if condition="<rkwAuthors:isMandatoryField fieldName='message' mandatoryFields='{settings.contactForm.mandatoryFields}' />">
+                <span class='optional'>&nbsp;<f:translate key="templates_authors_contactform.label_optional" /></span>
+            </f:if>
+        </label>
+        <f:form.textarea id="message" property="message" value="{contactForm.message}" rows="7" />
+    </div>
+
+    <f:if condition="{settings.contactForm.allowSendCopyToUser}">
+
+        <div class="v320-1">
+            <span class="checkbox">
+                <label>
+                    <f:form.checkbox class="feedback-field" property="copyToUser" value="1" />
+                    <span class="text-smaller">
+                        <f:translate key="templates_authors_contactform.sendCopy" extensionName="rkwAuthors" />
+                    </span>
+                </label>
+            </span>
+        </div>
+    </f:if>
+
+    <f:if condition="{settings.contactForm.termsPid}">
+        <span class="checkbox">
+            <label>
+                <f:form.checkbox property="terms" value="1" />
+                <span class="text-smaller">
+                    <f:link.page pageUid="{settings.contactForm.termsPid}" target="_blank">
+                        <f:translate key="templates_authors_contactform.terms" extensionName="rkwAuthors" />
+                    </f:link.page>
+                </span>
+            </label>
+        </span>
+    </f:if>
+
+    <f:comment><!-- for no dependency to the RkwRegistration ext we do not use the vh function for it --></f:comment>
+    <f:if condition="{settings.contactForm.privacyPid}">
+        <span class="checkbox">
+            <label>
+                <f:form.checkbox property="privacy" value="1" />
+                <span class="text-smaller">
+                    <f:translate key="templates_authors_contactform.firstPart" />
+                    <f:link.page pageUid="{settings.contactForm.privacyPid}" target="_blank"><f:translate key="templates_authors_contactform.secondPart" /></f:link.page>
+                    <f:translate key="templates_authors_contactform.thirdPart" />
+                </span>
+            </label>
+        </span>
+    </f:if>
+
+    <button type="submit" class="button">
+        <span><f:translate key="templates_authors_contactform.submit" extensionName="rkwAuthors" /></span>
+    </button>
+</f:section>

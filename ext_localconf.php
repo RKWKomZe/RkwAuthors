@@ -71,6 +71,18 @@ call_user_func(
             )
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'RKW.' . $extKey,
+            'Rkwauthorscontactform',
+            array(
+                'Authors' => 'contactForm, contactFormSend',
+            ),
+            // non-cacheable actions
+            array(
+                'Authors' => 'contactForm, contactFormSend',
+            )
+        );
+
         //=================================================================
         // Add Rootline Fields
         //=================================================================
