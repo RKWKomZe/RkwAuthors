@@ -32,6 +32,13 @@
 
 
 
+			<trans-unit id="templates.authors.pageBox.labelContact">
+				<source>Kontakt</source>
+				<target>Kontaktn</target>
+			</trans-unit>
+
+
+
 			<trans-unit id="partials.authors.pages.box.clickToWriteEmail">
 				<source>Send E-Mail</source>
 				<target>E-Mail senden</target>
