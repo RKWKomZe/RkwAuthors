@@ -1,121 +1,111 @@
 {namespace rkwAuthors=RKW\RkwAuthors\ViewHelpers}
 
-<f:section name="Default">
-	<f:if condition="{author}" >
-        <f:if condition="<rkwAuthors:and and1='{author.internal}' and2='{showPid}' />">
-			<f:then>
-				<f:link.action action="show" pageUid="{showPid}" arguments="{author: '{author}'}" target="{f:if(condition: '{settings.detailLinkTargetBlank} == 1', then: '_blank')}" class="box big expert {f:if(condition: '{author.imageBoxes}', else: 'no-image')}" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
-					<f:render section="Internal"  arguments="{_all}" />
-				</f:link.action>
-			</f:then>
-			<f:else>
-                <f:if condition="{author.url}">
-                    <f:then>
-                        <f:link.external uri="{author.url}" target="_blank" class="box big expert {f:if(condition: '{author.imageBoxes}', else: 'no-image')}" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
-                            <f:render section="External"  arguments="{_all}" />
-                        </f:link.external>
-                    </f:then>
-                    <f:else>
-                        <f:if condition='<rkwAuthors:ifContactFormIsActive author="{author}" />'>
-                            <f:then>
-                                <f:link.page pageUid="{settings.contactForm.pageUid}" class="box big expert {f:if(condition: '{author.imageBoxes}', else: 'no-image')}" additionalParams="{tx_rkwauthors_rkwauthorscontactform: {author: author}}">
-                                    <f:render section="External"  arguments="{_all}" />
-                                </f:link.page>
-                            </f:then>
-                            <f:else>
-                                <f:link.email email="{author.email}" class="box big expert {f:if(condition: '{author.imageBoxes}', else: 'no-image')}" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
-                                    <f:render section="External"  arguments="{_all}" />
-                                </f:link.email>
-                            </f:else>
-                        </f:if>
-                    </f:else>
-                </f:if>
-
-			</f:else>
-		</f:if>
-	</f:if>
-</f:section>
-
-<!-- ========================================================================= -->
-
-<f:section name="Internal">
-	<header>
-		<p>
-			<f:format.crop maxCharacters="60" respectWordBoundaries="FALSE"><rkwAuthors:GetCombinedName author="{author}" /></f:format.crop>
-			<!-- <span>{author.functionTitle}</span> -->
-		</p>
-	</header>
-		<f:if condition="{author.imageBoxes}" >
-			<f:then>
-                <div class="box-content">
-                    <figure><f:image src="{author.imageBoxes.uid}" treatIdAsReference="1"  alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="320"  /></figure>
-                </div>
-			</f:then>
-			<f:else>
-                <div class="box-content" style="background-image:url('EXT:rkw_authors/Resources/Public/Images/author-list-fallback.png'); background-size: contain; background-position-x: center; background-repeat:no-repeat;">
-                    &nbsp;
-                </div>
-            </f:else>
-		</f:if>
-
-	<footer>
-		<p class="icon-id" title="<rkwAuthors:GetCombinedName author='{author}'/>">
-			<f:format.crop maxCharacters="21" respectWordBoundaries="FALSE"><f:translate key="partials_authors_box.expertLabel" /></f:format.crop>
-		</p>
-	</footer>
-</f:section>
-
-<!-- ========================================================================= -->
-
-<f:section name="External">
-    <header>
-        <p>
-            <f:format.crop maxCharacters="60" respectWordBoundaries="FALSE"><rkwAuthors:GetCombinedName author="{author}" /></f:format.crop>
-            <span><f:format.nl2br>{author.functionTitle}</f:format.nl2br></span>
-        </p>
-    </header>
-    <div class="box-content {f:if(condition: '{author.imageBoxesIsLogo}', then: 'powered-by')}">
-        <f:if condition="{author.imageBoxes}" >
-            <f:then>
-                <f:if condition="{author.imageBoxesIsLogo}">
-                    <f:then>
-                        <picture><f:image src="{author.imageBoxes.uid}" treatIdAsReference="1"  alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="320"  /></picture>
-                    </f:then>
-                    <f:else>
-                        <figure><f:image src="{author.imageBoxes.uid}" treatIdAsReference="1"  alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="320"  /></figure>
-                    </f:else>
-                </f:if>
-            </f:then>
-            <f:else>
-                <div class="wysiwyg">
-                    <f:if condition="{author.company}">
-                        <strong>{author.company}</strong><br>
-                    </f:if>
-                    <f:if condition="{author.street}">
-                        {author.street} {author.number}<br>
-                    </f:if>
-                    <f:if condition="{author.zip}">
-                        {author.zip} </f:if><f:if condition="{author.city}">{author.city}<br>
-                    </f:if>
-                    <f:if condition="{author.number}">
-                        <f:translate key="partials_authors_box.phone" />: <rkwAuthors:GetFormattedPhoneNumber phoneExtensionLength="0" author="{author}"/><br>
-                    </f:if>
-                    <f:comment>
-                        <f:if condition="{author.email}">
-                            <br><f:translate key="partials_authors_box.clickToWriteEmail" />
-                        </f:if>
-                    </f:comment>
-                </div>
-            </f:else>
-        </f:if>
+<div class="tile">
+    <div class="tile__header">
+        <div class="tile__img">
+            <f:render section="Image" arguments="{_all}" />
+        </div>
     </div>
-    <footer>
-        <p class="icon-id" title="<rkwAuthors:GetCombinedName author='{author}'/>">
-            <f:format.crop maxCharacters="21" respectWordBoundaries="FALSE"><f:translate key="partials_authors_box.expertLabel" /></f:format.crop>
-        </p>
-    </footer>
+    <div class="tile__content">
+        <f:render section="Name" arguments="{_all}" />
+        <div class="tile__contact my-1">
+            <f:render section="Email" arguments="{_all}" />
+            <f:render section="Phone" arguments="{_all}" />
+            <f:render section="Link" arguments="{_all}" />
+        </div>
+    </div>
+</div>
+
+<!-- ======================================================================== -->
+
+<f:section name="Image">
+    <f:if condition="{author.internal} && {author.imageBoxes}">
+        <f:then>
+            <f:image src="{author.imageBoxes.uid}" treatIdAsReference="1" alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="350"  />
+        </f:then>
+        <f:else>
+            <f:image src="EXT:rkw_authors/Resources/Public/Images/author-list-fallback.png" alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="350"  />
+        </f:else>
+    </f:if>
+</f:section>
+
+<!-- ======================================================================== -->
+
+<f:section name="Name">
+    <h3 class="tile__title icon">
+        <span class="tile__title-icon">
+            <svg class="icon icon--32"><use xlink:href="#ic-contacts" /></svg>
+        </span>
+        <span>
+            <span class="tile__title-text">
+                <f:format.crop maxCharacters="60" respectWordBoundaries="FALSE"><rkwAuthors:GetCombinedName author="{author}" /></f:format.crop>
+            </span>
+        <!--{author.functionTitle}-->
+        </span>
+    </h3>
 </f:section>
 
 
+<!-- ======================================================================== -->
 
+<f:section name="Link">
+    <f:if condition="{author.internal} && {showPid}">
+        <f:then>
+            <f:link.action action="show" pageUid="{showPid}" arguments="{author: '{author}'}" target="{f:if(condition: '{settings.detailLinkTargetBlank} == 1', then: '_blank')}" class="tile__link-overlay" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
+                <rkwAuthors:GetCombinedName author='{author}'/>
+            </f:link.action>
+        </f:then>
+        <f:else>
+            <f:if condition="{author.url}">
+                <f:link.external uri="{author.url}" target="_blank" class="tile__link-overlay" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
+                    <rkwAuthors:GetCombinedName author='{author}'/>
+                </f:link.external>
+            </f:if>
+        </f:else>
+    </f:if>
+</f:section>
 
+<!-- ======================================================================== -->
+
+<f:section name="Phone">
+    <f:if condition="{author.phone} && {author.phone2}">
+        <div class="tile__contact-text">
+            <svg class="icon icon--16">
+                <use xlink:href="#ic-phone" />
+            </svg>
+            <f:if condition="{author.internal}">
+                <f:then>
+                    <rkwAuthors:GetFormattedPhoneNumber phoneExtensionLength="{settings.phoneExtensionLength}" author="{author}"/>
+                </f:then>
+                <f:else>
+                    <rkwAuthors:GetFormattedPhoneNumber phoneExtensionLength="0" author="{author}"/>
+                </f:else>
+            </f:if>
+        </div>
+    </f:if>
+</f:section>
+
+<!-- ======================================================================== -->
+
+<f:section name="Email">
+    <f:if condition="{author.email} || {rkwAuthors:ifContactFormIsActive(author:'{author}')}">
+        <div class="tile__contact-link">
+            <svg class="icon icon--16">
+                <use xlink:href="#ic-mail" />
+            </svg>
+            <f:if condition='<rkwAuthors:ifContactFormIsActive author="{author}" />'>
+                <f:then>
+                    <f:link.page pageUid="{settings.contactForm.pageUid}" additionalParams="{tx_rkwauthors_rkwauthorscontactform: {author: author}}">
+                        <f:translate key="partials.authors.pages.box.clickForForm" />
+                    </f:link.page>
+                </f:then>
+                <f:else>
+                    <f:link.email email="{author.email}">
+                        <f:translate key="partials.authors.pages.box.clickToWriteEmail" />
+                    </f:link.email>
+                </f:else>
+            </f:if>
+
+        </div>
+    </f:if>
+</f:section>
