@@ -34,7 +34,7 @@
 
 			<trans-unit id="templates.authors.pageBox.labelContact">
 				<source>Kontakt</source>
-				<target>Kontaktn</target>
+				<target>Kontakt</target>
 			</trans-unit>
 
 
