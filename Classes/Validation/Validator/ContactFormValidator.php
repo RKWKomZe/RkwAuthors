@@ -60,7 +60,18 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
             if (in_array($key, $mandatoryFieldsArray)) {
 
                 // if empty: throw error
-                if (!$formField) {
+                if (
+                    (
+                        ($key == 'salutation')
+                        && ($formField == 99)
+                    )
+                    || (
+                        ($key != 'salutation')
+                        && (! $formField)
+                    )
+                ) {
+
+
                     $this->result->forProperty($key)->addError(
                         new \TYPO3\CMS\Extbase\Error\Error(
                             \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(

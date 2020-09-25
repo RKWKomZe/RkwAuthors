@@ -110,8 +110,8 @@
 				<target>Zeige die Arbeiten des Autors in seiner Detailseite an</target>
 			</trans-unit>
 			<trans-unit id="tx_rkwauthors_domain_model_authors.image_small">
-				<source>Image small</source>
-				<target>Bild für Autorenliste</target>
+				<source>Image small (deprecated!)</source>
+				<target>Bild für Autorenliste (veraltet, entfällt künftig!)</target>
 			</trans-unit>
 			<trans-unit id="tx_rkwauthors_domain_model_authors.image_big">
 				<source>Image big</source>

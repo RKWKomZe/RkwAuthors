@@ -49,7 +49,14 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
     public function contactFormUser(\RKW\RkwAuthors\Domain\Model\Authors $author, $contactForm)
     {
         // send contact form copy
-        $this->userMail($author, ['email' => $contactForm['email']], strval($contactForm['message']), 'contactForm');
+        $this->userMail(
+            $author,
+            [
+                'email' => $contactForm['email']
+            ],
+            $contactForm,
+            'contactForm'
+        );
 
     }
 
@@ -71,7 +78,14 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      */
     public function contactFormAuthor(\RKW\RkwAuthors\Domain\Model\Authors $author, $contactForm)
     {
-        $this->authorMail($author, ['email' => $contactForm['email']], strval($contactForm['message']), 'contactForm');
+        $this->authorMail(
+            $author,
+            [
+                'email' => $contactForm['email']
+            ],
+            $contactForm,
+            'contactForm'
+        );
     }
 
 
@@ -80,7 +94,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      *
      * @param \RKW\RkwAuthors\Domain\Model\Authors $author
      * @param array $frontendUser
-     * @param string $message
+     * @param array $contactForm
      * @param string $action
      * @throws \RKW\RkwMailer\Service\MailException
      * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
@@ -91,7 +105,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    protected function userMail(\RKW\RkwAuthors\Domain\Model\Authors $author, $frontendUser, $message, $action)
+    protected function userMail(\RKW\RkwAuthors\Domain\Model\Authors $author, $frontendUser, $contactForm, $action)
     {
         // get settings
         $settings = $this->getSettings(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
@@ -106,7 +120,8 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
             $mailService->setTo($frontendUser, array(
                 'marker' => array(
                     'author' => $author,
-                    'message'  => $message,
+                    'contactForm'  => $contactForm,
+                    'language' => strval($GLOBALS['TSFE']->config['config']['language'])
                 ),
             ));
 
@@ -132,7 +147,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
             }
 
             $mailService->getQueueMail()->setSubject(
-                \RKW\RkwMailer\Helper\FrontendLocalization::translate(
+                \RKW\RkwMailer\Utility\FrontendLocalizationUtility ::translate(
                     'rkwMailService.' . strtolower($action) . 'User.subject',
                     'rkw_authors',
                     null,
@@ -156,7 +171,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      *
      * @param \RKW\RkwAuthors\Domain\Model\Authors $author
      * @param array $frontendUser
-     * @param string $message
+     * @param array $contactForm
      * @param string $action
      * @throws \RKW\RkwMailer\Service\MailException
      * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
@@ -167,7 +182,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    protected function authorMail(\RKW\RkwAuthors\Domain\Model\Authors $author, $frontendUser, $message, $action)
+    protected function authorMail(\RKW\RkwAuthors\Domain\Model\Authors $author, $frontendUser, $contactForm, $action)
     {
         // get settings
         $settings = $this->getSettings(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
@@ -218,8 +233,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                     , array(
                     'marker'  => array(
                         'author' => $author,
-                        'email' => strval($frontendUser['email']),
-                        'message' => $message,
+                        'contactForm' => $contactForm,
                         'language' => $settingsDefault['contactForm']['mail']['language']
                     )
                 ));
@@ -230,7 +244,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
             if ($emailTo != $author->getEmail()) {
                 // by override or fallback: "contact request for xyz"
                 $mailService->getQueueMail()->setSubject(
-                    \RKW\RkwMailer\Helper\FrontendLocalization::translate(
+                    \RKW\RkwMailer\Utility\FrontendLocalizationUtility ::translate(
                         'rkwMailService.' . strtolower($action) . 'Author.subjectFor',
                         'rkw_authors',
                         null,
@@ -241,7 +255,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                 // to author directly: Just wrote "contact request by (user-email)" to subject
                 // Just an idea below: Set the email of the user to the subject for better distinction of many mails
                 $mailService->getQueueMail()->setSubject(
-                    \RKW\RkwMailer\Helper\FrontendLocalization::translate(
+                    \RKW\RkwMailer\Utility\FrontendLocalizationUtility ::translate(
                         'rkwMailService.' . strtolower($action) . 'Author.subjectBy',
                         'rkw_authors',
                         null,
@@ -273,7 +287,6 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
     protected function getSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
     {
         return Common::getTyposcriptConfiguration('Rkwauthors', $which);
-        //===
     }
 
 
@@ -285,6 +298,5 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
     protected function getLogger()
     {
         return \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Log\\LogManager')->getLogger(__CLASS__);
-        //===
     }
 }

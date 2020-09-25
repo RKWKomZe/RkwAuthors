@@ -37,7 +37,6 @@ class AuthorsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     {
 
         $query = $this->createQuery();
-
         $query->setOrderings(
             array(
                 'lastName' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
@@ -45,10 +44,56 @@ class AuthorsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         );
 
         $query->matching($query->equals('internal', 1));
-
         return $query->execute();
-        //===
     }
+
+
+    /**
+     * findByFilterOptionsArray
+     *
+     * @param array $filter
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
+     */
+    public function findByFilterOptionsArray(array $filter)
+    {
+
+        $query = $this->createQuery();
+        $constraints = array();
+        $constraints[] = $query->equals('internal', 1);
+
+        // 1. Sort always by lastName ASC
+        $query->setOrderings(
+            array(
+                'lastName' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
+            )
+        );
+
+        // if: one filter option is set -> do filter - else: print all
+        if ($filter['letter'] || $filter['department']) {
+
+            // Filter by letter, if it is an active option
+            $letter = preg_replace('#[^a-zA-Z]#', '', $filter['letter']);
+            $department = is_array($filter['department']) ? $filter['department'] : [];
+
+            // a) if letter is given
+            if ($letter) {
+                $constraints[] = $query->like('lastName', "$letter%");
+            }
+
+            // b) if department is given
+            if ($department) {
+                $constraints[] = $query->in('department', $department);
+            }
+        }
+
+
+        $query->matching($query->logicalAnd($constraints));
+
+        // Hint: if no query is added, this dataset is equal to findAll() with sort by lastName ASC
+        return $query->execute();
+    }
+
 
 
     /**
@@ -56,9 +101,12 @@ class AuthorsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      *
      * @param \RKW\RkwAuthors\Domain\Model\Filter $filter
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     * @deprecated This function is deprecated and will be removed soon.
      */
     public function findByFilterOptions(\RKW\RkwAuthors\Domain\Model\Filter $filter)
     {
+
+        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
 
         $query = $this->createQuery();
         $constraints = array();
@@ -94,7 +142,6 @@ class AuthorsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
         // Hint: if no query is added, this dataset is equal to findAll() with sort by lastName ASC
         return $query->execute();
-        //===
     }
 
 

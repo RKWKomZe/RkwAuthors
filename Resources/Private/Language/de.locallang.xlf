@@ -31,26 +31,237 @@
 			</trans-unit>
 
 
-
+            <!-- Templates/Authors/PageBox.html -->
 			<trans-unit id="templates.authors.pageBox.labelContact">
 				<source>Kontakt</source>
 				<target>Kontakt</target>
 			</trans-unit>
 
 
-
-			<trans-unit id="partials.authors.pages.box.clickToWriteEmail">
+            <!-- Partials/Authors/Items/Box.html -->
+			<trans-unit id="partials.authors.items.box.clickToWriteEmail">
 				<source>Send E-Mail</source>
 				<target>E-Mail senden</target>
 			</trans-unit>
-			<trans-unit id="partials.authors.pages.box.clickForForm">
+			<trans-unit id="partials.authors.items.box.clickForForm">
 				<source>Contactform</source>
 				<target>Kontaktformular</target>
 			</trans-unit>
+			<trans-unit id="partials.authors.items.box.labelPhone">
+				<source>Phone</source>
+				<target>Telefon</target>
+			</trans-unit>
+
+
+            <!-- Partials/Authors/Items/BoxBig.html -->
+			<trans-unit id="partials.authors.items.boxBig.clickToWriteEmail">
+				<source>Send E-Mail</source>
+				<target>E-Mail senden</target>
+			</trans-unit>
+			<trans-unit id="partials.authors.items.boxBig.clickForForm">
+				<source>Contactform</source>
+				<target>Kontaktformular</target>
+			</trans-unit>
+			<trans-unit id="partials.authors.items.boxBig.labelPhone">
+				<source>Phone</source>
+				<target>Telefon</target>
+			</trans-unit>
+            <trans-unit id="partials.authors.items.boxBig.labelQuestion">
+                <source>Do you have a question?</source>
+                <target>Haben Sie eine Frage?</target>
+            </trans-unit>
 
 
 
+            <!-- Partials/Authors/List/Filter.html -->
+			<trans-unit id="partials.authors.list.filter.labelShowAll">
+				<source>Show all</source>
+				<target>Alle anzeigen</target>
+			</trans-unit>
+			<trans-unit id="partials.authors.list.filter.labelFilter">
+				<source>or filter by first letter:</source>
+				<target>oder nach Anfangsbuchstaben filtern:</target>
+			</trans-unit>
 
+
+            <!-- Partials/Authors/Form/Default.html -->
+	        <trans-unit id="partials.authors.form.default.header" approved="yes">
+				<source>Contact</source>
+				<target>Kontaktformular</target>
+			</trans-unit>
+	        <trans-unit id="partials.authors.form.default.salutation" approved="yes">
+				<source>Salutation</source>
+				<target>Anrede</target>
+			</trans-unit>
+			<trans-unit id="partials.authors.form.default.salutation.I.99" approved="yes">
+				<source>-- Please select --</source>
+				<target>-- Bitte wählen --</target>
+			</trans-unit>
+			<trans-unit id="partials.authors.form.default.salutation.I.0" approved="yes">
+				<source>Mr.</source>
+				<target>Herr</target>
+			</trans-unit>
+			<trans-unit id="partials.authors.form.default.salutation.I.1" approved="yes">
+				<source>Mrs.</source>
+				<target>Frau</target>
+			</trans-unit>
+			<trans-unit id="partials.authors.form.default.firstName" approved="yes">
+				<source>First name</source>
+				<target>Vorname</target>
+			</trans-unit>
+			<trans-unit id="partials.authors.form.default.lastName" approved="yes">
+                <source>Last name</source>
+                <target>Nachname</target>
+            </trans-unit>
+            <trans-unit id="partials.authors.form.default.company" approved="yes">
+                <source>Company</source>
+                <target>Firma</target>
+            </trans-unit>
+            <trans-unit id="partials.authors.form.default.email" approved="yes">
+                <source>E-Mail</source>
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="partials.authors.form.default.message" approved="yes">
+                <source>Message</source>
+                <target>Nachricht</target>
+            </trans-unit>
+			<trans-unit id="partials.authors.form.default.terms1" approved="yes">
+				<source>I accept the</source>
+				<target>Ich akzeptiere die</target>
+			</trans-unit>
+			<trans-unit id="partials.authors.form.default.terms2" approved="yes">
+				<source>terms</source>
+				<target>Nutzungsbedingungen</target>
+			</trans-unit>
+			<trans-unit id="partials.authors.form.default.terms3" approved="yes">
+				<source>.</source>
+				<target>.</target>
+			</trans-unit>
+            <trans-unit id="partials.authors.form.default.sendCopy" approved="yes">
+				<source>Yes, I want to receive a copy of the message.</source>
+				<target>Ja, ich möchte eine Kopie der Nachricht erhalten.</target>
+			</trans-unit>
+            <trans-unit id="partials.authors.form.default.privacy1">
+                <source>Yes, I agree that RKW will use my personal data for getting in contact with me. Furthermore, I have read and agree to the extended notes in the</source>
+                <target>Ja, ich stimme zu, dass das RKW meine persönlichen Daten zur Kontaktaufnahme verwendet. Ferner habe ich die erweiterten Hinweise in der</target>
+            </trans-unit>
+            <trans-unit id="partials.authors.form.default.privacy2">
+                <source>data protection declaration</source>
+                <target>Datenschutzerklärung </target>
+            </trans-unit>
+            <trans-unit id="partials.authors.form.default.privacy3">
+                <source>. This consent can be revoked at any time.</source>
+                <target>gelesen und bin damit einverstanden. Diese Einwilligung kann jederzeit widerrufen werden.</target>
+            </trans-unit>
+            <trans-unit id="partials.authors.form.default.submit">
+                <source>Submit</source>
+                <target>Nachricht senden</target>
+            </trans-unit>
+
+
+            <!-- Partials/Authors/Form/LabelSuffix.html -->
+            <trans-unit id="partials.authors.form.labelSuffix.optional">
+                <source>(Optional)</source>
+                <target>(Optional)</target>
+            </trans-unit>
+            <trans-unit id="partials.authors.form.labelSuffix.required">
+                <source>(Required)</source>
+                <target>(Pflichtfeld)</target>
+            </trans-unit>
+
+
+            <!-- Authors controller -->
+            <trans-unit id="authorsController.message.emailSent">
+                <source>Woohoo! Your message was successfully sent. We will contact you shortly.</source>
+                <target>Woohoo! Ihre Mitteilung wurde erfolgreich versendet. Wir werden uns in Kürze mit Ihnen in Verbindung setzen.</target>
+            </trans-unit>
+
+
+
+			<!-- VALIDATION -->
+			<trans-unit id="tx_rkwauthors_validator.not_filled">
+                <source>Please fill out the field '%s'.</source>
+                <target>Da fehlt noch was. Bitte füllen Sie das Feld '%s' aus.</target>
+            </trans-unit>
+            <trans-unit id="form.error.salutation">
+                <source>Salutation</source>
+                <target>Anrede</target>
+            </trans-unit>
+            <trans-unit id="form.error.firstName">
+                <source>First name</source>
+                <target>Vorname</target>
+            </trans-unit>
+            <trans-unit id="form.error.lastName">
+                <source>Last name</source>
+                <target>Nachname</target>
+            </trans-unit>
+            <trans-unit id="form.error.company">
+                <source>Company</source>
+                <target>Firma</target>
+            </trans-unit>
+            <trans-unit id="form.error.email">
+                <source>E-Mail</source>
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="form.error.message">
+                <source>Message</source>
+                <target>Nachricht</target>
+            </trans-unit>
+            <trans-unit id="form.error.terms">
+                <source>You have to accept our terms and conditions to register.</source>
+                <target>Das muss leider sein: Um dieses Angebot nutzen zu können, müssen Sie unseren Nutzungsbedingungen zustimmen.</target>
+            </trans-unit>
+            <trans-unit id="form.error.privacy">
+                <source>The protection of your data is important to us. Therefore we ask you to agree to the storage of your personal data.</source>
+                <target>Der Schutz Ihrer Daten ist uns wichtig. Daher bitten wir Sie, der Speicherung Ihrer persönlichen Daten zuzustimmen.</target>
+            </trans-unit>
+
+
+            <!-- E-Mail subjects -->
+            <trans-unit id="rkwMailService.contactformUser.subject" >
+                <source>Your contact request</source>
+                <target>Ihre Kontaktanfrage</target>
+            </trans-unit>
+            <trans-unit id="rkwMailService.contactformAuthor.subjectFor" >
+                <source>Contact request for</source>
+                <target>Kontaktanfrage für</target>
+            </trans-unit>
+            <trans-unit id="rkwMailService.contactformAuthor.subjectBy" >
+                <source>Contact request by</source>
+                <target>Kontaktanfrage von</target>
+            </trans-unit>
+
+
+
+            <!-- Templates/Email/ContactformAuthor.html -->
+            <trans-unit id="templates_email_contactformAuthor.headline">
+                <source>Hello,</source>
+                <target>Hallo,</target>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformAuthor.text1">
+                <source>a new contact request  for %s has arrived.</source>
+                <target>eine neue Kontaktanfrage für %s ist eingetroffen.</target>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformAuthor.text2">
+                <source>Request content:</source>
+                <target>Inhalt der Anfrage:</target>
+            </trans-unit>
+
+
+
+            <!-- Templates/Email/ContactformUser.html -->
+            <trans-unit id="templates_email_contactformUser.headline">
+                <source>Hello,</source>
+                <target>Hallo,</target>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformUser.text1">
+                <source>thanks for your contact request to  %s. We'll contact you as soon as possible.</source>
+                <target>vielen Dank für Ihre Kontaktanfrage an %s. Ihre Anfrage wird schnellstmöglich bearbeitet.</target>
+            </trans-unit>
+            <trans-unit id="templates_email_contactformUser.text2">
+                <source>Request content:</source>
+                <target>Inhalt Ihrer Anfrage:</target>
+            </trans-unit>
 
 
 
@@ -184,81 +395,6 @@
                 <target>Vielen Dank für Ihre Nachricht! Wir werden uns zeitnah bei Ihnen melden.</target>
             </trans-unit>
 
-
-			<!-- VALIDATION -->
-			<trans-unit id="tx_rkwauthors_validator.not_filled">
-                <source>Please fill out the field '%s'.</source>
-                <target>Da fehlt noch was. Bitte füllen Sie das Feld '%s' aus.</target>
-            </trans-unit>
-            <trans-unit id="form.error.email">
-                <source>E-Mail</source>
-                <target>E-Mail</target>
-            </trans-unit>
-            <trans-unit id="form.error.message">
-                <source>Message</source>
-                <target>Nachricht</target>
-            </trans-unit>
-            <trans-unit id="form.error.terms">
-                <source>You have to accept our terms and conditions to register.</source>
-                <target>Das muss leider sein: Um dieses Angebot nutzen zu können, müssen Sie unseren Nutzungsbedingungen zustimmen.</target>
-            </trans-unit>
-            <trans-unit id="form.error.privacy">
-                <source>The protection of your data is important to us. Therefore we ask you to agree to the storage of your personal data.</source>
-                <target>Der Schutz Ihrer Daten ist uns wichtig. Daher bitten wir Sie, der Speicherung Ihrer persönlichen Daten zuzustimmen.</target>
-            </trans-unit>
-
-            <!-- E-Mail subjects -->
-            <trans-unit id="rkwMailService.contactformUser.subject" >
-                <source>Your contact request</source>
-                <target>Ihre Kontaktanfrage</target>
-            </trans-unit>
-            <trans-unit id="rkwMailService.contactformAuthor.subjectFor" >
-                <source>Contact request for</source>
-                <target>Kontaktanfrage für</target>
-            </trans-unit>
-            <trans-unit id="rkwMailService.contactformAuthor.subjectBy" >
-                <source>Contact request by</source>
-                <target>Kontaktanfrage von</target>
-            </trans-unit>
-
-
-
-            <!-- Templates/Email/ContactformAuthor.html -->
-            <trans-unit id="templates_email_contactformAuthor.headline">
-                <source>Hello,</source>
-                <target>Hallo,</target>
-            </trans-unit>
-            <trans-unit id="templates_email_contactformAuthor.text1">
-                <source>a new contact request has arrived for %s.</source>
-                <target>eine neue Kontaktanfrage ist eingetroffen für %s.</target>
-            </trans-unit>
-            <trans-unit id="templates_email_contactformAuthor.text2">
-                <source>Request content:</source>
-                <target>Inhalt der Anfrage:</target>
-            </trans-unit>
-            <trans-unit id="templates_email_contactformAuthor.email">
-                <source>E-Mail: </source>
-                <target>E-Mail: </target>
-            </trans-unit>
-            <trans-unit id="templates_email_contactformAuthor.message">
-                <source>Message: </source>
-                <target>Nachricht: </target>
-            </trans-unit>
-
-
-            <!-- Templates/Email/ContactformUser.html -->
-            <trans-unit id="templates_email_contactformUser.headline">
-                <source>Hello,</source>
-                <target>Hallo,</target>
-            </trans-unit>
-            <trans-unit id="templates_email_contactformUser.text1">
-                <source>thanks for your contact request to  %s. We'll contact you as soon as possible.</source>
-                <target>vielen Dank für Ihre Kontaktanfrage an %s. Ihre Anfrage wird schnellstmöglich bearbeitet.</target>
-            </trans-unit>
-            <trans-unit id="templates_email_contactformUser.text2">
-                <source>Request content:</source>
-                <target>Inhalt Ihrer Anfrage:</target>
-            </trans-unit>
 
 		</body>
 	</file>

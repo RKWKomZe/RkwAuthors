@@ -1,0 +1,160 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkwAuthors="http://typo3.org/ns/RKW/RkwAuthors/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+    <h2 id="tx-rkwauthors-form"><f:translate key="partials.authors.form.default.header" /></h2>
+
+    <f:render partial="FlashMessages" arguments="{_all}" />
+    <f:render partial="FormErrors" arguments="{object:contactForm}" />
+
+    <f:form action="contactFormSend" name="contactForm" object="{contactForm}">
+        <div class="flex-container">
+            <div class="form flex flex-basis-8 full-width-medium space-between">
+
+                <!-- Salutation -->
+                <div class="form__field width25 break-after">
+                    <label class="form-label" for="tx-rkwauthors-contact-salutation">
+                        <f:translate key="partials.authors.form.default.salutation" />
+                        <f:render partial="Authors/Form/LabelSuffix" arguments="{field: 'salutation', mandatoryFields:settings.contactForm.mandatoryFields}" />
+                    </label>
+                    <f:form.select
+                        class="select-field"
+                        id="tx-rkwauthors-contact-salutation"
+                        property="salutation"
+                        value="{f:if(condition:'{contactForm.salutation}',then:'{contactForm.salutation}',else:'{frontendUser.txRkwregistrationGender}')}"
+                        options="{99: '{f:translate(key: \'partials.authors.form.default.salutation.I.99\')}', 0: '{f:translate(key: \'partials.authors.form.default.salutation.I.0\')}', 1: '{f:translate(key: \'partials.authors.form.default.salutation.I.1\')}'}"
+                    />
+                </div>
+
+                <!-- FirstName -->
+                <div class="form__field width50">
+                    <label class="form-label" for="tx-rkwauthors-contact-firstName">
+                        <f:translate key="partials.authors.form.default.firstName" />
+                        <f:render partial="Authors/Form/LabelSuffix" arguments="{field: 'firstName', mandatoryFields:settings.contactForm.mandatoryFields}" />
+                    </label>
+                    <f:form.textfield
+                        id="tx-rkwauthors-contact-firstName"
+                        property="firstName"
+                        value="{f:if(condition:'{contactForm.firstName}',then:'{contactForm.firstName}',else:'{frontendUser.firstName}')}"
+                        additionalAttributes="{autocomplete:'fname'}"
+                    />
+                </div>
+
+                <!-- LastName -->
+                <div class="form__field width50">
+                    <label class="form-label" for="tx-rkwauthors-contact-lastName">
+                        <f:translate key="partials.authors.form.default.lastName" />
+                        <f:render partial="Authors/Form/LabelSuffix" arguments="{field: 'lastName', mandatoryFields:settings.contactForm.mandatoryFields}" />
+                    </label>
+                    <f:form.textfield
+                        id="tx-rkwauthors-contact-lastName"
+                        property="lastName"
+                        value="{f:if(condition:'{contactForm.lastName}',then:'{contactForm.lastName}',else:'{frontendUser.lastName}')}"
+                        additionalAttributes="{autocomplete:'lname'}"
+                    />
+                </div>
+
+                <!-- Company -->
+                <div class="form__field width50">
+                    <label class="form-label" for="tx-rkwauthors-contact-company">
+                        <f:translate key="partials.authors.form.default.company" />
+                        <f:render partial="Authors/Form/LabelSuffix" arguments="{field: 'company', mandatoryFields:settings.contactForm.mandatoryFields}" />
+                    </label>
+                    <f:form.textfield
+                        id="tx-rkwauthors-contact-company"
+                        property="company"
+                        value="{f:if(condition:'{contactForm.company}',then:'{contactForm.lastName}',else:'{frontendUser.company}')}"
+                        additionalAttributes="{autocomplete:'lname'}"
+                    />
+                </div>
+
+
+                <!-- Email -->
+                <div class="form__field width50">
+                    <label class="form-label" for="tx-rkwauthors-contact-email">
+                        <f:translate key="partials.authors.form.default.email" />
+                        <f:render partial="Authors/Form/LabelSuffix" arguments="{field: 'email', mandatoryFields:settings.contactForm.mandatoryFields}" />
+                    </label>
+
+                    <f:if condition="{frontendUser.email}">
+                        <f:then>
+                            <f:form.textfield
+                                class="readonly"
+                                id="tx-rkwauthors-contact-email"
+                                property="email"
+                                type="email"
+                                value="{frontendUser.email}"
+                                additionalAttributes="{autocomplete: 'email', readonly: 'readonly'}"
+                            />
+                        </f:then>
+                        <f:else>
+                            <f:form.textfield
+                                id="tx-rkwauthors-contact-email"
+                                property="email"
+                                type="email"
+                                value="{contactForm.email}"
+                                additionalAttributes="{autocomplete: 'email'}"
+                            />
+                        </f:else>
+                    </f:if>
+                </div>
+
+                <!-- Message -->
+                <div class="form__field width100">
+                    <label for="tx-rkwauthors-contact-message">
+                        <f:translate key="partials.authors.form.default.message" />
+                        <f:render partial="Authors/Form/LabelSuffix" arguments="{field: 'message', mandatoryFields:settings.contactForm.mandatoryFields}" />
+                    </label>
+                    <f:form.textarea id="tx-rkwauthors-contact-message" property="message" class="textarea--big" value="{contactForm.message}" rows="7" />
+                </div>
+
+                <!-- Send copy -->
+                <f:if condition="{settings.contactForm.allowSendCopyToUser}">
+                    <div class="form__field">
+                        <f:form.checkbox id="tx-rkwauthors-contact-send-copy" class="checkbox" property="copyToUser" value="1" />
+                        <label for="tx-rkwauthors-contact-send-copy" class="checkbox-label">
+                            <f:translate key="partials.authors.form.default.sendCopy" />
+                        </label>
+                    </div>
+                </f:if>
+
+
+                <!-- terms -->
+                <f:if condition="{settings.contactForm.termsPid}">
+                    <div class="form__field">
+                        <f:form.checkbox id="tx-rkwauthors-contact-terms" class="checkbox" property="terms" value="1" />
+                        <label for="tx-rkwauthors-contact-terms" class="checkbox-label">
+                            <f:translate key="partials.authors.form.default.terms1" />
+                            <f:link.page pageUid="{settings.contactForm.termsPid}" target="_blank"><f:translate key="partials.authors.form.default.terms2" /></f:link.page>
+                            <f:translate key="partials.authors.form.default.terms2" />
+                        </label>
+                    </div>
+                </f:if>
+
+                <!-- privacy -->
+                <f:if condition="{settings.contactForm.privacyPid}">
+                    <div class="form__field">
+                        <f:form.checkbox id="tx-rkwauthors-contact-privacy" class="checkbox" property="privacy" value="1" />
+                        <label for="tx-rkwauthors-contact-privacy" class="checkbox-label">
+                            <f:translate key="partials.authors.form.default.privacy1" />
+                            <f:link.page pageUid="{settings.contactForm.privacyPid}" target="_blank"><f:translate key="partials.authors.form.default.privacy2" /></f:link.page>
+                            <f:translate key="partials.authors.form.default.privacy3" />
+                        </label>
+                    </div>
+                </f:if>
+
+
+                <!-- Button -->
+                <div class="form__field flex space-start full-width-narrow">
+                    <button class="btn btn--primary full-width-narrow">
+                        <f:translate key="partials.authors.form.default.submit" />
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <f:form.hidden name="author" value="{author}" />
+    </f:form>
+
+</html>

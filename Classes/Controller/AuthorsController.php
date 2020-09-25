@@ -13,7 +13,6 @@ namespace RKW\RkwAuthors\Controller;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 
 /**
@@ -25,8 +24,9 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
 {
+
     /**
      * authorsRepository
      *
@@ -55,12 +55,19 @@ class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * action list
      *
+     * @param array $filter
      * @return void
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
-    public function listAction()
+    public function listAction($filter = [])
     {
+
         // get authors list
-        $authors = $this->authorsRepository->findAllSortByLastName();
+        if ($filter) {
+            $authors = $this->authorsRepository->findByFilterOptionsArray($filter);
+        } else {
+            $authors = $this->authorsRepository->findAllSortByLastName();
+        }
 
         // get department list (for filter)
         $departmentList = $this->departmentRepository->findAllByVisibility();
@@ -108,9 +115,13 @@ class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * action showWork
      *
      * @return void
+     * @deprecated This function is deprecated and will be removed soon
      */
     public function showWorkAction()
     {
+
+        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
+
         $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_rkwauthors_rkwauthorsdetail');
         $author = null;
         if ($getParams['author']) {
@@ -129,22 +140,7 @@ class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function pageBoxAction()
     {
-        // get PageRepository and rootline
-        $repository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
-        $rootlinePages = $repository->getRootLine(intval($GLOBALS['TSFE']->id));
-
-        // fo through all pages and take the one that has a match in the corresponsing field
-        $pid = intval($GLOBALS['TSFE']->id);
-        foreach ($rootlinePages as $page => $values) {
-            if (
-                ($values['tx_rkwauthors_authorship'] > 0)
-                && ($pid)
-            ) {
-                $pid = intval($values['uid']);
-                break;
-                //===
-            }
-        }
+        $pid = $this->getPidForAuthors();
 
         $result = $this->pagesRepository->findByUid($pid);
         if ($result instanceof \RKW\RkwAuthors\Domain\Model\Pages) {
@@ -159,26 +155,14 @@ class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * Shows only the first author of a page as detail-box
      *
      * @return void
+     * @deprecated This function is deprecated and will be removed soon
      */
     public function pageBoxSmallFirstAction()
     {
-        // get PageRepository and rootline
-        $repository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
-        $rootlinePages = $repository->getRootLine(intval($GLOBALS['TSFE']->id));
 
-        // fo through all pages and take the one that has a match in the corresponsing field
-        $pid = intval($GLOBALS['TSFE']->id);
-        foreach ($rootlinePages as $page => $values) {
-            if (
-                ($values['tx_rkwauthors_authorship'] > 0)
-                && ($pid)
-            ) {
-                $pid = intval($values['uid']);
-                break;
-                //===
-            }
-        }
+        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
 
+        $pid = $this->getPidForAuthors();
         $result = $this->pagesRepository->findByUid($pid);
         if ($result instanceof \RKW\RkwAuthors\Domain\Model\Pages) {
             if ($result->getTxRkwauthorsAuthorship() instanceof \TYPO3\CMS\Extbase\Persistence\ObjectStorage) {
@@ -194,26 +178,14 @@ class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * Shows all but the first author of a page as detail-box
      *
      * @return void
+     * @deprecated This function is deprecated and will be removed soon
      */
     public function pageBoxSmallRestAction()
     {
-        // get PageRepository and rootline
-        $repository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
-        $rootlinePages = $repository->getRootLine(intval($GLOBALS['TSFE']->id));
 
-        // fo through all pages and take the one that has a match in the corresponsing field
-        $pid = intval($GLOBALS['TSFE']->id);
-        foreach ($rootlinePages as $page => $values) {
-            if (
-                ($values['tx_rkwauthors_authorship'] > 0)
-                && ($pid)
-            ) {
-                $pid = intval($values['uid']);
-                break;
-                //===
-            }
-        }
+        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
 
+        $pid = $this->getPidForAuthors();
         $result = $this->pagesRepository->findByUid($pid);
         if ($result instanceof \RKW\RkwAuthors\Domain\Model\Pages) {
             if ($result->getTxRkwauthorsAuthorship() instanceof \TYPO3\CMS\Extbase\Persistence\ObjectStorage) {
@@ -227,29 +199,13 @@ class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
 
     /**
-     * Lists all authors of a page
+     * Lists all authors of a page with schema.org
      *
      * @return void
      */
     public function pageSchemaOrgAction()
     {
-        // get PageRepository and rootline
-        $repository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
-        $rootlinePages = $repository->getRootLine(intval($GLOBALS['TSFE']->id));
-
-        // fo through all pages and take the one that has a match in the corresponsing field
-        $pid = intval($GLOBALS['TSFE']->id);
-        foreach ($rootlinePages as $page => $values) {
-            if (
-                ($values['tx_rkwauthors_authorship'] > 0)
-                && ($pid)
-            ) {
-                $pid = intval($values['uid']);
-                break;
-                //===
-            }
-        }
-
+        $pid = $this->getPidForAuthors();
         $result = $this->pagesRepository->findByUid($pid);
         if ($result instanceof \RKW\RkwAuthors\Domain\Model\Pages) {
             $this->view->assign('page', $result);
@@ -261,13 +217,19 @@ class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
 
     /**
-     * Lists all authors of a page as commaseparated list
+     * Lists all authors of a page as comma-separated list
      *
      * @return void
      */
     public function pageCommaListAction()
     {
-        $this->pageSchemaOrgAction();
+
+        $pid = $this->getPidForAuthors();
+        $result = $this->pagesRepository->findByUid($pid);
+        if ($result instanceof \RKW\RkwAuthors\Domain\Model\Pages) {
+            $this->view->assign('page', $result);
+        }
+
     }
 
 
@@ -283,35 +245,29 @@ class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
 
-    /**
-     * action contactForm
-     *
-     * @param \RKW\RkwAuthors\Domain\Model\Authors $author
-     * @param bool $finished Set this flag to show success message instead the contact form
-     * @ignorevalidation $author
-     * @return void
-     */
-    public function contactFormAction(\RKW\RkwAuthors\Domain\Model\Authors $author, $finished = false)
-    {
-        $this->view->assign('author', $author);
-        $this->view->assign('finished', $finished);
-    }
-
 
     /**
      * action contactFormSend
      *
      * privacy hint: There are no persistent form or frontendUser: So we'll created NO privacy entry (would be senseless)
      *
+     * @param \RKW\RkwAuthors\Domain\Model\Authors $author
      * @param array $contactForm
      * @validate $contactForm \RKW\RkwAuthors\Validation\Validator\ContactFormValidator
      * @return void
+     * @throws \RKW\RkwMailer\Service\MailException
+     * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
+     * @throws \TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
+     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      */
-    public function contactFormSendAction($contactForm)
+    public function contactFormSendAction(\RKW\RkwAuthors\Domain\Model\Authors $author, $contactForm)
     {
-        /** @var \RKW\RkwAuthors\Domain\Model\Authors $author */
-        $author = $this->authorsRepository->findByIdentifier((intval($contactForm['author'])));
-
         if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('rkw_mailer')) {
 
             // send message author
@@ -325,7 +281,57 @@ class AuthorsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $mailService->contactFormUser($author, $contactForm);
         }
 
-        // send back with finished flag
-        $this->forward('contactForm', null, null, ['author' => $author, 'finished' => true]);
+        $this->addFlashMessage(
+            \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                'authorsController.message.emailSent', 'rkw_authors'
+            ),
+            '',
+            \TYPO3\CMS\Core\Messaging\AbstractMessage::OK
+        );
+
+        // send back
+        $this->redirect(
+            'show',
+            null,
+            null,
+            ['author' => $author]
+        );
+    }
+
+
+
+    /**
+     * Returns the page id of the authors list in the rootline recursively
+     * @return int
+     */
+    protected function getPidForAuthors ()
+    {
+        // get PageRepository and rootline
+        $repository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
+        $rootlinePages = $repository->getRootLine(intval($GLOBALS['TSFE']->id));
+
+        // fo through all pages and take the one that has a match in the corresponsing field
+        $pid = intval($GLOBALS['TSFE']->id);
+        foreach ($rootlinePages as $page => $values) {
+            if (
+                ($values['tx_rkwauthors_authorship'] > 0)
+                && ($pid)
+            ) {
+                $pid = intval($values['uid']);
+                break;
+            }
+        }
+        return $pid;
+    }
+
+
+    /**
+     * Remove ErrorFlashMessage
+     *
+     * @see \TYPO3\CMS\Extbase\Mvc\Controller\ActionController::getErrorFlashMessage()
+     */
+    protected function getErrorFlashMessage()
+    {
+        return false;
     }
 }

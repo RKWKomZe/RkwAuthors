@@ -1,89 +1,31 @@
-{namespace rkwAuthors=RKW\RkwAuthors\ViewHelpers}
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:rkwAjax="http://typo3.org/ns/RKW/RkwAjax/ViewHelpers"
+	xmlns:rkwAuthors="http://typo3.org/ns/RKW/RkwAuthors/ViewHelpers"
+	data-namespace-typo3-fluid="true">
 
-<f:if condition="<f:count>{authors}</f:count>">
-	<f:then>
-		<div class="boxes-experts">
-			<f:for each="{authors}" as="author" iteration="iteration">
-				<div>
-
-					<div class="box publication expert topic-1 show-letter">
-
-						<f:link.action pageUid="{showPid}" action="show" controller="Authors" pluginName="Rkwauthorsdetail" extensionName="RkwAuthors" arguments="{author:author}"  >
-
-							<div class="cover">
-
-								<!-- big letter -->
-								<f:if condition='<rkwAuthors:CompareFirstLetter author="{author}" authorList="{authors}" iter="{iteration.index}" />'>
-									<p class="letter"><f:format.crop maxCharacters="1" append="">{author.lastName}</f:format.crop></p>
-								</f:if>
-
-								<!-- image -->
-								<figure>
-									<f:if condition="{author.imageSmall}">
-										<f:then>
-											<f:image image="{author.imageSmall}" treatIdAsReference="TRUE" height="254" width="200"/>
-										</f:then>
-										<f:else>
-											<!-- ### set dummy if no image is available ### -->
-											<f:image alt="Placeholder" src="EXT:rkw_authors/Resources/Public/Images/author-list-fallback.png" width="200" height="254"/>
-										</f:else>
-									</f:if>
-								</figure>
-							</div>
-
-							<header>
-								<p><rkwAuthors:GetCombinedName author='{author}'/></p>
-							</header>
-							<f:if condition="{author.department}">
-								<f:then>
-									<div class="box-content">{author.department.name}</div>
-								</f:then>
-								<f:else>
-									<!-- For same height of boxes -->
-									<div class="box-content">&nbsp;</div>
-								</f:else>
-							</f:if>
-
-						</f:link.action>
-
-						<!-- contact box -->
-						<div class="contact-info-box" style="display: none; bottom: 186px;">
-							<f:if condition="{author.phone}">
-								<p>
-									<span class="icon-phone">&nbsp;&nbsp;<rkwAuthors:GetFormattedPhoneNumber phoneExtensionLength="{settings.phoneExtensionLength}" author="{author}"/></span>
-								</p>
-							</f:if>
-                            <f:if condition='<rkwAuthors:ifContactFormIsActive author="{author}" />'>
-                                <f:then>
-                                    <f:link.page class="icon-mail" pageUid="{settings.contactForm.pageUid}" additionalParams="{tx_rkwauthors_rkwauthorscontactform: {author: author}}">&nbsp;&nbsp;<f:translate key="partials_authors_list_authors.contactForm" extensionName="rkwAuthors" /></f:link.page>
-                                </f:then>
-                                <f:else>
-                                    <f:if condition="{author.email}">
-                                        <p>
-                                            <f:link.email class="icon-mail" email="{author.email}">&nbsp;&nbsp;E-Mail</f:link.email>
-                                        </p>
-                                    </f:if>
-                                </f:else>
-                            </f:if>
-
+	<rkwAjax:ajaxWrapper ajaxHelper="{ajaxHelper}" ajaxAction="replace" ajaxId="1">
+		<div class="tiles-wrapper">
+			<f:if condition="<f:count>{authors}</f:count>">
+				<f:then>
+						<div class="tiles flex-container flex-container--margin">
+							<f:for each="{authors}" as="author" iteration="iteration">
+								<div class="flex-item flex-basis-3">
+									<f:render partial="Authors/Items/Box" arguments="{_all}" />
+								</div>
+							</f:for>
 						</div>
+				</f:then>
 
-						<!-- button -->
-						<footer>
-							<p>
-
-								<a class="button topic-1 contact-box-toggle" href="#"><f:translate key="partials_authors_list_authors.contact" extensionName="rkwAuthors" /></a>
-
-							</p>
-						</footer>
+				<f:else>
+					<div class="flex-container flex-basis-12 center-main">
+						<div class="no-results">
+							<f:translate key="partials_authors_list_authors.noResult" extensionName="rkwAuthors" />
+						</div>
 					</div>
-				</div>
-			</f:for>
+					<p class="text-message"></p>
+				</f:else>
+
+			</f:if>
 		</div>
-	</f:then>
-
-	<f:else>
-		<p class="text-message"><f:translate key="partials_authors_list_authors.noResult" extensionName="rkwAuthors" /></p>
-	</f:else>
-
-</f:if>
+	</rkwAjax:ajaxWrapper>
+</html>

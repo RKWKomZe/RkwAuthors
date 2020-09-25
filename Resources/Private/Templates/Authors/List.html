@@ -1,33 +1,14 @@
-{namespace rkwAuthors=RKW\RkwAuthors\ViewHelpers}
-<f:layout name="Default" />
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true">
 
-This Template is responsible for creating a table of domain objects.
+    <f:layout name="Default" />
 
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        List.html: keep
+    <f:section name="main">
 
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+        <f:render partial="FlashMessages" arguments="{_all}" />
 
-<f:section name="main">
+        <f:render partial="Authors/List/Filter" arguments="{_all}"/>
+        <f:render partial="Authors/List/Authors" arguments="{_all}"/>
 
-	<f:render partial="FlashMessages" arguments="{_all}" />
-
-	<!--<header class="page-headings">
-		<h1>
-			<f:translate key="templates_authors_list.experts" extensionName="rkwAuthors" />
-		</h1>
-	</header> -->
-
-	<!-- filter form -->
-	<f:render partial="Authors/List/Filter" arguments="{_all}"/>
-
-	<!-- Expert list -->
-	<div id="expert-list">
-		<f:render partial="Authors/List/Authors" arguments="{_all}"/>
-	</div>
-
-</f:section>
+    </f:section>
+</html>
