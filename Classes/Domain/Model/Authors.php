@@ -194,6 +194,7 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * imageSmall
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @deprecated
      */
     protected $imageSmall = null;
 
@@ -707,9 +708,11 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Returns the showWork
      *
      * @return boolean $showWork
+     * @deprectated
      */
     public function getShowWork()
     {
+        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
         return $this->showWork;
     }
 
@@ -718,9 +721,11 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param boolean $showWork
      * @return void
+     * @deprecated
      */
     public function setShowWork($showWork)
     {
+        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
         $this->showWork = $showWork;
     }
 
@@ -728,9 +733,11 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Returns the imageSmall
      *
      * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $imageSmall
+     * @deprecated
      */
     public function getImageSmall()
     {
+        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
         return $this->imageSmall;
     }
 
@@ -739,9 +746,11 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $imageSmall
      * @return void
+     * @deprecated
      */
     public function setImageSmall(\TYPO3\CMS\Extbase\Domain\Model\FileReference $imageSmall)
     {
+        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
         $this->imageSmall = $imageSmall;
     }
 

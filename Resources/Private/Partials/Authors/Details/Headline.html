@@ -1,8 +1,22 @@
-{namespace rkwAuthors=RKW\RkwAuthors\ViewHelpers}
-<f:if condition="{author}">
-	<h1><rkwAuthors:GetCombinedName author='{author}' addTitleAfter="TRUE"/></h1>
-	<f:if condition="{author.department}">
-		<h2>{author.department.name}</h2>
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:rkwAuthors="http://typo3.org/ns/RKW/RkwAuthors/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+	<f:if condition="{author}">
+
+		<h1><rkwAuthors:GetCombinedName author='{author}' addTitleAfter="true"/></h1>
+		<f:if condition="{author.department}">
+			<h2 class="h2">{author.department.name}</h2>
+		</f:if>
+		<f:link.page
+			pageUid="{listPid}"
+			class="btn btn--icon"
+		>
+			<svg class="icon icon--16">
+				<use xlink:href="#ic-circle-arrow" /></svg>
+			<span>
+				<f:translate key="partials_authors_details_headline.back" extensionName="rkwAuthors" />
+			</span>
+		</f:link.page>
 	</f:if>
-	<p class="text-smaller"><f:link.page pageUid="{listPid}" class="topic-1"><f:translate key="partials_authors_details_headline.back" extensionName="rkwAuthors" /></f:link.page></p>
-</f:if>
+</html>

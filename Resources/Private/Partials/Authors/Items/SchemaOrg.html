@@ -1,0 +1,49 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:rkwAuthors="http://typo3.org/ns/RKW/RkwAuthors/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+	<f:if condition="{author}" >
+		{
+			"@context" : "http://schema.org",
+			"@type" : "Person",
+
+			<f:if condition="{author.imageBoxes}" >
+				<f:then>
+			"image" : "{baseUrl}<f:uri.image src="{author.imageBoxes.uid}" treatIdAsReference="1" width="320"  />",
+				</f:then>
+				<f:else>
+			"image" : "{baseUrl}<f:uri.image src="EXT:rkw_authors/Resources/Public/Images/fallback.gif" width="320"  />",
+				</f:else>
+			</f:if>
+			<f:if condition="{author.functionTitle}">
+			"jobTitle" : "{author.functionTitle}",
+			</f:if>
+			<f:if condition="{author.phone2}">
+			"telephone" : "{author.phone}/{author.phone2}",
+			</f:if>
+			<f:if condition="{author.internal}" >
+				<f:then>
+					<f:if condition="{showPid}">
+			"url": "{baseUrl}<f:uri.action absolute="0" action="show" pageUid="{showPid}" arguments="{author: '{author}'}" />",
+					</f:if>
+			"memberOf" :
+				{
+					"@type": "Organization",
+					"name": "RKW Kompetenzzentrum"
+				},
+				</f:then>
+			</f:if>
+			"name" : "<rkwAuthors:GetCombinedName author="{author}"/>",
+			"email" : "{author.email}"
+		}
+		<f:if condition="{iterator.isLast}">
+			<f:then>
+
+			</f:then>
+			<f:else>
+				,
+			</f:else>
+		</f:if>
+
+	</f:if>
+</html>

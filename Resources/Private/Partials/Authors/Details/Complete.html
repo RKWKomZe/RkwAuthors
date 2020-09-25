@@ -1,0 +1,24 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:rkwAuthors="http://typo3.org/ns/RKW/RkwAuthors/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+	<f:if condition="{author}">
+
+		<div class="contact-wrapper">
+			<f:render partial="Authors/Items/BoxBig" arguments="{_all}" />
+		</div>
+
+		<f:if condition="{author.functionDescription} || {settings.contactForm.isActive}">
+			<main class="main flex-container no-padding-narrow" id="main">
+				<section class="section content contact__content flex-basis-9 full-width-smalldesk no-padding-narrow">
+					<div class="contentbox contentbox--text has-initial no-border-radius-smalldesk typo3-fsc">
+						<f:format.html parseFuncTSPath="lib.parseFunc_RTE">{author.functionDescription}</f:format.html>
+						<f:render partial="Authors/Form/Default" arguments="{_all}" />
+					</div>
+
+				</section>
+			</main>
+		</f:if>
+
+	</f:if>
+</html>

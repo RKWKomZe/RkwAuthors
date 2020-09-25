@@ -9,41 +9,36 @@ call_user_func(
         // Register Plugins
         //=================================================================
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            $extKey,
+            'RKW.' . $extKey,
             'Rkwauthors',
             'RKW Authors - List'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            $extKey,
+            'RKW.' . $extKey,
             'Rkwauthorsdetail',
             'RKW Authors - Detail'
         );
 
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            $extKey,
+            'RKW.' . $extKey,
             'Rkwauthorsheadline',
             'RKW Authors - Headline'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            $extKey,
+            'RKW.' . $extKey,
             'Rkwauthorswork',
             'RKW Authors - Show Work'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            $extKey,
+            'RKW.' . $extKey,
             'Rkwauthorscontactbox',
             'RKW Authors - Call-To-Action'
         );
 
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            $extKey,
-            'Rkwauthorscontactform',
-            'RKW Authors - Kontaktformular'
-        );
 
         //=================================================================
         // Add Tables

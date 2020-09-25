@@ -84,7 +84,7 @@
 				<source>Show Work in Detailpage</source>
 			</trans-unit>
 			<trans-unit id="tx_rkwauthors_domain_model_authors.image_small">
-				<source>Image small</source>
+				<source>Image small (deprecated!)</source>
 			</trans-unit>
 			<trans-unit id="tx_rkwauthors_domain_model_authors.image_big">
 				<source>Image big</source>

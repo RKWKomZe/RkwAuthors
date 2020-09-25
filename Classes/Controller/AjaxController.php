@@ -21,8 +21,20 @@ namespace RKW\RkwAuthors\Controller;
  * @copyright Rkw Kompetenzzentrum
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @deprecated This controller is deprecated and will be removed soon. Do not use it any more.
  */
-class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+{
+
+
+    /**
+     * AjaxController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ . ' will be removed soon. Do not use it any more.');
+    }
 
 	/**
 	 * authorsRepository
