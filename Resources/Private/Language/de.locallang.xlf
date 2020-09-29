@@ -134,8 +134,8 @@
 				<target>Nutzungsbedingungen</target>
 			</trans-unit>
 			<trans-unit id="partials.authors.form.default.terms3" approved="yes">
-				<source>.</source>
-				<target>.</target>
+				<source>and have read them.</source>
+				<target>und habe sie gelesen.</target>
 			</trans-unit>
             <trans-unit id="partials.authors.form.default.sendCopy" approved="yes">
 				<source>Yes, I want to receive a copy of the message.</source>

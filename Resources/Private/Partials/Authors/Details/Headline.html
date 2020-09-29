@@ -5,11 +5,18 @@
 	<f:if condition="{author}">
 
 		<h1><rkwAuthors:GetCombinedName author='{author}' addTitleAfter="true"/></h1>
-		<f:if condition="{author.department}">
-			<h2 class="h2">{author.department.name}</h2>
+		<f:if condition="{author.department} && {settings.showDepartmentAsFunction}">
+			<f:then>
+				<h2 class="h2">{author.department.name}</h2>
+			</f:then>
+			<f:else>
+				<f:if condition="{author.functionTitle}">
+					<h2 class="h2">{author.functionTitle}</h2>
+				</f:if>
+			</f:else>
 		</f:if>
 		<f:link.page
-			pageUid="{listPid}"
+			pageUid="{settings.listPid}"
 			class="btn btn--icon"
 		>
 			<svg class="icon icon--16">

@@ -20,13 +20,16 @@ plugin.tx_rkwauthors {
 		baseUrlSchemaOrg = http://www.example.com/
 
 		# cat=plugin.tx_rkwauthors//a; type=boolean; label=list pid
-		listPid = 2778
+		listPid =
 
 		# cat=plugin.tx_rkwauthors//a; type=boolean; label=show pid
-		showPid = 2777
+		showPid =
 
         # cat=plugin.tx_rkwauthors//a; type=boolean; label=Sets all detail-link with target=_blank
         detailLinkTargetBlank = 0
+
+        # cat=plugin.tx_rkwauthors//a; type=boolean; label=Show department instead of full function of author
+        showDepartmentAsFunction = 1
 
         # cat=plugin.tx_rkwauthors//a; type=integer; label=Phone extension length
         phoneExtensionLength = 4

@@ -2,7 +2,7 @@
     xmlns:rkwAuthors="http://typo3.org/ns/RKW/RkwAuthors/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
-    <div class="contact__img flex-container">
+    <div class="contact__img {f:if(condition:'!{author.imageBig}', then: 'contact__img--no-image')} flex-container">
         <div class="flex-basis-9 is-relative">
             <f:render section="Image" arguments="{_all}" />
             
