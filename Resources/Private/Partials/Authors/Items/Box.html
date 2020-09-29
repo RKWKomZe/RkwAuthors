@@ -10,18 +10,18 @@
         </div>
         <div class="tile__content">
             <f:render section="Name" arguments="{_all}" />
-            <div class="tile__contact my-1">
+            <div class="tile__contact tile__contact--auto mb-1">
                 <f:render section="Email" arguments="{_all}" />
                 <f:render section="Phone" arguments="{_all}" />
-                <f:render section="Link" arguments="{_all}" />
             </div>
         </div>
+        <f:render section="Link" arguments="{_all}" />
     </div>
 
     <f:comment><!-- ======================================================================== --></f:comment>
 
     <f:section name="Image">
-        <f:if condition="{author.internal} && {author.imageBoxes}">
+        <f:if condition="{author.imageBoxes}">
             <f:then>
                 <f:image src="{author.imageBoxes.uid}" treatIdAsReference="1" alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="350"  />
             </f:then>
@@ -41,8 +41,19 @@
             <span>
                 <span class="tile__title-text">
                     <f:format.crop maxCharacters="60" respectWordBoundaries="FALSE"><rkwAuthors:GetCombinedName author="{author}" /></f:format.crop>
+                    <span class="tile__title-subheadline">
+                        <f:if condition="{author.department} && {settings.showDepartmentAsFunction}">
+                            <f:then>
+                                {author.department.name}
+                            </f:then>
+                            <f:else>
+                                <f:if condition="{author.functionTitle}">
+                                    {author.functionTitle}
+                                </f:if>
+                            </f:else>
+                        </f:if>
+                    </span>
                 </span>
-            <!--{author.functionTitle}-->
             </span>
         </h3>
     </f:section>
@@ -98,12 +109,14 @@
                 </svg>
                 <f:if condition="{settings.contactForm.isActive} && {settings.showPid}">
                     <f:then>
-                        <f:link.page
+                        <f:link.action
+                            action="show"
                             title="{f:translate(key:'partials.authors.items.box.clickForForm', extensionName:'rkwAuthors')}"
                             pageUid="{settings.showPid}"
-                            additionalParams="{tx_rkwauthors_rkwauthorscontactform: {author: author}}">
+                            section="tx-rkwauthors-form"
+                            arguments="{author: author}">
                             <f:translate key="partials.authors.items.box.clickForForm" extensionName="rkwAuthors"/>
-                        </f:link.page>
+                        </f:link.action>
                     </f:then>
                     <f:else>
                         <f:link.email

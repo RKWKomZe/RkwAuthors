@@ -88,7 +88,6 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
     public function showAction(\RKW\RkwAuthors\Domain\Model\Authors $author)
     {
         $this->view->assign('author', $author);
-        $this->view->assign('listPid', $this->settings['listPid']);
     }
 
 
@@ -106,7 +105,6 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
         }
 
         $this->view->assign('author', $author);
-        $this->view->assign('listPid', $this->settings['listPid']);
 
     }
 
