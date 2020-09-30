@@ -8,7 +8,7 @@
 				<f:link.action action="show" pageUid="{showPid}" arguments="{author: '{author}'}" target="{f:if(condition: '{settings.detailLinkTargetBlank} == 1', then: '_blank')}" class="link link--underlined"><rkwAuthors:GetCombinedName author="{author}" /></f:link.action><f:if condition="{iterator.isLast}"><f:else>, </f:else></f:if>
 			</f:then>
 			<f:else>
-				<rkwAuthors:GetCombinedName author="{author}" /><f:if condition="{iterator.isLast}"><f:else>, </f:else></f:if>
+				<rkwAuthors:GetCombinedName author="{author}" /><f:if condition="!{iterator.isLast}">, </f:if>
 			</f:else>
 		</f:if>
 	</f:if>

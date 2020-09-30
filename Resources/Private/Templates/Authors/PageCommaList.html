@@ -6,7 +6,7 @@
 		<f:if condition="{page}">
 			<f:if condition="{page.txRkwauthorsAuthorship}">
 				<f:for each="{page.txRkwauthorsAuthorship}" as="author" iteration="iterator">
-					<f:render partial="Authors/Items/CommaList" arguments="{author: author}" />
+					<f:render partial="Authors/Items/CommaList" arguments="{_all}" />
 				</f:for>
 			</f:if>
 		</f:if>
