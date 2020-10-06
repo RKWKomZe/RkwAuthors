@@ -113,6 +113,9 @@ plugin.tx_rkwauthors {
         # cat=plugin.tx_rkwauthors//a; type=boolean; label=Show department instead of full function of author
         showDepartmentAsFunction = {$plugin.tx_rkwauthors.settings.showDepartmentAsFunction}
 
+        # cat=plugin.tx_rkwauthors//a; type=boolean; label=Get authors recursive
+        recursiveAuthorList = {$plugin.tx_rkwauthors.settings.recursiveAuthorList}
+
         # cat=plugin.tx_rkwauthors//a; type=integer; label=Phone extension length
         phoneExtensionLength = {$plugin.tx_rkwauthors.settings.phoneExtensionLength}
 

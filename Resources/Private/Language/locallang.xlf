@@ -35,7 +35,7 @@
 				<source>Send E-Mail</source>
 			</trans-unit>
 			<trans-unit id="partials.authors.items.box.clickForForm">
-				<source>Contactform</source>
+				<source>Contact</source>
 			</trans-unit>
 			<trans-unit id="partials.authors.items.box.labelPhone">
 				<source>Phone</source>
@@ -47,7 +47,7 @@
 				<source>Send E-Mail</source>
 			</trans-unit>
 			<trans-unit id="partials.authors.items.boxBig.clickForForm">
-				<source>Contactform</source>
+				<source>Contact</source>
 			</trans-unit>
 			<trans-unit id="partials.authors.items.boxBig.labelPhone">
 				<source>Phone</source>

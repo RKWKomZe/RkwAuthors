@@ -304,22 +304,28 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      */
     protected function getPidForAuthors ()
     {
-        // get PageRepository and rootline
-        $repository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
-        $rootlinePages = $repository->getRootLine(intval($GLOBALS['TSFE']->id));
 
-        // fo through all pages and take the one that has a match in the corresponsing field
-        $pid = intval($GLOBALS['TSFE']->id);
-        foreach ($rootlinePages as $page => $values) {
-            if (
-                ($values['tx_rkwauthors_authorship'] > 0)
-                && ($pid)
-            ) {
-                $pid = intval($values['uid']);
-                break;
+        if ($this->settings['recursiveAuthorList']) {
+
+            // get PageRepository and rootline
+            $repository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
+            $rootlinePages = $repository->getRootLine(intval($GLOBALS['TSFE']->id));
+
+            // fo through all pages and take the one that has a match in the corresponsing field
+            $pid = intval($GLOBALS['TSFE']->id);
+            foreach ($rootlinePages as $page => $values) {
+                if (
+                    ($values['tx_rkwauthors_authorship'] > 0)
+                    && ($pid)
+                ) {
+                    $pid = intval($values['uid']);
+                    break;
+                }
             }
+            return $pid;
         }
-        return $pid;
+
+        return intval($GLOBALS['TSFE']->id);
     }
 
 
