@@ -5,7 +5,14 @@
 	<f:if condition="{author}" >
 		<f:if condition="{author.internal} && {showPid}">
 			<f:then>
-				<f:link.action action="show" pageUid="{showPid}" arguments="{author: '{author}'}" target="{f:if(condition: '{settings.detailLinkTargetBlank} == 1', then: '_blank')}" class="link link--underlined"><rkwAuthors:GetCombinedName author="{author}" /></f:link.action><f:if condition="{iterator.isLast}"><f:else>, </f:else></f:if>
+				<f:link.action
+					class="link link--underlined"
+					target="{f:if(condition: '{settings.detailLinkTargetBlank} == 1', then: '_blank')}"
+					action="show"
+					pageUid="{showPid}"
+					arguments="{author: '{author}'}"
+				>
+					<rkwAuthors:GetCombinedName author="{author}" /></f:link.action><f:if condition="{iterator.isLast}"><f:else>, </f:else></f:if>
 			</f:then>
 			<f:else>
 				<rkwAuthors:GetCombinedName author="{author}" /><f:if condition="!{iterator.isLast}">, </f:if>

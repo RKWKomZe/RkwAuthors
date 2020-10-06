@@ -44,8 +44,8 @@
 				<target>E-Mail senden</target>
 			</trans-unit>
 			<trans-unit id="partials.authors.items.box.clickForForm">
-				<source>Contactform</source>
-				<target>Kontaktformular</target>
+				<source>Contact</source>
+				<target>Kontakt</target>
 			</trans-unit>
 			<trans-unit id="partials.authors.items.box.labelPhone">
 				<source>Phone</source>
@@ -59,8 +59,8 @@
 				<target>E-Mail senden</target>
 			</trans-unit>
 			<trans-unit id="partials.authors.items.boxBig.clickForForm">
-				<source>Contactform</source>
-				<target>Kontaktformular</target>
+				<source>Contact</source>
+				<target>Kontakt</target>
 			</trans-unit>
 			<trans-unit id="partials.authors.items.boxBig.labelPhone">
 				<source>Phone</source>
@@ -87,7 +87,7 @@
             <!-- Partials/Authors/Form/Default.html -->
 	        <trans-unit id="partials.authors.form.default.header" approved="yes">
 				<source>Contact</source>
-				<target>Kontaktformular</target>
+				<target>Kontakt</target>
 			</trans-unit>
 	        <trans-unit id="partials.authors.form.default.salutation" approved="yes">
 				<source>Salutation</source>
