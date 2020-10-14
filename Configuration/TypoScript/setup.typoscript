@@ -167,94 +167,122 @@ plugin.tx_rkwauthors {
 // #########################################################
 // Various
 // #########################################################
-plugin.tx_rkwauthors.libs {
+lib.txRkwAuthors {
 
-
-	responsiveImageThumbnail = IMAGE
-	responsiveImageThumbnail {
-
-		file {
-			import.current = 1
-			maxW = 152
-		}
-
-
-		# Inherit configuration from tt_content and rkw_basics
-		layout < tt_content.image.20.1.layout
-		layoutKey = picture
-		sourceCollection < plugin.tx_rkwbasics.libs.responsiveImages.sourceCollection
-
-		# set configuration for sourceCollection
-		sourceCollection {
-
-			mobile.maxW.override = 152
-			mobile.maxW.override.if {
-				value = {$plugin.tx_rkwbasics.settings.responsiveImages.breakpoints.mobile}
-				isLessThan = 152
-			}
-			mobileRetina2.maxW.override < .mobile.maxW.override
-
-			tablet.maxW.override < .mobile.maxW.override
-			tablet.maxW.override.if.value = {$plugin.tx_rkwbasics.settings.responsiveImages.breakpoints.tablet}
-			tabletRetina2.maxW.override < .tablet.maxW.override
-			tabletRetina3.maxW.override < .tablet.maxW.override
-
-			desktop.maxW.override < .mobile.maxW.override
-			desktop.maxW.override.if.value = {$plugin.tx_rkwbasics.settings.responsiveImages.breakpoints.desktop}
-            desktopRetina2.maxW.override < .desktop.maxW.override
-		}
-	}
+    responsiveImageThumbnail < lib.txRkwBasics.responsiveImage
+    responsiveImageThumbnail {
+        settings {
+            breakpoint {
+                desktop >
+                tablet >
+                mobile2 >
+                mobile >
+            }
+            maxWidth {
+                fallback = 345
+            }
+        }
+    }
 }
 
-#===============================================================
-# CSS
-#===============================================================
-plugin.tx_rkwauthors._CSS_DEFAULT_STYLE (
-
-
-)
-
-
 
 #===============================================================
-# Ajax
+# @deprecated below
 #===============================================================
-txRkwAuthorsAjax = PAGE
-txRkwAuthorsAjax {
+[globalVar = LIT:1 = {$plugin.tx_rkwevents.settings.version}]
 
-	typeNum = 1467895932
+    // #########################################################
+    // Various
+    // #########################################################
+    plugin.tx_rkwauthors.libs {
 
-	config {
-		disableAllHeaderCode = 1
-		xhtml_cleaning = 0
-		admPanel = 0
-		additionalHeaders = Content-type: text/plain
-		no_cache = 0
-	}
 
-	10 = USER_INT
-	10 {
-		userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-		extensionName = RkwAuthors
-		pluginName = Rkwauthors
-		vendorName = RKW
-		switchableControllerActions {
+        responsiveImageThumbnail = IMAGE
+        responsiveImageThumbnail {
 
-			# Again: Controller-Name and Action
-			Authors {
-				10 = list
+            file {
+                import.current = 1
+                maxW = 152
+            }
 
-			}
 
-			# Again: Controller-Name and Action
-			Ajax {
-				10 = filter
+            # Inherit configuration from tt_content and rkw_basics
+            layout < tt_content.image.20.1.layout
+            layoutKey = picture
+            sourceCollection < plugin.tx_rkwbasics.libs.responsiveImages.sourceCollection
 
-			}
-		}
+            # set configuration for sourceCollection
+            sourceCollection {
 
-		view < plugin.tx_rkwauthors.view
-		persistence < plugin.tx_rkwauthors.persistence
-		settings < plugin.tx_rkwauthors.settings
-	}
-}
+                mobile.maxW.override = 152
+                mobile.maxW.override.if {
+                    value = {$plugin.tx_rkwbasics.settings.responsiveImages.breakpoints.mobile}
+                    isLessThan = 152
+                }
+                mobileRetina2.maxW.override < .mobile.maxW.override
+
+                tablet.maxW.override < .mobile.maxW.override
+                tablet.maxW.override.if.value = {$plugin.tx_rkwbasics.settings.responsiveImages.breakpoints.tablet}
+                tabletRetina2.maxW.override < .tablet.maxW.override
+                tabletRetina3.maxW.override < .tablet.maxW.override
+
+                desktop.maxW.override < .mobile.maxW.override
+                desktop.maxW.override.if.value = {$plugin.tx_rkwbasics.settings.responsiveImages.breakpoints.desktop}
+                desktopRetina2.maxW.override < .desktop.maxW.override
+            }
+        }
+    }
+
+    #===============================================================
+    # CSS
+    #===============================================================
+    plugin.tx_rkwauthors._CSS_DEFAULT_STYLE (
+
+
+    )
+
+
+
+    #===============================================================
+    # Ajax
+    #===============================================================
+    txRkwAuthorsAjax = PAGE
+    txRkwAuthorsAjax {
+
+        typeNum = 1467895932
+
+        config {
+            disableAllHeaderCode = 1
+            xhtml_cleaning = 0
+            admPanel = 0
+            additionalHeaders = Content-type: text/plain
+            no_cache = 0
+        }
+
+        10 = USER_INT
+        10 {
+            userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+            extensionName = RkwAuthors
+            pluginName = Rkwauthors
+            vendorName = RKW
+            switchableControllerActions {
+
+                # Again: Controller-Name and Action
+                Authors {
+                    10 = list
+
+                }
+
+                # Again: Controller-Name and Action
+                Ajax {
+                    10 = filter
+
+                }
+            }
+
+            view < plugin.tx_rkwauthors.view
+            persistence < plugin.tx_rkwauthors.persistence
+            settings < plugin.tx_rkwauthors.settings
+        }
+    }
+[global]

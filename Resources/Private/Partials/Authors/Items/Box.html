@@ -24,6 +24,9 @@
         <f:if condition="{author.imageBoxes}">
             <f:then>
                 <f:image src="{author.imageBoxes.uid}" treatIdAsReference="1" alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="350"  />
+                <f:comment>
+                    <!--<f:cObject typoscriptObjectPath="lib.txRkwAuthors.responsiveImageThumbnail" data="{author.imageBoxes.uid}"/> -->
+                </f:comment>
             </f:then>
             <f:else>
                 <f:image src="EXT:rkw_authors/Resources/Public/Images/author-list-fallback.png" alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="350"  />
