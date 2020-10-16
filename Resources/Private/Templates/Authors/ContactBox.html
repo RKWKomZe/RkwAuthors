@@ -4,45 +4,43 @@
     <f:layout name="Default" />
 
     <f:section name="main">
-        <div class="article-bottom-box">
-            <div class="project-details info-box">
-                <f:if condition="{author1}">
-                    <div class="persons">
-                        <div class="person person-teaser">
-                            <f:render partial="Authors/Items/BoxSmall" arguments="{author: author1}"/>
-                        </div>
-                        <f:if condition="{author2}">
-                            <div class="person person-teaser">
-                                <f:render partial="Authors/Items/BoxSmall" arguments="{author: author2}"/>
+
+        <div class="call-to-action no-border-radius-smalldesk full-width-smalldesk">
+            <h4 class="call-to-action__headline h3 ">{settings.headline}</h4>
+
+            <div class="call-to-action__inner">
+                <div class="call-to-action__text">
+                    <p>{settings.text}</p>
+                    <f:if condition="{settings.contactLink}" >
+                        <f:if condition="{settings.linkText}">
+                            <f:then>
+                                <f:link.typolink
+                                    class="btn btn--white"
+                                    parameter="{settings.contactLink}"
+                                >
+                                    {settings.linkText}
+                                </f:link.typolink>
+                            </f:then>
+                            <f:else>
+                                <f:link.typolink
+                                    class="btn btn--white"
+                                    parameter="{settings.contactLink}"
+                                />
+                            </f:else>
+                        </f:if>
+                    </f:if>
+                </div>
+                <div class="call-to-action__contact">
+                    <div class="flex-item contact-tile">
+                        <f:if condition="{author1}">
+                            <div class="persons">
+                                <f:render partial="Authors/Items/BoxSmall" arguments="{author: author1}"/>
+                                <f:if condition="{author2}">
+                                    <f:render partial="Authors/Items/BoxSmall" arguments="{author: author2}"/>
+                                </f:if>
                             </div>
                         </f:if>
                     </div>
-                </f:if>
-                <div class="box-content">
-                    <f:if condition="{settings.headline}">
-                        <p class="project-header">{settings.headline}</p>
-                    </f:if>
-                    <f:if condition="{settings.text}">
-                        <p class="project-teaser">{settings.text}</p>
-                    </f:if>
-                    <f:if condition="{settings.contactLink}" >
-                        <div class="buttons-set">
-                            <p>
-                                <f:if condition="{settings.linkText}">
-                                    <f:then>
-                                        <f:link.typolink class="accordion-button button" parameter="{settings.contactLink}">
-                                            <span>
-                                                {settings.linkText}
-                                            </span>
-                                        </f:link.typolink>
-                                    </f:then>
-                                    <f:else>
-                                        <f:link.typolink class="accordion-button button" parameter="{settings.contactLink}" />
-                                    </f:else>
-                                </f:if>
-                            </p>
-                        </div>
-                    </f:if>
                 </div>
             </div>
         </div>

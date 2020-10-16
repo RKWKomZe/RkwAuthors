@@ -1,0 +1,119 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkwAuthors="http://typo3.org/ns/RKW/RkwAuthors/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+
+    
+    <f:section name="Image">
+        <f:if condition="{author.imageBoxes}">
+            <f:then>
+                <f:image src="{author.imageBoxes.uid}" treatIdAsReference="1" alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="350"  />
+                <f:comment>
+                    <!--<f:cObject typoscriptObjectPath="lib.txRkwAuthors.responsiveImageThumbnail" data="{author.imageBoxes.uid}"/> -->
+                </f:comment>
+            </f:then>
+            <f:else>
+                <f:image src="EXT:rkw_authors/Resources/Public/Images/author-list-fallback.png" alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="350"  />
+            </f:else>
+        </f:if>
+    </f:section>
+    
+    <f:comment><!-- ======================================================================== --></f:comment>
+    
+    <f:section name="Name">
+        <h3 class="tile__title icon">
+            <span class="tile__title-icon">
+                <svg class="icon icon--32"><use xlink:href="#ic-contacts" /></svg>
+            </span>
+            <span class="tile__title-text">
+                <f:format.crop maxCharacters="60" respectWordBoundaries="FALSE"><rkwAuthors:GetCombinedName author="{author}" /></f:format.crop>
+                <span class="tile__title-subheadline">
+                    <f:if condition="{author.department} && {settings.showDepartmentAsFunction}">
+                        <f:then>
+                            {author.department.name}
+                        </f:then>
+                        <f:else>
+                            <f:if condition="{author.functionTitle}">
+                                {author.functionTitle}
+                            </f:if>
+                        </f:else>
+                    </f:if>
+                </span>
+            </span>
+        </h3>
+    </f:section>
+    
+    
+    <f:comment><!-- ======================================================================== --></f:comment>
+    
+    <f:section name="Link">
+    
+        <f:if condition="{author.internal} && {showPid}">
+            <f:then>
+                <f:link.action action="show" pageUid="{showPid}" arguments="{author: '{author}'}" target="{f:if(condition: '{settings.detailLinkTargetBlank} == 1', then: '_blank')}" class="tile__link-overlay" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
+                    <rkwAuthors:GetCombinedName author='{author}'/>
+                </f:link.action>
+            </f:then>
+            <f:else>
+                <f:if condition="{author.url}">
+                    <f:link.external uri="{author.url}" target="_blank" class="tile__link-overlay" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
+                        <rkwAuthors:GetCombinedName author='{author}'/>
+                    </f:link.external>
+                </f:if>
+            </f:else>
+        </f:if>
+    </f:section>
+    
+    <f:comment><!-- ======================================================================== --></f:comment>
+    
+    <f:section name="Phone">
+        <f:if condition="{author.phone} && {author.phone2}">
+            <div class="tile__contact-text" title="{f:translate(key:'partials.authors.items.box.inner.labelPhone', extensionName:'rkwAuthors')}">
+                <svg class="icon icon--16">
+                    <use xlink:href="#ic-phone" />
+                </svg>
+                <f:if condition="{author.internal}">
+                    <f:then>
+                        <rkwAuthors:GetFormattedPhoneNumber phoneExtensionLength="{settings.phoneExtensionLength}" author="{author}"/>
+                    </f:then>
+                    <f:else>
+                        <rkwAuthors:GetFormattedPhoneNumber phoneExtensionLength="0" author="{author}"/>
+                    </f:else>
+                </f:if>
+            </div>
+        </f:if>
+    </f:section>
+    
+    <f:comment><!-- ======================================================================== --></f:comment>
+    
+    <f:section name="Email">
+        <f:if condition="{author.email} || {settings.contactForm.isActive}">
+            <div class="tile__contact-link">
+                <svg class="icon icon--16">
+                    <use xlink:href="#ic-mail" />
+                </svg>
+                <f:if condition="{settings.contactForm.isActive} && {settings.showPid}">
+                    <f:then>
+                        <f:link.action
+                            action="show"
+                            target="{f:if(condition: '{settings.detailLinkTargetBlank} == 1', then: '_blank')}"
+                            title="{f:translate(key:'partials.authors.items.box.inner.clickForForm', extensionName:'rkwAuthors')}"
+                            pageUid="{settings.showPid}"
+                            section="tx-rkwauthors-form"
+                            arguments="{author: author}">
+                            <f:translate key="partials.authors.items.box.inner.clickForForm" extensionName="rkwAuthors"/>
+                        </f:link.action>
+                    </f:then>
+                    <f:else>
+                        <f:link.email
+                            title="{f:translate(key:'partials.authors.items.box.inner.clickToWriteEmail', extensionName:'rkwAuthors')}"
+                            email="{author.email}">
+                            <f:translate key="partials.authors.items.box.inner.clickToWriteEmail" extensionName="rkwAuthors" />
+                        </f:link.email>
+                    </f:else>
+                </f:if>
+    
+            </div>
+        </f:if>
+    </f:section>
+</html>
