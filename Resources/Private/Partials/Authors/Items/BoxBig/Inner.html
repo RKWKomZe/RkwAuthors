@@ -1,0 +1,66 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkwAuthors="http://typo3.org/ns/RKW/RkwAuthors/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+     
+    <f:section name="Image">
+        <f:if condition="{author.imageBig}">
+            <f:then>
+                <f:image image="{author.imageBig}" treatIdAsReference="true" width="890c" height="880c-100"/>
+            </f:then>
+            <f:else>
+                <!-- ### set dummy if no image is available ### -->
+                <!-- <img alt="expert placeholder image" src="fileadmin/media/images/Experts/expert_992x984.png"> -->
+            </f:else>
+        </f:if>
+    </f:section>
+    
+    <f:comment><!-- ======================================================================== --></f:comment>
+    
+    <f:section name="Phone">
+        <f:if condition="{author.phone} && {author.phone2}">
+    
+            <div class="contact__img-text" title="{f:translate(key:'partials.authors.items.boxBig.inner.labelPhone', extensionName:'rkwAuthors')}">
+                <svg class="icon icon--16">
+                    <use xlink:href="#ic-phone" />
+                </svg>
+                <f:if condition="{author.internal}">
+                    <f:then>
+                        <rkwAuthors:GetFormattedPhoneNumber phoneExtensionLength="{settings.phoneExtensionLength}" author="{author}"/>
+                    </f:then>
+                    <f:else>
+                        <rkwAuthors:GetFormattedPhoneNumber phoneExtensionLength="0" author="{author}"/>
+                    </f:else>
+                </f:if>
+            </div>
+        </f:if>
+    </f:section>
+    
+    <f:comment><!-- ======================================================================== --></f:comment>
+    
+    <f:section name="Email">
+        <f:if condition="{author.email} || {settings.contactForm.isActive}">
+    
+            <div class="contact__img-text">
+                <svg class="icon icon--16">
+                    <use xlink:href="#ic-mail" />
+                </svg>
+                <f:if condition="{settings.contactForm.isActive}">
+                    <f:then>
+                        <a href="#tx-rkwauthors-form" data-target="#tx-rkwauthors-form" >
+                            <f:translate key="partials.authors.items.boxBig.inner.clickForForm" extensionName="rkwAuthors"/>
+                        </a>
+                    </f:then>
+                    <f:else>
+                        <f:link.email
+                            title="{f:translate(key:'partials.authors.items.boxBig.inner.clickToWriteEmail', extensionName:'rkwAuthors')}"
+                            email="{author.email}">
+                            <f:translate key="partials.authors.items.boxBig.inner.clickToWriteEmail" extensionName="rkwAuthors" />
+                        </f:link.email>
+                    </f:else>
+                </f:if>
+    
+            </div>
+        </f:if>
+    </f:section>
+</html>

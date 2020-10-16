@@ -38,34 +38,37 @@
 			</trans-unit>
 
 
-            <!-- Partials/Authors/Items/Box.html -->
-			<trans-unit id="partials.authors.items.box.clickToWriteEmail">
+            <!-- Partials/Authors/Items/Box/Inner.html -->
+			<trans-unit id="partials.authors.items.box.inner.clickToWriteEmail">
 				<source>Send E-Mail</source>
 				<target>E-Mail senden</target>
 			</trans-unit>
-			<trans-unit id="partials.authors.items.box.clickForForm">
+			<trans-unit id="partials.authors.items.box.inner.clickForForm">
 				<source>Contact</source>
 				<target>Kontakt</target>
 			</trans-unit>
-			<trans-unit id="partials.authors.items.box.labelPhone">
+			<trans-unit id="partials.authors.items.box.inner.labelPhone">
+				<source>Phone</source>
+				<target>Telefon</target>
+			</trans-unit>
+
+
+            <!-- Partials/Authors/Items/BoxBig/Inner.html -->
+			<trans-unit id="partials.authors.items.boxBig.inner.clickToWriteEmail">
+				<source>Send E-Mail</source>
+				<target>E-Mail senden</target>
+			</trans-unit>
+			<trans-unit id="partials.authors.items.boxBig.inner.clickForForm">
+				<source>Contact</source>
+				<target>Kontakt</target>
+			</trans-unit>
+			<trans-unit id="partials.authors.items.boxBig.inner.labelPhone">
 				<source>Phone</source>
 				<target>Telefon</target>
 			</trans-unit>
 
 
             <!-- Partials/Authors/Items/BoxBig.html -->
-			<trans-unit id="partials.authors.items.boxBig.clickToWriteEmail">
-				<source>Send E-Mail</source>
-				<target>E-Mail senden</target>
-			</trans-unit>
-			<trans-unit id="partials.authors.items.boxBig.clickForForm">
-				<source>Contact</source>
-				<target>Kontakt</target>
-			</trans-unit>
-			<trans-unit id="partials.authors.items.boxBig.labelPhone">
-				<source>Phone</source>
-				<target>Telefon</target>
-			</trans-unit>
             <trans-unit id="partials.authors.items.boxBig.labelQuestion">
                 <source>Do you have a question?</source>
                 <target>Haben Sie eine Frage?</target>
