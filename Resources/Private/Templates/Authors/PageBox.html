@@ -9,7 +9,7 @@
 					<f:translate key="templates.authors.pageBox.labelContact" />
 				</h4>
 				<f:for each="{page.txRkwauthorsAuthorship}" as="author" iteration="iterator">
-					<div class="flex-item flex-basis-3 content-padding-layoutmax">
+					<div class="flex-item flex-basis-3 content-padding-smalldesk">
 						<f:if condition="{f:count(subject:page.txRkwauthorsAuthorship)} > 1">
 							<f:then>
 								<f:render partial="Authors/Items/BoxSmall" arguments="{_all}" />

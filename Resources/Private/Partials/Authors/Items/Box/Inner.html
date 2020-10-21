@@ -30,7 +30,14 @@
                 <span class="tile__title-subheadline">
                     <f:if condition="{author.department} && {settings.showDepartmentAsFunction}">
                         <f:then>
-                            {author.department.name}
+                            <f:if condition="{settings.showDepartmentAsFunction} == 2 && {author.functionTitle}">
+                                <f:then>
+                                    {author.department.name} / {author.functionTitle}
+                                </f:then>
+                                <f:else>
+                                    {author.department.name}
+                                </f:else>
+                            </f:if>
                         </f:then>
                         <f:else>
                             <f:if condition="{author.functionTitle}">
@@ -47,10 +54,10 @@
     <f:comment><!-- ======================================================================== --></f:comment>
     
     <f:section name="Link">
-    
-        <f:if condition="{author.internal} && {showPid}">
+
+        <f:if condition="{author.internal} && {settings.showPid}">
             <f:then>
-                <f:link.action action="show" pageUid="{showPid}" arguments="{author: '{author}'}" target="{f:if(condition: '{settings.detailLinkTargetBlank} == 1', then: '_blank')}" class="tile__link-overlay" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
+                <f:link.action action="show" pageUid="{settings.showPid}" arguments="{author: '{author}'}" target="{f:if(condition: '{settings.detailLinkTargetBlank} == 1', then: '_blank')}" class="tile__link-overlay" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
                     <rkwAuthors:GetCombinedName author='{author}'/>
                 </f:link.action>
             </f:then>
