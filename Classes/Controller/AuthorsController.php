@@ -238,6 +238,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      */
     public function contactBoxAction()
     {
+        $this->view->assign('showPid', $this->settings['showPid']);
         $this->view->assign('author1', $this->authorsRepository->findByIdentifier(intval($this->settings['author1'])));
         $this->view->assign('author2', $this->authorsRepository->findByIdentifier(intval($this->settings['author2'])));
     }

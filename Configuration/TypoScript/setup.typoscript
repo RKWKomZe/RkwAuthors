@@ -110,7 +110,7 @@ plugin.tx_rkwauthors {
         # cat=plugin.tx_rkwauthors//a; type=boolean; label=Sets all detail-link with target=_blank
         detailLinkTargetBlank = {$plugin.tx_rkwauthors.settings.detailLinkTargetBlank}
 
-        # cat=plugin.tx_rkwauthors//a; type=boolean; label=Show department instead of full function of author
+        # cat=plugin.tx_rkwauthors//a; type=integer; label=Show department instead of full function of author (1=instead of, 2=in addition)
         showDepartmentAsFunction = {$plugin.tx_rkwauthors.settings.showDepartmentAsFunction}
 
         # cat=plugin.tx_rkwauthors//a; type=boolean; label=Get authors recursive

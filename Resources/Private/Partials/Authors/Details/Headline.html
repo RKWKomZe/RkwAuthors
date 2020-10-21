@@ -7,7 +7,14 @@
 		<h1><rkwAuthors:GetCombinedName author='{author}' addTitleAfter="true"/></h1>
 		<f:if condition="{author.department} && {settings.showDepartmentAsFunction}">
 			<f:then>
-				<h2 class="h2">{author.department.name}</h2>
+				<f:if condition="{settings.showDepartmentAsFunction} == 2 && {author.functionTitle}">
+					<f:then>
+						<h2 class="h2">{author.department.name} / {author.functionTitle}</h2>
+					</f:then>
+					<f:else>
+						<h2 class="h2">{author.department.name}</h2>
+					</f:else>
+				</f:if>
 			</f:then>
 			<f:else>
 				<f:if condition="{author.functionTitle}">
@@ -15,6 +22,8 @@
 				</f:if>
 			</f:else>
 		</f:if>
+
+
 		<f:link.page
 			pageUid="{settings.listPid}"
 			class="btn btn--icon"
