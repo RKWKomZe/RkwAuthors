@@ -13,7 +13,7 @@
                 </f:comment>
             </f:then>
             <f:else>
-                <f:image src="EXT:rkw_authors/Resources/Public/Images/author-list-fallback.png" alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="350"  />
+                <f:image additionalAttributes="{loading: 'lazy'}" src="EXT:rkw_authors/Resources/Public/Images/author-list-fallback.png" alt="<rkwAuthors:GetCombinedName author='{author}'/>" width="350"  />
             </f:else>
         </f:if>
     </f:section>
