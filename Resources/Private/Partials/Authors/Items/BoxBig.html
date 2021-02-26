@@ -6,7 +6,7 @@
         <div class="flex-basis-9 is-relative">
             <f:render partial="Authors/Items/BoxBig/Inner" section="Image" arguments="{_all}" />
             
-            <div class="contact__img-box">
+            <div class="contact__img-box {f:if(condition:'!{author.imageBig}', then: 'contact__img-box--no-image')}">
                 <h3><f:translate key="partials.authors.items.boxBig.labelQuestion" extensionName="rkwAuthors"/></h3>
                 <f:render partial="Authors/Items/BoxBig/Inner" section="Email" arguments="{_all}" />
                 <f:render partial="Authors/Items/BoxBig/Inner" section="Phone" arguments="{_all}" />
