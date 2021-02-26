@@ -93,34 +93,38 @@ return [
 		],
 		'starttime' => [
 			'exclude' => 0,
-			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
 			'config' => [
 				'type' => 'input',
+                'renderType' => 'inputDateTime',
 				'size' => 13,
-				'max' => 20,
 				'eval' => 'datetime',
 				'checkbox' => 0,
 				'default' => 0,
 				'range' => [
 					'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
 				],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true
+                ]
 			],
 		],
 		'endtime' => [
 			'exclude' => 0,
-			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
 			'config' => [
 				'type' => 'input',
+                'renderType' => 'inputDateTime',
 				'size' => 13,
-				'max' => 20,
 				'eval' => 'datetime',
 				'checkbox' => 0,
 				'default' => 0,
 				'range' => [
 					'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
 				],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true
+                ]
 			],
 		],
 
@@ -238,39 +242,20 @@ return [
 			'config' => [
 				'type' => 'text',
 				'rows' => 42,
+                'fieldControl'  => [
+                    'fullScreenRichtext' => [
+                        'disabled' => false,
+                    ],
+                ],
+                'enableRichtext' => true,
 			],
-			'defaultExtras' => 'richtext[]:rte_transform[flag=rte_enabled|mode=ts_css]',
 		],
 		'email' => [
 			'exclude' => 0,
 			'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.email',
 			'config' => [
-				'type' => 'input',
-				'size' => 30,
-				'eval' => 'trim,required',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'LLL:EXT:cms/locallang_ttc.xlf:header_link_formlabel',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                            'urlParameters' => [
-                                    'mode' => 'wizard',
-                            ]
-                        ],
-                        'JSopenParams' => 'height=400,width=550,status=0,menubar=0,scrollbars=1',
-                        'params' => [
-                            // List of tabs to hide in link window. Allowed values are:
-                            // file, mail, page, spec, folder, url
-                            'blindLinkOptions' => 'url,file,page,spec,folder',
-
-                            // allowed extensions for file
-                            //'allowedExtensions' => 'mp3,ogg',
-                        ]
-                    ]
-                ],
-                'softref' => 'typolink'
+                'type' => 'input',
+                'renderType' => 'inputLink',
 			],
 		],
 		'phone' => [
@@ -307,127 +292,31 @@ return [
             'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.url',
             'config' => [
                 'type' => 'input',
-                'size' => 30,
-                'eval' => 'trim',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'LLL:EXT:cms/locallang_ttc.xlf:header_link_formlabel',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                            'urlParameters' => [
-                                'mode' => 'wizard',
-                            ]
-                        ],
-                        'JSopenParams' => 'height=400,width=550,status=0,menubar=0,scrollbars=1',
-                        'params' => [
-                            // List of tabs to hide in link window. Allowed values are:
-                            // file, mail, page, spec, folder, url
-                            'blindLinkOptions' => 'mail,file,page,spec,folder',
-
-                            // allowed extensions for file
-                            //'allowedExtensions' => 'mp3,ogg',
-                        ]
-                    ]
-                ],
-                'softref' => 'typolink'
+                'renderType' => 'inputLink',
             ],
         ],
         'facebook_url' => [
 			'exclude' => 0,
 			'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.facebook_url',
 			'config' => [
-				'type' => 'input',
-				'size' => 30,
-				'eval' => 'trim',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'LLL:EXT:cms/locallang_ttc.xlf:header_link_formlabel',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                            'urlParameters' => [
-                                'mode' => 'wizard',
-                            ]
-                        ],
-                        'JSopenParams' => 'height=400,width=550,status=0,menubar=0,scrollbars=1',
-                        'params' => [
-                            // List of tabs to hide in link window. Allowed values are:
-                            // file, mail, page, spec, folder, url
-                            'blindLinkOptions' => 'mail,file,page,spec,folder',
-
-                            // allowed extensions for file
-                            //'allowedExtensions' => 'mp3,ogg',
-                        ]
-                    ]
-                ],
-                'softref' => 'typolink'
+                'type' => 'input',
+                'renderType' => 'inputLink',
 			],
 		],
 		'twitter_url' => [
 			'exclude' => 0,
 			'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.twitter_url',
 			'config' => [
-				'type' => 'input',
-				'size' => 30,
-				'eval' => 'trim',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'LLL:EXT:cms/locallang_ttc.xlf:header_link_formlabel',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                            'urlParameters' => [
-                                'mode' => 'wizard',
-                            ]
-                        ],
-                        'JSopenParams' => 'height=400,width=550,status=0,menubar=0,scrollbars=1',
-                        'params' => [
-                            // List of tabs to hide in link window. Allowed values are:
-                            // file, mail, page, spec, folder, url
-                            'blindLinkOptions' => 'mail,file,page,spec,folder',
-
-                            // allowed extensions for file
-                            //'allowedExtensions' => 'mp3,ogg',
-                        ]
-                    ]
-                ],
-                'softref' => 'typolink'
+                'type' => 'input',
+                'renderType' => 'inputLink',
 			],
 		],
 		'xing_url' => [
 			'exclude' => 0,
 			'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.xing_url',
 			'config' => [
-				'type' => 'input',
-				'size' => 30,
-				'eval' => 'trim',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'LLL:EXT:cms/locallang_ttc.xlf:header_link_formlabel',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                            'urlParameters' => [
-                                'mode' => 'wizard',
-                            ]
-                        ],
-                        'JSopenParams' => 'height=400,width=550,status=0,menubar=0,scrollbars=1',
-                        'params' => [
-                            // List of tabs to hide in link window. Allowed values are:
-                            // file, mail, page, spec, folder, url
-                            'blindLinkOptions' => 'mail,file,page,spec,folder',
-
-                            // allowed extensions for file
-                            //'allowedExtensions' => 'mp3,ogg',
-                        ]
-                    ]
-                ],
-                'softref' => 'typolink'
+                'type' => 'input',
+                'renderType' => 'inputLink',
 			],
 		],
 		'internal' => [
@@ -474,43 +363,7 @@ return [
 			'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.image_boxes',
 			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
 				'image_boxes',
-				 [
-					'maxitems' => 1,
-
-					// Use the imageoverlayPalette instead of the basicoverlayPalette
-					'foreign_types' => [
-						'0' => [
-							'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-							],
-						\TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
-							'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-						],
-						\TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-							'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-						],
-						\TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
-						'	showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-						],
-						\TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
-							'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-						],
-						\TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
-							'showitem' => '
-							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-							--palette--;;filePalette'
-						]
-					]
-				],
+                ['maxitems' => 1],
 				$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),
 		],
@@ -519,43 +372,7 @@ return [
 			'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.image_big',
 			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
 				'image_big',
-				[
-					'maxitems' => 1,
-
-					// Use the imageoverlayPalette instead of the basicoverlayPalette
-					'foreign_types' => [
-						'0' => [
-							'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-							],
-						\TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
-							'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-						],
-						\TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-							'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-						],
-						\TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
-						'	showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-						],
-						\TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
-							'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-						],
-						\TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
-							'showitem' => '
-							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-							--palette--;;filePalette'
-						]
-					]
-				],
+                ['maxitems' => 1],
 				$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),
 		],
@@ -564,43 +381,7 @@ return [
 			'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.image_small',
 			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
 				'image_small',
- 				[
-					'maxitems' => 1,
-
-					// Use the imageoverlayPalette instead of the basicoverlayPalette
-					'foreign_types' => [
-						'0' => [
-							'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-							],
-						\TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
-							'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-						],
-						\TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-							'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-						],
-						\TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
-						'	showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-						],
-						\TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
-							'showitem' => '
-								--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-								--palette--;;filePalette'
-						],
-						\TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
-							'showitem' => '
-							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-							--palette--;;filePalette'
-						]
-					]
-				],
+                ['maxitems' => 1],
 				$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),
 		],

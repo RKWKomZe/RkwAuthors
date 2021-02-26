@@ -5,40 +5,8 @@ call_user_func(
     function($extKey)
     {
 
-        //=================================================================
-        // Register Plugins
-        //=================================================================
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'RKW.' . $extKey,
-            'Rkwauthors',
-            'RKW Authors - List'
-        );
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'RKW.' . $extKey,
-            'Rkwauthorsdetail',
-            'RKW Authors - Detail'
-        );
-
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'RKW.' . $extKey,
-            'Rkwauthorsheadline',
-            'RKW Authors - Headline'
-        );
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'RKW.' . $extKey,
-            'Rkwauthorswork',
-            'RKW Authors - Show Work'
-        );
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'RKW.' . $extKey,
-            'Rkwauthorscontactbox',
-            'RKW Authors - Call-To-Action'
-        );
-
+        // "addLLrefForTCAdescr" and "allowTableOnStandardPages" are allowed here:
+        // https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ExtensionArchitecture/ConfigurationFiles/Index.html#id4
 
         //=================================================================
         // Add Tables
@@ -50,32 +18,6 @@ call_user_func(
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages(
             'tx_rkwauthors_domain_model_authors'
         );
-
-
-        //=================================================================
-        // Add TypoScript
-        //=================================================================
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
-            $extKey,
-            'Configuration/TypoScript',
-            'RKW Authors'
-        );
-
-
-        //=================================================================
-        // Add Flexform
-        //=================================================================
-        $extensionName = strtolower(\TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($extKey));
-        $pluginName = strtolower('Rkwauthorscontactbox');
-        $pluginSignature = $extensionName.'_'.$pluginName;
-
-        $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
-        $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-            $pluginSignature,
-            'FILE:EXT:'.$extKey . '/Configuration/FlexForms/ContactBox.xml'
-        );
-
 
     },
     $_EXTKEY
