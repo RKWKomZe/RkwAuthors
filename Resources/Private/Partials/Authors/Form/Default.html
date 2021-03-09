@@ -7,7 +7,7 @@
     <f:render partial="FlashMessages" arguments="{_all}" />
     <f:render partial="FormErrors" arguments="{object:contactForm}" />
 
-    <f:form action="contactFormSend" name="contactForm" object="{contactForm}">
+    <f:form action="contactFormSend" name="contactForm" object="{contactForm}" arguments="{author: author}">
         <div class="flex-container">
             <div class="form flex flex-basis-8 full-width-medium space-between">
 
@@ -155,6 +155,8 @@
         </div>
 
         <f:form.hidden name="author" value="{author}" />
+        <f:comment><!-- additional entry for contactForm --></f:comment>
+        <f:form.hidden property="author" name="author" value="{author}" />
     </f:form>
 
 </html>
