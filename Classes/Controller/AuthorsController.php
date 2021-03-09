@@ -14,6 +14,8 @@ namespace RKW\RkwAuthors\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+
 
 /**
  * Class AuthorsController
@@ -265,8 +267,21 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      */
-    public function contactFormSendAction(\RKW\RkwAuthors\Domain\Model\Authors $author, $contactForm)
+    public function contactFormSendAction(\RKW\RkwAuthors\Domain\Model\Authors $author, $contactForm = [])
     {
+        // above we have now set a default value to $contactForm for better URL handling. Through manually checking $contactForm
+        // content we can avoid that empty requests without $contactForm-data leads to a crash:
+        // Required argument "contactForm" is not set for RKW\RkwAuthors\Controller\AuthorsController->contactFormSend.
+        if (empty($contactForm)) {
+            // send back
+            $this->redirect(
+                'show',
+                null,
+                null,
+                ['author' => $author ? $author : $contactForm['author']['__identity']]
+            );
+        }
+
         if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('rkw_mailer')) {
 
             // send message author
@@ -293,7 +308,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
             'show',
             null,
             null,
-            ['author' => $author]
+            ['author' => $author ? $author : $contactForm['author']['__identity']]
         );
     }
 
