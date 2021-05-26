@@ -99,7 +99,7 @@
                 <svg class="icon icon--16">
                     <use xlink:href="#ic-mail" />
                 </svg>
-                <f:if condition="{settings.contactForm.isActive} && {settings.showPid}">
+                <f:if condition="{settings.contactForm.isActive} && {author.internal} && {settings.showPid}">
                     <f:then>
                         <f:link.action
                             action="show"
