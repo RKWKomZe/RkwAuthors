@@ -119,6 +119,9 @@ plugin.tx_rkwauthors {
         # cat=plugin.tx_rkwauthors//a; type=integer; label=Phone extension length
         phoneExtensionLength = {$plugin.tx_rkwauthors.settings.phoneExtensionLength}
 
+        # cat=plugin.tx_rkwauthors//a; type=boolean; label=Show small boxes when more than one author
+        noSmallBoxes = {$plugin.tx_rkwauthors.settings.noSmallBoxes}
+
         # optional: Use contact form instead of the direct authors email links
         contactForm {
 
