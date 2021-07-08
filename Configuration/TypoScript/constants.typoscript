@@ -37,6 +37,9 @@ plugin.tx_rkwauthors {
         # cat=plugin.tx_rkwauthors//a; type=integer; label=Phone extension length
         phoneExtensionLength = 4
 
+        # cat=plugin.tx_rkwauthors//a; type=boolean; label=Show small boxes when more than one author
+        noSmallBoxes = 0
+
         contactForm {
 
             # cat=plugin.tx_rkwauthors//a; type=boolean; label=Activates the form instead of the direct email-link
