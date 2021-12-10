@@ -10,6 +10,7 @@
 					class="ajax"
 					action="list"
 					additionalParams="{rkw_ajax: '{key: ajaxHelper.key, cid: ajaxHelper.contentUid, idl: \'1\'}'}"
+					additionalAttributes="{data-ajax-indicator-id: 'tx-rkwauthors-list'}"
 				>
 					<f:translate key="partials.authors.list.filter.labelShowAll" extensionName="rkwAuthors" />
 				</f:link.action>
@@ -25,6 +26,7 @@
 							arguments="{filter: {letter: letter}}"
 							additionalParams="{rkw_ajax: '{key: ajaxHelper.key, cid: ajaxHelper.contentUid, idl: \'1\'}'}"
 							rel="nofollow"
+							additionalAttributes="{data-ajax-indicator-id: 'tx-rkwauthors-list'}"
 						>
 							{letter}
 						</f:link.action>

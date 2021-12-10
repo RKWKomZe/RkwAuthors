@@ -3,32 +3,34 @@
 	xmlns:rkwAuthors="http://typo3.org/ns/RKW/RkwAuthors/ViewHelpers"
 	data-namespace-typo3-fluid="true">
 
-	<rkwAjax:ajaxWrapper ajaxHelper="{ajaxHelper}" ajaxAction="replace" ajaxId="1">
-		<div aria-live="assertive" aria-atomic="true" role="main">
-
-			<f:if condition="<f:count>{authors}</f:count>">
-				<f:then>
-					<div class="tiles-wrapper">
-						<div class="tiles flex-container flex-container--margin">
-							<f:for each="{authors}" as="author" iteration="iteration">
-								<div class="flex-item flex-basis-3">
-									<f:render partial="Authors/Items/Box" arguments="{_all}" />
-								</div>
-							</f:for>
+	<div id="tx-rkwauthors-list">
+		<rkwAjax:ajaxWrapper ajaxHelper="{ajaxHelper}" ajaxAction="replace" ajaxId="1">
+			<div aria-live="assertive" aria-atomic="true" role="main">
+	
+				<f:if condition="<f:count>{authors}</f:count>">
+					<f:then>
+						<div class="tiles-wrapper">
+							<div class="tiles flex-container flex-container--margin">
+								<f:for each="{authors}" as="author" iteration="iteration">
+									<div class="flex-item flex-basis-3">
+										<f:render partial="Authors/Items/Box" arguments="{_all}" />
+									</div>
+								</f:for>
+							</div>
 						</div>
-					</div>
-				</f:then>
-
-				<f:else>
-					<div class="flex-container flex-basis-12 center-main">
-						<div class="no-results">
-							<p class="no-results__headline">
-								<f:translate key="partials_authors_list_authors.noResult" extensionName="rkwAuthors" />
-							</p>
+					</f:then>
+	
+					<f:else>
+						<div class="flex-container flex-basis-12 center-main">
+							<div class="no-results">
+								<p class="no-results__headline">
+									<f:translate key="partials_authors_list_authors.noResult" extensionName="rkwAuthors" />
+								</p>
+							</div>
 						</div>
-					</div>
-				</f:else>
-			</f:if>
-		</div>
-	</rkwAjax:ajaxWrapper>
+					</f:else>
+				</f:if>
+			</div>
+		</rkwAjax:ajaxWrapper>
+	</div>
 </html>
