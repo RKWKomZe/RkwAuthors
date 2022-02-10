@@ -301,13 +301,13 @@
             <!-- Templates/Authors/List.html -->
 			<trans-unit id="templates_authors_list.experts">
 				<source>Experts of RKW </source>
-				<target>Ansprechpartner des RKW </target>
+				<target>Ansprechperson des RKW </target>
 			</trans-unit>
 
 			<!-- Partials/Authors/List/Authors.html -->
 			<trans-unit id="partials_authors_list_authors.noResult">
 				<source>Sorry, but there are currently no results.</source>
-				<target>Es gibt aktuell keinen Ansprechpartner, der den ausgewählten Kriterien entspricht.</target>
+				<target>Es gibt aktuell keinen Ansprechperson, der den ausgewählten Kriterien entspricht.</target>
 			</trans-unit>
 			<trans-unit id="partials_authors_list_authors.contact">
 				<source>Contact</source>
@@ -381,7 +381,7 @@
             </trans-unit>
             <trans-unit id="templates_authors_contactform.firstPart">
                 <source>Yes, I agree that RKW will use my personal data for the above purpose and to create a free user account.  Furthermore, I have read and agree to the extended notes in the</source>
-                <target>Ja, ich stimme zu, dass das RKW meine persönlichen Daten zum oben genannten Zweck, sowie zur Erzeugung eines kostenlosen Nutzerkontos verwendet.  Ferner habe ich die erweiterten Hinweise in der</target>
+                <target>Ja, ich stimme zu, dass das RKW meine persönlichen Daten zum oben genannten Zweck, sowie zur Erzeugung eines kostenlosen Nutzendenkontos verwendet.  Ferner habe ich die erweiterten Hinweise in der</target>
             </trans-unit>
             <trans-unit id="templates_authors_contactform.secondPart">
                 <source>data protection declaration</source>
