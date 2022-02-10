@@ -1,13 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-08-11T15:48:43Z" product-name="rkw_authors">
-		<header/>
+	<file target-language="de" date="2014-08-11T15:48:43Z" source-language="en" product-name="rkw_authors" datatype="plaintext" original="messages">
+		<header>
+      <phase-group>
+        <phase process-name="approval" date="2022-02-10" contact-name="Melanie" tool-id="lokalize-22.03.70" contact-email="berberich@rkw.de" phase-name="approval-1"/>
+      </phase-group>
+      <tool tool-version="22.03.70" tool-id="lokalize-22.03.70" tool-name="Lokalize"/>
+    </header>
 		<body>
 
 			<!-- tx_rkwauthors_domain_model_authors -->
-			<trans-unit id="tx_rkwauthors_domain_model_authors">
+			<trans-unit id="tx_rkwauthors_domain_model_authors" approved="no">
 				<source>RKW Authors: Authors</source>
-				<target>RKW Authors: Autoren / Ansprechpartner </target>
+				<target state="final" phase-name="approval-1">RKW Authors: Verfassende / Ansprechpersonen</target>
 			</trans-unit>
 			<trans-unit id="tx_rkwauthors_domain_model_authors.first_name">
 				<source>First Name</source>
@@ -97,21 +102,21 @@
 				<source>Internal</source>
 				<target>Intern</target>
 			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.internal.I.enabled" xml:space="preserve">
+			<trans-unit id="tx_rkwauthors_domain_model_authors.internal.I.enabled" xml:space="preserve" approved="no">
 				<source>Internal Author</source>
-				<target>Interner Autor/Ansprechpartner des RKW Netzwerks</target>
+				<target state="final" phase-name="approval-1">Interne Verfassende/Ansprechperson des RKW Netzwerks</target>
 			</trans-unit>
 			<trans-unit id="tx_rkwauthors_domain_model_authors.show_work">
 				<source>Show Work</source>
 				<target>Arbeiten anzeigen</target>
 			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.show_work.I.enabled" xml:space="preserve">
+			<trans-unit id="tx_rkwauthors_domain_model_authors.show_work.I.enabled" xml:space="preserve" approved="no">
 				<source>Show Work in Detailpage</source>
-				<target>Zeige die Arbeiten des Autors in seiner Detailseite an</target>
+				<target state="final" phase-name="approval-1">Zeige die Arbeiten der Verfassenden in seiner Detailseite an</target>
 			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.image_small">
+			<trans-unit id="tx_rkwauthors_domain_model_authors.image_small" approved="no">
 				<source>Image small (deprecated!)</source>
-				<target>Bild für Autorenliste (veraltet, entfällt künftig!)</target>
+				<target state="final" phase-name="approval-1">Bild für Verfassendenliste (veraltet, entfällt künftig!)</target>
 			</trans-unit>
 			<trans-unit id="tx_rkwauthors_domain_model_authors.image_big">
 				<source>Image big</source>
@@ -150,9 +155,9 @@
 
 
 			<!-- sys_file_reference -->
-			<trans-unit id="sys_file_reference.ratio.list_image">
+			<trans-unit id="sys_file_reference.ratio.list_image" approved="no">
 				<source>Author List-Image</source>
-				<target>Autorenbild Liste</target>
+				<target state="final" phase-name="approval-1">Verfassendenbild Liste</target>
 			</trans-unit>
 
 
@@ -213,13 +218,13 @@
 				<source>Linktext</source>
 				<target>Angezeigter Linktext (Optional: Falls nicht gesetzt, wird der Typolink-Linktext verwendet)</target>
 			</trans-unit>
-			<trans-unit id="flexform.contactBox.author1">
+			<trans-unit id="flexform.contactBox.author1" approved="yes">
 				<source>Author 1</source>
-				<target>Autor 1</target>
+				<target state="signed-off" phase-name="approval-1">Verfassende 1</target>
 			</trans-unit>
-			<trans-unit id="flexform.contactBox.author2">
+			<trans-unit id="flexform.contactBox.author2" approved="no">
 				<source>Author 2</source>
-				<target>Autor 2</target>
+				<target state="final" phase-name="approval-1">Verfassende 2</target>
 			</trans-unit>
 
 		</body>
