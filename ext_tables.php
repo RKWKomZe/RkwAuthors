@@ -5,8 +5,11 @@ call_user_func(
     function($extKey)
     {
 
-        // "addLLrefForTCAdescr" and "allowTableOnStandardPages" are allowed here:
-        // https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ExtensionArchitecture/ConfigurationFiles/Index.html#id4
+        // Hint: for plugin and flexform settings show /rkw_authors/Configuration/TCA/Overrides/tt_content.php
+        // Hint: "addStaticFile" is now part of /Overrides/sys_template.php
+
+        // "addLLrefForTCAdescr" & "allowTableOnStandardPages" below should be placed here in ext_tables
+        // -> https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ExtensionArchitecture/ConfigurationFiles/Index.html#id4
 
         //=================================================================
         // Add Tables
