@@ -14,149 +14,72 @@ namespace RKW\RkwAuthors\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use RKW\RkwAuthors\Domain\Model\Authors;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 
-$currentVersion = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version);
-if ($currentVersion < 8000000) {
+/**
+ * Class GetFormattedPhoneNumberViewHelper
+ *
+ * @author Steffen Kroggel <developer@steffenkroggel.de>
+ * @copyright Rkw Kompetenzzentrum
+ * @package RKW_RkwAuthors
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ */
+class GetFormattedPhoneNumberViewHelper extends AbstractViewHelper
+{
+
+    use CompileWithRenderStatic;
 
     /**
-     * Class GetFormattedPhoneNumberViewHelper
+     * Initialize arguments.
      *
-     * @author Steffen Kroggel <developer@steffenkroggel.de>
-     * @copyright Rkw Kompetenzzentrum
-     * @package RKW_RkwAuthors
-     * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
-     * @deprecated
+     * @throws \TYPO3Fluid\Fluid\Core\ViewHelper\Exception
      */
-
-    class GetFormattedPhoneNumberViewHelper extends AbstractViewHelper
+    public function initializeArguments()
     {
-
-        /**
-         * Build a full phone number
-         *
-         * @param \RKW\RkwAuthors\Domain\Model\Authors $author
-         * @param integer $phoneExtensionLength
-         * @return string
-         */
-        public function render(\RKW\RkwAuthors\Domain\Model\Authors $author, $phoneExtensionLength = 4)
-        {
-
-            return static::renderStatic(
-                array(
-                    'author'               => $author,
-                    'phoneExtensionLength' => $phoneExtensionLength,
-                ),
-                $this->buildRenderChildrenClosure(),
-                $this->renderingContext
-            );
-        }
-
-
-        /**
-         * Static rendering
-         *
-         * @param array $arguments
-         * @param \Closure $renderChildrenClosure
-         * @param \TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface $renderingContext
-         * @return string
-         */
-        static public function renderStatic(array $arguments, \Closure $renderChildrenClosure, \TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface $renderingContext)
-        {
-            $author = $arguments['author'];
-            $phoneExtensionLength = $arguments['phoneExtensionLength'];
-
-            // cleanup and split into 3-digit strings
-            $areaCode = preg_replace('/[^0-9]+/', '', $author->getPhone());
-            $phone = preg_replace('/[^0-9]+/', '', $author->getPhone2());
-
-            // last entry should have 4 digits
-            $lastPart = '';
-            if ($phone > 4) {
-                if ($phoneExtensionLength > 0) {
-                    $lastPart = '-' . substr($phone, (-1 * intval($phoneExtensionLength)), intval($phoneExtensionLength));
-                }
-                $phone = substr($phone, 0, strlen($phone) - intval($phoneExtensionLength));
-            }
-
-            // merge together
-            if ($areaCode) {
-                return $areaCode . ' ' . $phone . $lastPart;
-            }
-
-            return $phone . $lastPart;
-        }
+        parent::initializeArguments();
+        $this->registerArgument('author', Authors::class, 'The author-object from which the telephone-number is to be extracted.', true);
+        $this->registerArgument('phoneExtensionLength', 'int', 'The length of the phone extension-number. .', false, 4);
     }
 
-} else {
 
     /**
-     * Class GetFormattedPhoneNumberViewHelper
-     *
-     * @author Steffen Kroggel <developer@steffenkroggel.de>
-     * @copyright Rkw Kompetenzzentrum
-     * @package RKW_RkwAuthors
-     * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+     * @param array $arguments
+     * @param \Closure $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
+     * @return string
      */
-    class GetFormattedPhoneNumberViewHelper extends AbstractViewHelper
-    {
+    static public function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ): string {
+        $author = $arguments['author'];
+        $phoneExtensionLength = $arguments['phoneExtensionLength'];
 
-        /**
-         * Build a full phone number
-         *
-         * @param \RKW\RkwAuthors\Domain\Model\Authors $author
-         * @param integer $phoneExtensionLength
-         * @return string
-         */
-        public function render(\RKW\RkwAuthors\Domain\Model\Authors $author, $phoneExtensionLength = 4)
-        {
+        // cleanup and split into 3-digit strings
+        $areaCode = preg_replace('/[^0-9]+/', '', $author->getPhone());
+        $phone = preg_replace('/[^0-9]+/', '', $author->getPhone2());
 
-            return static::renderStatic(
-                array(
-                    'author'               => $author,
-                    'phoneExtensionLength' => $phoneExtensionLength,
-                ),
-                $this->buildRenderChildrenClosure(),
-                $this->renderingContext
-            );
+        // last entry should have 4 digits
+        $lastPart = '';
+        if ($phone > 4) {
+            if ($phoneExtensionLength > 0) {
+                $lastPart = '-' . substr($phone, (-1 * intval($phoneExtensionLength)), intval($phoneExtensionLength));
+            }
+            $phone = substr($phone, 0, strlen($phone) - intval($phoneExtensionLength));
         }
 
-
-        /**
-         * Static rendering
-         *
-         * @param array $arguments
-         * @param \Closure $renderChildrenClosure
-         * @param RenderingContextInterface $renderingContext
-         * @return string
-         */
-        static public function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
-        {
-            $author = $arguments['author'];
-            $phoneExtensionLength = $arguments['phoneExtensionLength'];
-
-            // cleanup and split into 3-digit strings
-            $areaCode = preg_replace('/[^0-9]+/', '', $author->getPhone());
-            $phone = preg_replace('/[^0-9]+/', '', $author->getPhone2());
-
-            // last entry should have 4 digits
-            $lastPart = '';
-            if ($phone > 4) {
-                if ($phoneExtensionLength > 0) {
-                    $lastPart = '-' . substr($phone, (-1 * intval($phoneExtensionLength)), intval($phoneExtensionLength));
-                }
-                $phone = substr($phone, 0, strlen($phone) - intval($phoneExtensionLength));
-            }
-
-            // merge together
-            if ($areaCode) {
-                return $areaCode . ' ' . $phone . $lastPart;
-            }
-
-            return $phone . $lastPart;
+        // merge together
+        if ($areaCode) {
+            return $areaCode . ' ' . $phone . $lastPart;
         }
+
+        return $phone . $lastPart;
     }
 }
+
 

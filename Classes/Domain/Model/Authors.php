@@ -31,7 +31,7 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * firstName
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $firstName = '';
 
@@ -46,7 +46,7 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * lastName
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $lastName = '';
 
@@ -708,11 +708,11 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Returns the showWork
      *
      * @return boolean $showWork
-     * @deprectated
+     * @deprecated
      */
     public function getShowWork()
     {
-        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
+        trigger_error(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.', E_USER_DEPRECATED);
         return $this->showWork;
     }
 
@@ -725,7 +725,7 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function setShowWork($showWork)
     {
-        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
+        trigger_error(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.', E_USER_DEPRECATED);
         $this->showWork = $showWork;
     }
 
@@ -737,7 +737,7 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getImageSmall()
     {
-        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
+        trigger_error(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.', E_USER_DEPRECATED);
         return $this->imageSmall;
     }
 
@@ -750,7 +750,7 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function setImageSmall(\TYPO3\CMS\Extbase\Domain\Model\FileReference $imageSmall)
     {
-        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
+        trigger_error(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.', E_USER_DEPRECATED);
         $this->imageSmall = $imageSmall;
     }
 

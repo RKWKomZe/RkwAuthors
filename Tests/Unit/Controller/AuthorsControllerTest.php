@@ -4,7 +4,7 @@ namespace RKW\RkwAuthors\Tests\Unit\Controller;
  *  Copyright notice
  *
  *  (c) 2014 Steffen Kroggel <developer@steffenkroggel.de>
- *  			
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -36,11 +36,11 @@ class AuthorsControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 */
 	protected $subject = NULL;
 
-	protected function setUp() {
+	protected function setUp(): void {
 		$this->subject = $this->getMock('RKW\\RkwAuthors\\Controller\\AuthorsController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
 	}
 
-	protected function tearDown() {
+	protected function tearDown(): void {
 		unset($this->subject);
 	}
 

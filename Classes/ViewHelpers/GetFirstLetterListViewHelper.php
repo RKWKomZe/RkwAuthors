@@ -15,6 +15,10 @@ namespace RKW\RkwAuthors\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use RKW\RkwAuthors\Domain\Model\Authors;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+
 /**
  * Class GetFirstLetterListViewHelper
  *
@@ -24,16 +28,37 @@ namespace RKW\RkwAuthors\ViewHelpers;
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class GetFirstLetterListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class GetFirstLetterListViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
+    use CompileWithRenderStatic;
+
     /**
-     * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $authors
-     * @param string $prepend
-     * @return array
+     * Initialize arguments.
+     *
+     * @throws \TYPO3Fluid\Fluid\Core\ViewHelper\Exception
      */
-    public function render($authors, $prepend = '')
+    public function initializeArguments()
     {
+        parent::initializeArguments();
+        $this->registerArgument('author', Authors::class, 'The list of author-objects from which the list is to be built.', true);
+        $this->registerArgument('prepend', 'string', 'String to prepend each letter.', false, '');
+    }
+
+
+    /**
+     * @param array $arguments
+     * @param \Closure $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
+     * @return string
+     */
+    static public function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ): string {
+        $authors = $arguments['authors'];
+        $prepend = $arguments['prepend'];
 
         // go through authors and get all relevant first letters of last-names
         /** @var \RKW\RkwAuthors\Domain\Model\Authors $author */
@@ -46,8 +71,6 @@ class GetFirstLetterListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abst
         }
         asort($relevantLetters);
 
-
         return $relevantLetters;
-        //===
     }
 }

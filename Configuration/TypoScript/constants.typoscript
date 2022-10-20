@@ -59,7 +59,7 @@ plugin.tx_rkwauthors {
 
             mail {
                 # cat=plugin.tx_rkwauthors//a; type=string; label=set language for author email with "de", or "en" etc
-                # @toDo: Maybe we should use authors sys_language_uid with correct lang code instead? Just an option...
+                # @todo Maybe we should use authors sys_language_uid with correct lang code instead? Just an option...
                 language = de
 
                 # if an author has no mail address

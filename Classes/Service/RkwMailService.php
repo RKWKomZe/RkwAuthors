@@ -2,7 +2,7 @@
 
 namespace RKW\RkwAuthors\Service;
 
-use \RKW\RkwBasics\Helper\Common;
+use RKW\RkwBasics\Utility\GeneralUtility as Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use RKW\RkwEvents\Helper\DivUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
@@ -205,7 +205,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                 if ($settingsDefault['contactForm']['mail']['override']['address'] && $settingsDefault['contactForm']['mail']['override']['name']) {
                     // if set: use override email first
                     $emailTo = strval($settingsDefault['contactForm']['mail']['override']['address']);
-                    // @toDo: Should we have firstName & lastName vor override-Email in TS?
+                    // @todo Should we have firstName & lastName vor override-Email in TS?
                     // -> if yes: Don't forget to edit also function "userMail"
                     $firstName = '';
                     $lastName = strval($settingsDefault['contactForm']['mail']['override']['name']);

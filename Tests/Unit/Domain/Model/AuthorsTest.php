@@ -40,11 +40,11 @@ class AuthorsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 */
 	protected $subject = NULL;
 
-	protected function setUp() {
+	protected function setUp(): void {
 		$this->subject = new \RKW\RkwAuthors\Domain\Model\Authors();
 	}
 
-	protected function tearDown() {
+	protected function tearDown(): void {
 		unset($this->subject);
 	}
 

@@ -106,7 +106,7 @@ class AuthorsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     public function findByFilterOptions(\RKW\RkwAuthors\Domain\Model\Filter $filter)
     {
 
-        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
+        trigger_error(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.', E_USER_DEPRECATED);
 
         $query = $this->createQuery();
         $constraints = array();

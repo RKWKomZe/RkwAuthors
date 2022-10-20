@@ -14,6 +14,8 @@ namespace RKW\RkwAuthors\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\RootlineUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 
@@ -33,7 +35,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      * authorsRepository
      *
      * @var \RKW\RkwAuthors\Domain\Repository\AuthorsRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $authorsRepository = null;
 
@@ -41,7 +43,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      * pagesRepository
      *
      * @var \RKW\RkwAuthors\Domain\Repository\PagesRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $pagesRepository = null;
 
@@ -49,7 +51,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      * departmentRepository
      *
      * @var \RKW\RkwBasics\Domain\Repository\DepartmentRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $departmentRepository = null;
 
@@ -84,7 +86,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      * action show
      *
      * @param \RKW\RkwAuthors\Domain\Model\Authors $author
-     * @ignorevalidation $author
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("author")
      * @return void
      */
     public function showAction(\RKW\RkwAuthors\Domain\Model\Authors $author)
@@ -120,7 +122,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
     public function showWorkAction()
     {
 
-        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
+        trigger_error(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.', E_USER_DEPRECATED);
 
         $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_rkwauthors_rkwauthorsdetail');
         $author = null;
@@ -160,7 +162,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
     public function pageBoxSmallFirstAction()
     {
 
-        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
+        trigger_error(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.', E_USER_DEPRECATED);
 
         $pid = $this->getPidForAuthors();
         $result = $this->pagesRepository->findByUid($pid);
@@ -183,7 +185,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
     public function pageBoxSmallRestAction()
     {
 
-        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
+        trigger_error(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.', E_USER_DEPRECATED);
 
         $pid = $this->getPidForAuthors();
         $result = $this->pagesRepository->findByUid($pid);
@@ -254,7 +256,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      *
      * @param \RKW\RkwAuthors\Domain\Model\Authors $author
      * @param array $contactForm
-     * @validate $contactForm \RKW\RkwAuthors\Validation\Validator\ContactFormValidator
+     * @TYPO3\CMS\Extbase\Annotation\Validate("\RKW\RkwAuthors\Validation\Validator\ContactFormValidator", param="contactForm")
      * @return void
      * @throws \RKW\RkwMailer\Service\MailException
      * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
@@ -323,9 +325,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
 
         if ($this->settings['recursiveAuthorList']) {
 
-            // get PageRepository and rootline
-            $repository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
-            $rootlinePages = $repository->getRootLine(intval($GLOBALS['TSFE']->id));
+            $rootlinePages = GeneralUtility::makeInstance(RootlineUtility::class, intval($GLOBALS['TSFE']->id))->get();
 
             // fo through all pages and take the one that has a match in the corresponsing field
             $pid = intval($GLOBALS['TSFE']->id);
