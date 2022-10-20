@@ -291,10 +291,12 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
             $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwAuthors\\Service\\RkwMailService');
             $mailService->contactFormAuthor($author, $contactForm);
 
-            // send copy to user
-            /** @var \RKW\RkwAuthors\Service\RkwMailService $mailService */
-            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwAuthors\\Service\\RkwMailService');
-            $mailService->contactFormUser($author, $contactForm);
+            // send copy to user (only if user has checked the checkbox)
+            if ($contactForm['copyToUser']) {
+                /** @var \RKW\RkwAuthors\Service\RkwMailService $mailService */
+                $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwAuthors\\Service\\RkwMailService');
+                $mailService->contactFormUser($author, $contactForm);
+            }
         }
 
         $this->addFlashMessage(

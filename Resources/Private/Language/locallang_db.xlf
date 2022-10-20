@@ -171,6 +171,26 @@
 				<source>Author 2</source>
 			</trans-unit>
 
+            <trans-unit id="flexform.list.sheetTitle">
+                <source>Options</source>
+            </trans-unit>
+            <trans-unit id="flexform.list.showPid">
+                <source>PID Detail Page</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.detail.sheetTitle">
+                <source>Options</source>
+            </trans-unit>
+            <trans-unit id="flexform.detail.listPid">
+                <source>PID List Page</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.headline.sheetTitle">
+                <source>Options</source>
+            </trans-unit>
+            <trans-unit id="flexform.headline.listPid">
+                <source>PID List Page</source>
+            </trans-unit>
 
 		</body>
 	</file>
