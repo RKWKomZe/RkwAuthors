@@ -12,13 +12,10 @@ call_user_func(
             'Rkwauthors',
             array(
                 'Authors' => 'list, pageBox, pageBoxSmallFirst, pageBoxSmallRest, pageSchemaOrg, pageCommaList',
-                'Ajax' => 'filter'
             ),
             // non-cacheable actions
             array(
                 'Authors' => '',
-
-                'Ajax' => ''
             )
         );
 

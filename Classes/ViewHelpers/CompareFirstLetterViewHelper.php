@@ -15,6 +15,11 @@ namespace RKW\RkwAuthors\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use RKW\RkwAuthors\Domain\Model\Authors;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithContentArgumentAndRenderStatic;
+
 /**
  * Class CompareFirstLetterViewHelper
  *
@@ -27,14 +32,46 @@ namespace RKW\RkwAuthors\ViewHelpers;
 class CompareFirstLetterViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
+
+    use CompileWithContentArgumentAndRenderStatic;
+
     /**
-     * @param \RKW\RkwAuthors\Domain\Model\Authors $author
-     * @param array $authorList
-     * @param int $iter
+     * Initialize arguments.
+     *
+     * @throws \TYPO3Fluid\Fluid\Core\ViewHelper\Exception
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('author', Authors::class, 'The author-object', true);
+        $this->registerArgument('authorList', QueryResultInterface::class, 'List of author-objects', true);
+        $this->registerArgument('iter', 'int', 'The iteration-variable.', true);
+    }
+
+
+    /**
+     * Static rendering
+     *
+     * @param array $arguments
+     * @param \Closure $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
      * @return string
      */
-    public function render(\RKW\RkwAuthors\Domain\Model\Authors $author, $authorList, $iter)
-    {
+    static public function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ): string {
+
+        /** @var \RKW\RkwAuthors\Domain\Model\Authors $author */
+        $author = $arguments['author'];
+
+        /** @var \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $authorList */
+        $authorList = $arguments['authorList'];
+
+        /** @var int $iter */
+        $iter = $arguments['iter'];
+
 
         // 1. first iteration: always print letter
         if ($iter == 0) {

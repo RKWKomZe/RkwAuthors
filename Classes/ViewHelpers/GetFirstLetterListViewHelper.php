@@ -15,6 +15,10 @@ namespace RKW\RkwAuthors\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithContentArgumentAndRenderStatic;
+
 /**
  * Class GetFirstLetterListViewHelper
  *
@@ -26,14 +30,40 @@ namespace RKW\RkwAuthors\ViewHelpers;
  */
 class GetFirstLetterListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+    use CompileWithContentArgumentAndRenderStatic;
 
     /**
-     * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $authors
-     * @param string $prepend
+     * Initialize arguments.
+     *
+     * @throws \TYPO3Fluid\Fluid\Core\ViewHelper\Exception
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('authors', QueryResultInterface::class, 'List of author-objects', true);
+        $this->registerArgument('prepend', 'string', 'String to prepend.', false, '');
+    }
+
+
+    /**
+     * Static rendering
+     *
+     * @param array $arguments
+     * @param \Closure $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
      * @return array
      */
-    public function render($authors, $prepend = '')
-    {
+    static public function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ): array {
+
+        /** @var \RKW\RkwAuthors\Domain\Model\Authors $author */
+        $authors = $arguments['authors'];
+
+        /** @var string $prepend */
+        $prepend = $arguments['prepend'];
 
         // go through authors and get all relevant first letters of last-names
         /** @var \RKW\RkwAuthors\Domain\Model\Authors $author */
@@ -41,13 +71,10 @@ class GetFirstLetterListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abst
         foreach ($authors as $author) {
             $firstLetter = strtolower(substr($author->getLastName(), 0, 1));
             if (!$relevantLetters[$firstLetter]) {
-                $relevantLetters[$firstLetter] = $prepend . ' ' . strtoupper($firstLetter);
+                $relevantLetters[$firstLetter] = trim($prepend . ' ' . strtoupper($firstLetter));
             }
         }
         asort($relevantLetters);
-
-
         return $relevantLetters;
-        //===
     }
 }

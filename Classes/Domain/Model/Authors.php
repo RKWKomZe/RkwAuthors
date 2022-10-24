@@ -708,7 +708,7 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Returns the showWork
      *
      * @return boolean $showWork
-     * @deprectated
+     * @deprecated
      */
     public function getShowWork()
     {
