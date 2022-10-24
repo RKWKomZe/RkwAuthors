@@ -136,7 +136,6 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
         }
 
         return $isValid;
-        //===
     }
 
 
@@ -150,7 +149,6 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
     protected function getSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
     {
         return Common::getTyposcriptConfiguration('Rkwauthors', $which);
-        //===
     }
 
 }

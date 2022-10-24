@@ -59,7 +59,7 @@ class GetFirstLetterListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abst
         RenderingContextInterface $renderingContext
     ): array {
 
-        /** @var \RKW\RkwAuthors\Domain\Model\Authors $author */
+        /** @var \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $authors */
         $authors = $arguments['authors'];
 
         /** @var string $prepend */

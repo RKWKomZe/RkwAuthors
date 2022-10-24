@@ -35,6 +35,14 @@ class GetCombinedNameViewHelper extends AbstractViewHelper
 
     use CompileWithContentArgumentAndRenderStatic;
 
+    
+    /**
+     * Output is escaped already. We must not escape children, to avoid double encoding.
+     *
+     * @var bool
+     */
+    protected $escapeChildren = false;
+
     /**
      * Initialize arguments.
      *
