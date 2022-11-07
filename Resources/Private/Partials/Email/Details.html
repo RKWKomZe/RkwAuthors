@@ -6,29 +6,29 @@
 
 <!-- PLAINTEXT -->
 <f:section name="Plaintext">
-<rkwMailer:frontend.translate key="partials.authors.form.default.salutation" languageKey="{language}" extensionName="rkwAuthors"/>: <f:if condition="{contactForm.salutation} < 99"><rkwMailer:frontend.translate key="partials.authors.form.default.salutation.I.{contactForm.salutation}" languageKey="{language}" extensionName="rkwAuthors"/></f:if>
-<rkwMailer:frontend.translate key="partials.authors.form.default.firstName" languageKey="{language}" extensionName="rkwAuthors"/>: {contactForm.firstName}
-<rkwMailer:frontend.translate key="partials.authors.form.default.lastName" languageKey="{language}" extensionName="rkwAuthors"/>: {contactForm.lastName}
-<rkwMailer:frontend.translate key="partials.authors.form.default.company" languageKey="{language}" extensionName="rkwAuthors"/>: {contactForm.company}
-<rkwMailer:frontend.translate key="partials.authors.form.default.email" languageKey="{language}" extensionName="rkwAuthors"/>: {contactForm.email}
-<rkwMailer:frontend.translate key="partials.authors.form.default.message" languageKey="{language}" extensionName="rkwAuthors"/>:
+<rkwMailer:email.translate key="partials.authors.form.default.salutation" languageKey="{language}" extensionName="rkwAuthors"/>: <f:if condition="{contactForm.salutation} < 99"><rkwMailer:email.translate key="partials.authors.form.default.salutation.I.{contactForm.salutation}" languageKey="{language}" extensionName="rkwAuthors"/></f:if>
+<rkwMailer:email.translate key="partials.authors.form.default.firstName" languageKey="{language}" extensionName="rkwAuthors"/>: {contactForm.firstName}
+<rkwMailer:email.translate key="partials.authors.form.default.lastName" languageKey="{language}" extensionName="rkwAuthors"/>: {contactForm.lastName}
+<rkwMailer:email.translate key="partials.authors.form.default.company" languageKey="{language}" extensionName="rkwAuthors"/>: {contactForm.company}
+<rkwMailer:email.translate key="partials.authors.form.default.email" languageKey="{language}" extensionName="rkwAuthors"/>: {contactForm.email}
+<rkwMailer:email.translate key="partials.authors.form.default.message" languageKey="{language}" extensionName="rkwAuthors"/>:
 {contactForm.message}
 </f:section>
-    
+
     <!-- HTML -->
     <f:section name="Html">
         <table class="colored-table" >
             <tr>
                 <th style="width:100px" class="align-left">
-                    <rkwMailer:frontend.translate key="partials.authors.form.default.salutation" languageKey="{language}" extensionName="rkwAuthors"/>:
+                    <rkwMailer:email.translate key="partials.authors.form.default.salutation" languageKey="{language}" extensionName="rkwAuthors"/>:
                 </th>
                 <td>
-                    <f:if condition="{contactForm.salutation} < 99"><rkwMailer:frontend.translate key="partials.authors.form.default.salutation.I.{contactForm.salutation}" languageKey="{language}" extensionName="rkwAuthors"/></f:if>
+                    <f:if condition="{contactForm.salutation} < 99"><rkwMailer:email.translate key="partials.authors.form.default.salutation.I.{contactForm.salutation}" languageKey="{language}" extensionName="rkwAuthors"/></f:if>
                 </td>
             </tr>
             <tr>
                 <th class="align-left">
-                    <rkwMailer:frontend.translate key="partials.authors.form.default.firstName" languageKey="{language}" extensionName="rkwAuthors"/>:
+                    <rkwMailer:email.translate key="partials.authors.form.default.firstName" languageKey="{language}" extensionName="rkwAuthors"/>:
                 </th>
                 <td>
                     {contactForm.firstName}
@@ -36,7 +36,7 @@
             </tr>
             <tr>
                 <th class="align-left">
-                    <rkwMailer:frontend.translate key="partials.authors.form.default.lastName" languageKey="{language}" extensionName="rkwAuthors"/>:
+                    <rkwMailer:email.translate key="partials.authors.form.default.lastName" languageKey="{language}" extensionName="rkwAuthors"/>:
                 </th>
                 <td>
                     {contactForm.lastName}
@@ -44,7 +44,7 @@
             </tr>
             <tr>
                 <th class="align-left">
-                    <rkwMailer:frontend.translate key="partials.authors.form.default.company" languageKey="{language}" extensionName="rkwAuthors"/>:
+                    <rkwMailer:email.translate key="partials.authors.form.default.company" languageKey="{language}" extensionName="rkwAuthors"/>:
                 </th>
                 <td>
                     {contactForm.company}
@@ -52,7 +52,7 @@
             </tr>
             <tr>
                 <th class="align-left">
-                    <rkwMailer:frontend.translate key="partials.authors.form.default.email" languageKey="{language}" extensionName="rkwAuthors"/>:
+                    <rkwMailer:email.translate key="partials.authors.form.default.email" languageKey="{language}" extensionName="rkwAuthors"/>:
                 </th>
                 <td>
                     {contactForm.email}
@@ -60,13 +60,13 @@
             </tr>
             <tr>
                 <th class="align-left">
-                    <rkwMailer:frontend.translate key="partials.authors.form.default.message" languageKey="{language}" extensionName="rkwAuthors"/>:
+                    <rkwMailer:email.translate key="partials.authors.form.default.message" languageKey="{language}" extensionName="rkwAuthors"/>:
                 </th>
                 <td>
                     <f:format.nl2br>{contactForm.message}</f:format.nl2br>
                 </td>
             </tr>
         </table>
-        
+
     </f:section>
 </html>
