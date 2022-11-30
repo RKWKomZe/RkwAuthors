@@ -172,7 +172,7 @@ plugin.tx_rkwauthors {
 // #########################################################
 lib.txRkwAuthors {
 
-    responsiveImageThumbnail < lib.txRkwBasics.responsiveImage
+    responsiveImageThumbnail < lib.txAccelerator.responsiveImage
     responsiveImageThumbnail {
         settings {
             breakpoint {
