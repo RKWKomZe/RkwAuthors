@@ -24,7 +24,7 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  *
  * @author Maximilian Fäßler <faesslerweb@web.de>
  * @author Steffen Kroggel <developer@steffenkroggel.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
@@ -258,7 +258,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      * @param array $contactForm
      * @TYPO3\CMS\Extbase\Annotation\Validate("\RKW\RkwAuthors\Validation\Validator\ContactFormValidator", param="contactForm")
      * @return void
-     * @throws \RKW\RkwMailer\Service\MailException
+     * @throws \RKW\RkwMailer\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
@@ -288,13 +288,13 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
 
             // send message author
             /** @var \RKW\RkwAuthors\Service\RkwMailService $mailService */
-            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwAuthors\\Service\\RkwMailService');
+            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\RKW\RkwAuthors\Service\RkwMailService::class);
             $mailService->contactFormAuthor($author, $contactForm);
 
             // send copy to user (only if user has checked the checkbox)
             if ($contactForm['copyToUser']) {
                 /** @var \RKW\RkwAuthors\Service\RkwMailService $mailService */
-                $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwAuthors\\Service\\RkwMailService');
+                $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\RKW\RkwAuthors\Service\RkwMailService::class);
                 $mailService->contactFormUser($author, $contactForm);
             }
         }
@@ -352,7 +352,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      *
      * @see \TYPO3\CMS\Extbase\Mvc\Controller\ActionController::getErrorFlashMessage()
      */
-    protected function getErrorFlashMessage()
+    protected function getErrorFlashMessage(): bool
     {
         return false;
     }

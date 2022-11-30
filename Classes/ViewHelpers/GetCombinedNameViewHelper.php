@@ -25,7 +25,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithContentArgumentAndRenderS
  * Class GetCombinedNameViewHelper
  *
  * @author Steffen Kroggel <developer@steffenkroggel.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
@@ -35,7 +35,7 @@ class GetCombinedNameViewHelper extends AbstractViewHelper
 
     use CompileWithContentArgumentAndRenderStatic;
 
-    
+
     /**
      * Output is escaped already. We must not escape children, to avoid double encoding.
      *

@@ -499,10 +499,10 @@ class AuthorsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function setInternalForBooleanSetsInternal() {
-		$this->subject->setInternal(TRUE);
+		$this->subject->setInternal(true);
 
 		$this->assertAttributeEquals(
-			TRUE,
+			true,
 			'internal',
 			$this->subject
 		);

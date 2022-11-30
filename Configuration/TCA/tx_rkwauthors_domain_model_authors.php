@@ -8,7 +8,7 @@ return [
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
-		'dividers2tabs' => TRUE,
+		'dividers2tabs' => true,
 		'default_sortby' => 'ORDER BY internal DESC, last_name ASC',
 
 		'languageField' => 'sys_language_uid',
