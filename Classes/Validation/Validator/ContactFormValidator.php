@@ -16,7 +16,7 @@ namespace RKW\RkwAuthors\Validation\Validator;
  */
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use RKW\RkwBasics\Utility\GeneralUtility as Common;
+use Madj2k\CoreExtended\Utility\GeneralUtility as Common;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
@@ -148,7 +148,7 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
      */
     protected function getSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
     {
-        return Common::getTyposcriptConfiguration('Rkwauthors', $which);
+        return Common::getTypoScriptConfiguration('Rkwauthors', $which);
     }
 
 }

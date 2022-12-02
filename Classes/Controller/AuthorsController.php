@@ -28,7 +28,7 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
+class AuthorsController extends \Madj2k\AjaxApi\Controller\AjaxAbstractController
 {
 
     /**

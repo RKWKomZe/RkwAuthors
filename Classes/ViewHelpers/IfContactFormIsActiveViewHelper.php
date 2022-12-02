@@ -16,7 +16,7 @@ namespace RKW\RkwAuthors\ViewHelpers;
  */
 
 use RKW\RkwAuthors\Domain\Model\Authors;
-use RKW\RkwBasics\Utility\GeneralUtility;
+use Madj2k\CoreExtended\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogManager;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
@@ -113,7 +113,7 @@ class IfContactFormIsActiveViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\A
      */
     protected static function getSettings(string $which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS): array
     {
-        return GeneralUtility::getTyposcriptConfiguration('Rkwauthors', $which);
+        return GeneralUtility::getTypoScriptConfiguration('Rkwauthors', $which);
     }
 
     /**
