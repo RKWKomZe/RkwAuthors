@@ -144,6 +144,12 @@
                 </f:if>
 
 
+                <!-- captcha -->
+                <f:if condition="{settings.contactForm.captcha}">
+                    <f:render partial="Authors/Form/CaptchaElement" />
+                </f:if>
+
+
                 <!-- Button -->
                 <div class="form__field flex space-start full-width-narrow">
                     <button class="btn btn--primary full-width-narrow">
