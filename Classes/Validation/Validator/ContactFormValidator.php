@@ -2,10 +2,15 @@
 
 namespace RKW\RkwAuthors\Validation\Validator;
 
+use SJBR\SrFreecap\Validation\Validator\CaptchaValidator;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
 use \RKW\RkwBasics\Helper\Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Error\Error;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -73,11 +78,11 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
 
 
                     $this->result->forProperty($key)->addError(
-                        new \TYPO3\CMS\Extbase\Error\Error(
-                            \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                        new Error(
+                            LocalizationUtility::translate(
                                 'tx_rkwauthors_validator.not_filled',
                                 'rkw_authors',
-                                array(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                                array(LocalizationUtility::translate(
                                     'form.error.' . $key, 'rkw_authors'
                                 ))
                             ), 1587566321
@@ -90,7 +95,7 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
 
         // E-MAIL (if filled -> looks valid?)
         if ($contactForm['email']) {
-            $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+            $objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
             /** @var \TYPO3\CMS\Extbase\Validation\ValidatorResolver $validatorResolver */
             $validatorResolver = $objectManager->get('TYPO3\\CMS\\Extbase\\Validation\\ValidatorResolver');
             $conjunctionValidator = $validatorResolver->createValidator('Conjunction');
@@ -99,7 +104,7 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
 
             if (count($result->getErrors())) {
                 $this->result->forProperty('email')->addError(
-                    new \TYPO3\CMS\Extbase\Error\Error(
+                    new Error(
                         $result->getFirstError()->getMessage() .'.'
                         , 1449314603
                     )
@@ -112,8 +117,8 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
         if ($settings['contactForm']['termsPid']) {
             if (!$contactForm['terms']) {
                 $this->result->forProperty('terms')->addError(
-                    new \TYPO3\CMS\Extbase\Error\Error(
-                        \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                    new Error(
+                        LocalizationUtility::translate(
                             'form.error.terms', 'rkw_authors'
                         ), 1587566588
                     )
@@ -126,10 +131,34 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
         if ($settings['contactForm']['privacyPid']) {
             if (!$contactForm['privacy']) {
                 $this->result->forProperty('privacy')->addError(
-                    new \TYPO3\CMS\Extbase\Error\Error(
-                        \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                    new Error(
+                        LocalizationUtility::translate(
                             'form.error.privacy', 'rkw_authors'
                         ), 1588941914
+                    )
+                );
+                $isValid = false;
+            }
+        }
+
+        // CAPTCHA
+        // do not check if key exists, to avoid validation issue on manipulated forms.
+        // -> Means: If sr_freecap is activated, it must also be part of the form. Otherwise, we will DIE here while using $contactForm['captchaResponse'] ....
+        if (
+            ExtensionManagementUtility::isLoaded('sr_freecap')
+            && $settings['contactForm']['captcha']
+        ) {
+
+            $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+            $captchaValidator = $objectManager->get(CaptchaValidator::class);
+
+            if ($captchaValidator->validate($contactForm['captchaResponse'])->hasErrors()) {
+                $this->result->forProperty('captchaResponse')->addError(
+                    new Error(
+                        LocalizationUtility::translate(
+                            '9221561048',
+                            'srfreecap'
+                        ), 1670643884
                     )
                 );
                 $isValid = false;
