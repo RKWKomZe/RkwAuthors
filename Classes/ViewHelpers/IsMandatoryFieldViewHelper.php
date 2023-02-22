@@ -24,6 +24,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithContentArgumentAndRenderS
  * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @todo write tests
  */
 class IsMandatoryFieldViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
@@ -33,14 +34,16 @@ class IsMandatoryFieldViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
     /**
      * Initialize arguments.
      *
+     * @return void
      * @throws \TYPO3Fluid\Fluid\Core\ViewHelper\Exception
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('fieldName', 'string', 'The current field name.', true);
         $this->registerArgument('mandatoryFields', 'string', 'The comma-separated list of mandatory fields.', true);
     }
+
 
     /**
      * Static rendering
@@ -57,7 +60,7 @@ class IsMandatoryFieldViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
     ): bool {
 
         /** @var string $fieldName */
-        $fieldName = $arguments['fieldNam'];
+        $fieldName = $arguments['fieldName'];
 
         /** @var string $mandatoryFields */
         $mandatoryFields = $arguments['mandatoryFields'];

@@ -15,10 +15,12 @@ namespace RKW\RkwAuthors\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+
 /**
  * Class Authors
  *
- * @author Maximilian Fäßler <faesslerweb@web.de>
+ * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @author Steffen Kroggel <developer@steffenkroggel.de>
  * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
@@ -28,206 +30,164 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
     /**
-     * firstName
-     *
      * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
-    protected $firstName = '';
+    protected string $firstName = '';
+
 
     /**
-     * middleName
-     *
      * @var string
      */
-    protected $middleName = '';
+    protected string $middleName = '';
+
 
     /**
-     * lastName
-     *
      * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
-    protected $lastName = '';
+    protected string $lastName = '';
+
 
     /**
      * titleAfter
      *
      * @var string
      */
-    protected $titleAfter = '';
+    protected string $titleAfter = '';
+
 
     /**
-     * titleBefore
-     *
      * @var string
      */
-    protected $titleBefore = '';
+    protected string $titleBefore = '';
+
 
     /**
-     * street
-     *
      * @var string
      */
-    protected $street = '';
+    protected string $street = '';
+
 
     /**
-     * company
-     *
      * @var string
      */
-    protected $company = '';
+    protected string $company = '';
+
 
     /**
-     * number
-     *
      * @var string
      */
-    protected $number = '';
+    protected string $number = '';
+
 
     /**
-     * city
-     *
      * @var string
      */
-    protected $city = '';
+    protected string $city = '';
+
 
     /**
-     * zip
-     *
      * @var string
      */
-    protected $zip = '';
+    protected string $zip = '';
+
 
     /**
-     * functionTitle
-     *
      * @var string
      */
-    protected $functionTitle = '';
+    protected string $functionTitle = '';
+
 
     /**
-     * functionTitleShort
-     *
      * @var string
      */
-    protected $functionTitleShort = '';
+    protected string $functionTitleShort = '';
 
     /**
-     * functionDescription
-     *
      * @var string
      */
-    protected $functionDescription = '';
+    protected string $functionDescription = '';
+
 
     /**
-     * email
-     *
      * @var string
      */
-    protected $email = '';
+    protected string $email = '';
+
 
     /**
-     * phone
-     *
      * @var string
      */
-    protected $phone = '';
+    protected string $phone = '';
+
 
     /**
-     * phone2
-     *
      * @var string
      */
-    protected $phone2 = '';
+    protected string $phone2 = '';
+
 
     /**
-     * fax
-     *
      * @var string
      */
-    protected $fax = '';
+    protected string $fax = '';
+
 
     /**
-     * url
-     *
      * @var string
      */
-    protected $url = '';
+    protected string $url = '';
+
 
     /**
-     * facebookUrl
-     *
      * @var string
      */
-    protected $facebookUrl = '';
+    protected string $facebookUrl = '';
+
 
     /**
-     * twitterUrl
-     *
      * @var string
      */
-    protected $twitterUrl = '';
+    protected string $twitterUrl = '';
+
 
     /**
-     * xingUrl
-     *
      * @var string
      */
-    protected $xingUrl = '';
+    protected string $xingUrl = '';
+
 
     /**
-     * internal
-     *
-     * @var boolean
+     * @var bool
      */
-    protected $internal = false;
+    protected bool $internal = false;
+
 
     /**
-     * showWork
-     *
-     * @var boolean
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
      */
-    protected $showWork = false;
+    protected ?FileReference $imageBig = null;
+
 
     /**
-     * imageSmall
-     *
-     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @deprecated
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
      */
-    protected $imageSmall = null;
-
-    /**
-     * imageBig
-     *
-     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     */
-    protected $imageBig = null;
-
-    /**
-     * imageBoxes
-     *
-     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     */
-    protected $imageBoxes = null;
+    protected ?FileReference $imageBoxes = null;
 
 
     /**
      * imageBoxesIsLogo
      *
-     * @var boolean
+     * @var bool
      */
-    protected $imageBoxesIsLogo = false;
+    protected bool $imageBoxesIsLogo = false;
 
 
     /**
      * department
      *
-     * @var \RKW\RkwAuthors\Domain\Model\Department
+     * @var \RKW\RkwAuthors\Domain\Model\Department|null
      */
-    protected $department = null;
-
+    protected ?Department $department = null;
 
 
     /**
@@ -235,10 +195,11 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $firstName
      */
-    public function getFirstName()
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
+
 
     /**
      * Sets the firstName
@@ -246,20 +207,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $firstName
      * @return void
      */
-    public function setFirstName($firstName)
+    public function setFirstName(string $firstName)
     {
         $this->firstName = $firstName;
     }
+
 
     /**
      * Returns the middleName
      *
      * @return string $middleName
      */
-    public function getMiddleName()
+    public function getMiddleName(): string
     {
         return $this->middleName;
     }
+
 
     /**
      * Sets the middleName
@@ -267,20 +230,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $middleName
      * @return void
      */
-    public function setMiddleName($middleName)
+    public function setMiddleName(string $middleName)
     {
         $this->middleName = $middleName;
     }
+
 
     /**
      * Returns the lastName
      *
      * @return string $lastName
      */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->lastName;
     }
+
 
     /**
      * Sets the lastName
@@ -288,20 +253,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $lastName
      * @return void
      */
-    public function setLastName($lastName)
+    public function setLastName(string $lastName)
     {
         $this->lastName = $lastName;
     }
+
 
     /**
      * Returns the titleAfter
      *
      * @return string $titleAfter
      */
-    public function getTitleAfter()
+    public function getTitleAfter(): string
     {
         return $this->titleAfter;
     }
+
 
     /**
      * Sets the titleAfter
@@ -309,20 +276,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $titleAfter
      * @return void
      */
-    public function setTitleAfter($titleAfter)
+    public function setTitleAfter(string $titleAfter)
     {
         $this->titleAfter = $titleAfter;
     }
+
 
     /**
      * Returns the titleBefore
      *
      * @return string $titleBefore
      */
-    public function getTitleBefore()
+    public function getTitleBefore(): string
     {
         return $this->titleBefore;
     }
+
 
     /**
      * Sets the titleBefore
@@ -330,20 +299,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $titleBefore
      * @return void
      */
-    public function setTitleBefore($titleBefore)
+    public function setTitleBefore(string $titleBefore)
     {
         $this->titleBefore = $titleBefore;
     }
+
 
     /**
      * Returns the street
      *
      * @return string $street
      */
-    public function getStreet()
+    public function getStreet(): string
     {
         return $this->street;
     }
+
 
     /**
      * Sets the street
@@ -351,20 +322,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $street
      * @return void
      */
-    public function setStreet($street)
+    public function setStreet(string $street)
     {
         $this->street = $street;
     }
+
 
     /**
      * Returns the company
      *
      * @return string $company
      */
-    public function getCompany()
+    public function getCompany(): string
     {
         return $this->company;
     }
+
 
     /**
      * Sets the company
@@ -372,20 +345,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $company
      * @return void
      */
-    public function setCompany($company)
+    public function setCompany(string $company)
     {
         $this->company = $company;
     }
+
 
     /**
      * Returns the number
      *
      * @return string $number
      */
-    public function getNumber()
+    public function getNumber(): string
     {
         return $this->number;
     }
+
 
     /**
      * Sets the number
@@ -393,20 +368,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $number
      * @return void
      */
-    public function setNumber($number)
+    public function setNumber(string $number)
     {
         $this->number = $number;
     }
+
 
     /**
      * Returns the city
      *
      * @return string $city
      */
-    public function getCity()
+    public function getCity(): string
     {
         return $this->city;
     }
+
 
     /**
      * Sets the city
@@ -414,20 +391,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $city
      * @return void
      */
-    public function setCity($city)
+    public function setCity(string $city)
     {
         $this->city = $city;
     }
+
 
     /**
      * Returns the zip
      *
      * @return string $zip
      */
-    public function getZip()
+    public function getZip(): string
     {
         return $this->zip;
     }
+
 
     /**
      * Sets the zip
@@ -435,20 +414,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $zip
      * @return void
      */
-    public function setZip($zip)
+    public function setZip(string $zip)
     {
         $this->zip = $zip;
     }
+
 
     /**
      * Returns the functionTitle
      *
      * @return string $functionTitle
      */
-    public function getFunctionTitle()
+    public function getFunctionTitle(): string
     {
         return $this->functionTitle;
     }
+
 
     /**
      * Sets the functionTitle
@@ -456,7 +437,7 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $functionTitle
      * @return void
      */
-    public function setFunctionTitle($functionTitle)
+    public function setFunctionTitle(string $functionTitle)
     {
         $this->functionTitle = $functionTitle;
     }
@@ -467,10 +448,11 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $functionTitleShort
      */
-    public function getFunctionTitleShort()
+    public function getFunctionTitleShort(): string
     {
         return $this->functionTitleShort;
     }
+
 
     /**
      * Sets the functionTitleShort
@@ -478,20 +460,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $functionTitleShort
      * @return void
      */
-    public function setFunctionTitleShort($functionTitleShort)
+    public function setFunctionTitleShort(string $functionTitleShort)
     {
         $this->functionTitleShort = $functionTitleShort;
     }
+
 
     /**
      * Returns the functionDescription
      *
      * @return string $functionDescription
      */
-    public function getFunctionDescription()
+    public function getFunctionDescription(): string
     {
         return $this->functionDescription;
     }
+
 
     /**
      * Sets the functionDescription
@@ -499,20 +483,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $functionDescription
      * @return void
      */
-    public function setFunctionDescription($functionDescription)
+    public function setFunctionDescription(string $functionDescription)
     {
         $this->functionDescription = $functionDescription;
     }
+
 
     /**
      * Returns the email
      *
      * @return string $email
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
+
 
     /**
      * Sets the email
@@ -520,20 +506,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $email
      * @return void
      */
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
     }
+
 
     /**
      * Returns the phone
      *
      * @return string $phone
      */
-    public function getPhone()
+    public function getPhone(): string
     {
         return $this->phone;
     }
+
 
     /**
      * Sets the phone
@@ -541,20 +529,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $phone
      * @return void
      */
-    public function setPhone($phone)
+    public function setPhone(string $phone)
     {
         $this->phone = $phone;
     }
+
 
     /**
      * Returns the phone2
      *
      * @return string $phone2
      */
-    public function getPhone2()
+    public function getPhone2(): string
     {
         return $this->phone2;
     }
+
 
     /**
      * Sets the phone2
@@ -562,20 +552,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $phone2
      * @return void
      */
-    public function setPhone2($phone2)
+    public function setPhone2(string $phone2)
     {
         $this->phone2 = $phone2;
     }
+
 
     /**
      * Returns the fax
      *
      * @return string $fax
      */
-    public function getFax()
+    public function getFax(): string
     {
         return $this->fax;
     }
+
 
     /**
      * Sets the fax
@@ -583,20 +575,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $fax
      * @return void
      */
-    public function setFax($fax)
+    public function setFax(string $fax)
     {
         $this->fax = $fax;
     }
+
 
     /**
      * Returns the url
      *
      * @return string $url
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->url;
     }
+
 
     /**
      * Sets the url
@@ -604,20 +598,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $url
      * @return void
      */
-    public function setUrl($url)
+    public function setUrl(string $url)
     {
         $this->url = $url;
     }
+
 
     /**
      * Returns the facebookUrl
      *
      * @return string $facebookUrl
      */
-    public function getFacebookUrl()
+    public function getFacebookUrl(): string
     {
         return $this->facebookUrl;
     }
+
 
     /**
      * Sets the facebookUrl
@@ -625,20 +621,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $facebookUrl
      * @return void
      */
-    public function setFacebookUrl($facebookUrl)
+    public function setFacebookUrl(string $facebookUrl)
     {
         $this->facebookUrl = $facebookUrl;
     }
+
 
     /**
      * Returns the twitterUrl
      *
      * @return string $twitterUrl
      */
-    public function getTwitterUrl()
+    public function getTwitterUrl(): string
     {
         return $this->twitterUrl;
     }
+
 
     /**
      * Sets the twitterUrl
@@ -646,20 +644,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $twitterUrl
      * @return void
      */
-    public function setTwitterUrl($twitterUrl)
+    public function setTwitterUrl(string $twitterUrl)
     {
         $this->twitterUrl = $twitterUrl;
     }
+
 
     /**
      * Returns the xingUrl
      *
      * @return string $xingUrl
      */
-    public function getXingUrl()
+    public function getXingUrl(): string
     {
         return $this->xingUrl;
     }
+
 
     /**
      * Sets the xingUrl
@@ -667,28 +667,30 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $xingUrl
      * @return void
      */
-    public function setXingUrl($xingUrl)
+    public function setXingUrl(string $xingUrl)
     {
         $this->xingUrl = $xingUrl;
     }
+
 
     /**
      * Returns the internal
      *
      * @return boolean $internal
      */
-    public function getInternal()
+    public function getInternal(): string
     {
         return $this->internal;
     }
 
+
     /**
      * Sets the internal
      *
-     * @param boolean $internal
+     * @param bool $internal
      * @return void
      */
-    public function setInternal($internal)
+    public function setInternal(bool $internal)
     {
         $this->internal = $internal;
     }
@@ -697,72 +699,24 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the boolean state of internal
      *
-     * @return boolean
+     * @return bool
      */
-    public function isInternal()
+    public function isInternal(): bool
     {
         return $this->internal;
     }
 
-    /**
-     * Returns the showWork
-     *
-     * @return boolean $showWork
-     * @deprecated
-     */
-    public function getShowWork()
-    {
-        trigger_error(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.', E_USER_DEPRECATED);
-        return $this->showWork;
-    }
-
-    /**
-     * Sets the showWork
-     *
-     * @param boolean $showWork
-     * @return void
-     * @deprecated
-     */
-    public function setShowWork($showWork)
-    {
-        trigger_error(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.', E_USER_DEPRECATED);
-        $this->showWork = $showWork;
-    }
-
-    /**
-     * Returns the imageSmall
-     *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $imageSmall
-     * @deprecated
-     */
-    public function getImageSmall()
-    {
-        trigger_error(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.', E_USER_DEPRECATED);
-        return $this->imageSmall;
-    }
-
-    /**
-     * Sets the imageSmall
-     *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $imageSmall
-     * @return void
-     * @deprecated
-     */
-    public function setImageSmall(\TYPO3\CMS\Extbase\Domain\Model\FileReference $imageSmall)
-    {
-        trigger_error(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.', E_USER_DEPRECATED);
-        $this->imageSmall = $imageSmall;
-    }
 
     /**
      * Returns the imageBig
      *
      * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $imageBig
      */
-    public function getImageBig()
+    public function getImageBig():? FileReference
     {
         return $this->imageBig;
     }
+
 
     /**
      * Sets the imageBig
@@ -770,20 +724,22 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $imageBig
      * @return void
      */
-    public function setImageBig(\TYPO3\CMS\Extbase\Domain\Model\FileReference $imageBig)
+    public function setImageBig(FileReference $imageBig): void
     {
         $this->imageBig = $imageBig;
     }
+
 
     /**
      * Returns the imageBoxes
      *
      * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $imageBoxes
      */
-    public function getImageBoxes()
+    public function getImageBoxes() :? FileReference
     {
         return $this->imageBoxes;
     }
+
 
     /**
      * Sets the imageBoxes
@@ -791,7 +747,7 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $imageBoxes
      * @return void
      */
-    public function setImageBoxes(\TYPO3\CMS\Extbase\Domain\Model\FileReference $imageBoxes)
+    public function setImageBoxes(FileReference $imageBoxes): void
     {
         $this->imageBoxes = $imageBoxes;
     }
@@ -802,10 +758,11 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return boolean $imageBoxesIsLogo
      */
-    public function getImageBoxesIsLogo()
+    public function getImageBoxesIsLogo(): bool
     {
         return $this->imageBoxesIsLogo;
     }
+
 
     /**
      * Sets the imageBoxesIsLogo
@@ -813,7 +770,7 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param boolean $imageBoxesIsLogo
      * @return void
      */
-    public function setImageBoxesIsLogo($imageBoxesIsLogo)
+    public function setImageBoxesIsLogo(bool $imageBoxesIsLogo): void
     {
         $this->imageBoxesIsLogo = $imageBoxesIsLogo;
     }
@@ -824,7 +781,7 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return boolean
      */
-    public function isImageBoxesIsLogo()
+    public function isImageBoxesIsLogo(): bool
     {
         return $this->imageBoxesIsLogo;
     }
@@ -835,10 +792,11 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \RKW\RkwAuthors\Domain\Model\Department $department
      */
-    public function getDepartment()
+    public function getDepartment():? Department
     {
         return $this->department;
     }
+
 
     /**
      * Sets the department
@@ -846,10 +804,8 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \RKW\RkwAuthors\Domain\Model\Department $department
      * @return void
      */
-    public function setDepartment(\RKW\RkwAuthors\Domain\Model\Department $department)
+    public function setDepartment(\RKW\RkwAuthors\Domain\Model\Department $department): void
     {
         $this->department = $department;
     }
-
-
 }

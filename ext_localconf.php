@@ -9,9 +9,9 @@ call_user_func(
         //=================================================================
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'RKW.' . $extKey,
-            'Rkwauthors',
+            'main',
             array(
-                'Authors' => 'list, pageBox, pageBoxSmallFirst, pageBoxSmallRest, pageSchemaOrg, pageCommaList',
+                'Authors' => 'list, pageBox, pageSchemaOrg, pageCommaList',
             ),
             // non-cacheable actions
             array(
@@ -21,7 +21,7 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'RKW.' . $extKey,
-            'Rkwauthorsdetail',
+            'details',
             array(
                 'Authors' => 'show, contactFormSend',
 
@@ -34,7 +34,7 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'RKW.' . $extKey,
-            'Rkwauthorsheadline',
+            'headline',
             array(
                 'Authors' => 'headline',
             ),
@@ -46,19 +46,7 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'RKW.' . $extKey,
-            'Rkwauthorswork',
-            array(
-                'Authors' => 'showWork',
-            ),
-            // non-cacheable actions
-            array(
-                'Authors' => 'showWork',
-            )
-        );
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'RKW.' . $extKey,
-            'Rkwauthorscontactbox',
+            'contact',
             array(
                 'Authors' => 'contactBox',
             ),
@@ -67,7 +55,6 @@ call_user_func(
                 'Authors' => 'contactBox',
             )
         );
-
 
         //=================================================================
         // Add Rootline Fields

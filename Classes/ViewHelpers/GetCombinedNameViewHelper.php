@@ -15,11 +15,9 @@ namespace RKW\RkwAuthors\ViewHelpers;
  */
 
 use RKW\RkwAuthors\Domain\Model\Authors;
-use RKW\RkwShop\Domain\Model\Author;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithContentArgumentAndRenderStatic;
-
 
 /**
  * Class GetCombinedNameViewHelper
@@ -28,13 +26,12 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithContentArgumentAndRenderS
  * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @todo write tests
  */
 class GetCombinedNameViewHelper extends AbstractViewHelper
 {
 
-
     use CompileWithContentArgumentAndRenderStatic;
-
 
     /**
      * Output is escaped already. We must not escape children, to avoid double encoding.
@@ -46,9 +43,10 @@ class GetCombinedNameViewHelper extends AbstractViewHelper
     /**
      * Initialize arguments.
      *
+     * @return void
      * @throws \TYPO3Fluid\Fluid\Core\ViewHelper\Exception
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('author', Authors::class, 'The author-object', true);
@@ -82,14 +80,14 @@ class GetCombinedNameViewHelper extends AbstractViewHelper
 
         $name = '';
         if ($author instanceof \RKW\RkwAuthors\Domain\Model\Authors) {
-            $name = $author->getLastName() ? $author->getLastName() : $author->getLastname();
+            $name = $author->getLastName() ?: $author->getLastname();
 
-            if ($author->getMiddleName() || $author->getMiddleName()) {
-                $name = ($author->getMiddleName() ? $author->getMiddleName() : $author->getMiddlename()) . ' ' . $name;
+            if ($author->getMiddleName()) {
+                $name = $author->getMiddlename() . ' ' . $name;
             }
 
-            if ($author->getFirstName() || $author->getFirstname()) {
-                $name = ($author->getFirstName() ? $author->getFirstName() : $author->getFirstname()) . ' ' . $name;
+            if ($author->getFirstName()) {
+                $name = $author->getFirstName() . ' ' . $name;
             }
 
             if ($addTitleBefore) {

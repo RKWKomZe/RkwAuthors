@@ -22,11 +22,12 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithContentArgumentAndRenderS
 /**
  * Class GetFirstLetterListViewHelper
  *
- * @author Maximilian Fäßler <faesslerweb@web.de>
+ * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @author Steffen Kroggel <developer@steffenkroggel.de>
  * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @todo write tests
  */
 class GetFirstLetterListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
@@ -35,9 +36,10 @@ class GetFirstLetterListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abst
     /**
      * Initialize arguments.
      *
+     * @return void
      * @throws \TYPO3Fluid\Fluid\Core\ViewHelper\Exception
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('authors', QueryResultInterface::class, 'List of author-objects', true);
@@ -74,6 +76,7 @@ class GetFirstLetterListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abst
                 $relevantLetters[$firstLetter] = trim($prepend . ' ' . strtoupper($firstLetter));
             }
         }
+
         asort($relevantLetters);
         return $relevantLetters;
     }

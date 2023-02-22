@@ -15,9 +15,10 @@ namespace RKW\RkwAuthors\Validation\Validator;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use Madj2k\CoreExtended\Utility\GeneralUtility as Common;
+use Madj2k\CoreExtended\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Validation\ValidatorResolver;
 
 /**
  * Class ContactFormValidator
@@ -35,7 +36,7 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
      *
      * @var array
      */
-    protected $settings = null;
+    protected array $settings = [];
 
     /**
      * validation
@@ -44,14 +45,17 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
      * @return boolean
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    public function isValid($contactForm)
+    public function isValid($contactForm): bool
     {
         // initialize typoscript settings
         $settings = $this->getSettings();
-
-        $mandatoryFieldsArray = GeneralUtility::trimExplode(',', $settings['contactForm']['mandatoryFields'], TRUE);
-
         $isValid = true;
+
+        $mandatoryFieldsArray = GeneralUtility::trimExplode(
+            ',',
+            $settings['contactForm']['mandatoryFields'],
+            true
+        );
 
         // iterate given form fields
         foreach ($contactForm as $key => $formField) {
@@ -69,7 +73,6 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
                         && (! $formField)
                     )
                 ) {
-
 
                     $this->result->forProperty($key)->addError(
                         new \TYPO3\CMS\Extbase\Error\Error(
@@ -89,9 +92,9 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
 
         // E-MAIL (if filled -> looks valid?)
         if ($contactForm['email']) {
-            $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+            $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(ObjectManager::class);
             /** @var \TYPO3\CMS\Extbase\Validation\ValidatorResolver $validatorResolver */
-            $validatorResolver = $objectManager->get('TYPO3\\CMS\\Extbase\\Validation\\ValidatorResolver');
+            $validatorResolver = $objectManager->get(ValidatorResolver::class);
             $conjunctionValidator = $validatorResolver->createValidator('Conjunction');
             $conjunctionValidator->addValidator($validatorResolver->createValidator('EmailAddress'));
             $result = $conjunctionValidator->validate(strval($contactForm['email']));
@@ -146,9 +149,9 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
      * @return array
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    protected function getSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
+    protected function getSettings(string $which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS): array
     {
-        return Common::getTypoScriptConfiguration('Rkwauthors', $which);
+        return GeneralUtility::getTypoScriptConfiguration('Rkwauthors', $which);
     }
 
 }

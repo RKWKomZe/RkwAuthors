@@ -15,10 +15,12 @@ namespace RKW\RkwAuthors\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+
 /**
  * Class AuthorsRepository
  *
- * @author Maximilian Fäßler <faesslerweb@web.de>
+ * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @author Steffen Kroggel <developer@steffenkroggel.de>
  * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
@@ -27,13 +29,12 @@ namespace RKW\RkwAuthors\Domain\Repository;
 class AuthorsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
-
     /**
      * findAllSortByLastName
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function findAllSortByLastName()
+    public function findAllSortByLastName(): QueryResultInterface
     {
 
         $query = $this->createQuery();
@@ -52,22 +53,15 @@ class AuthorsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * findByFilterOptionsArray
      *
      * @param array $filter
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
-    public function findByFilterOptionsArray(array $filter)
+    public function findByFilterOptionsArray(array $filter): QueryResultInterface
     {
 
         $query = $this->createQuery();
         $constraints = array();
         $constraints[] = $query->equals('internal', 1);
-
-        // 1. Sort always by lastName ASC
-        $query->setOrderings(
-            array(
-                'lastName' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
-            )
-        );
 
         // if: one filter option is set -> do filter - else: print all
         if ($filter['letter'] || $filter['department']) {
@@ -87,62 +81,16 @@ class AuthorsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             }
         }
 
-
         $query->matching($query->logicalAnd($constraints));
 
-        // Hint: if no query is added, this dataset is equal to findAll() with sort by lastName ASC
-        return $query->execute();
-    }
-
-
-
-    /**
-     * findByFilterOptions
-     *
-     * @param \RKW\RkwAuthors\Domain\Model\Filter $filter
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
-     * @deprecated This function is deprecated and will be removed soon.
-     */
-    public function findByFilterOptions(\RKW\RkwAuthors\Domain\Model\Filter $filter)
-    {
-
-        trigger_error(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.', E_USER_DEPRECATED);
-
-        $query = $this->createQuery();
-        $constraints = array();
-        $constraints[] = $query->equals('internal', 1);
-
-        // 1. Sort always by lastName ASC
+        // sort by lastName ASC
         $query->setOrderings(
             array(
                 'lastName' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
             )
         );
 
-        // if: one filter option is set -> do filter - else: print all
-        if ($filter->getLetter() || $filter->getDepartment()) {
-
-            // Filter by letter, if it is an active option
-            $letter = $filter->getLetter();
-            $departmentExplode = explode('-', $filter->getDepartment());
-            $department = $departmentExplode[0];
-
-            // a) if letter is given
-            if ($letter) {
-                $constraints[] = $query->like('lastName', "$letter%");
-            }
-
-            // b) if department is given
-            if ($department) {
-                $constraints[] = $query->in('department', array($department));
-            }
-        }
-
-        $query->matching($query->logicalAnd($constraints));
-
-        // Hint: if no query is added, this dataset is equal to findAll() with sort by lastName ASC
+        // Hint: if no query is added, this dataset is equal to findAll(), but sorted by lastName
         return $query->execute();
     }
-
-
 }

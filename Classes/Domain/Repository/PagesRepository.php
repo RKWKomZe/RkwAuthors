@@ -15,10 +15,12 @@ namespace RKW\RkwAuthors\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
+
 /**
  * Class PagesRepository
  *
- * @author Maximilian Fäßler <faesslerweb@web.de>
+ * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @author Steffen Kroggel <developer@steffenkroggel.de>
  * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
@@ -32,37 +34,16 @@ class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      *
      * @return void
      */
-    public function initializeObject()
+    public function initializeObject(): void
     {
 
         /** @var $querySettings \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings */
-        $querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
+        $querySettings = $this->objectManager->get(Typo3QuerySettings::class);
 
         // don't add the pid constraint
         $querySettings->setRespectStoragePage(false);
 
         $this->setDefaultQuerySettings($querySettings);
-    }
-
-
-    /**
-     * findOneByPid
-     * finds a page by uid
-     *
-     * @param integer $uid
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
-     */
-    public function findByUid($uid)
-    {
-
-        $query = $this->createQuery();
-
-        return $query
-            ->matching(
-                $query->equals('uid', $uid)
-            )
-            ->execute()->getFirst();
-        //===
     }
 
 

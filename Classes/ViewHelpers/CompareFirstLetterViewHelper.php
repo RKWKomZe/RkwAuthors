@@ -23,24 +23,25 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithContentArgumentAndRenderS
 /**
  * Class CompareFirstLetterViewHelper
  *
- * @author Maximilian Fäßler <faesslerweb@web.de>
+ * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @author Steffen Kroggel <developer@steffenkroggel.de>
  * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @todo write tests
  */
 class CompareFirstLetterViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
-
 
     use CompileWithContentArgumentAndRenderStatic;
 
     /**
      * Initialize arguments.
      *
+     * @return void
      * @throws \TYPO3Fluid\Fluid\Core\ViewHelper\Exception
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('author', Authors::class, 'The author-object', true);
@@ -72,13 +73,10 @@ class CompareFirstLetterViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abst
         /** @var int $iter */
         $iter = $arguments['iter'];
 
-
         // 1. first iteration: always print letter
         if ($iter == 0) {
             return true;
-            //===
         }
-
 
         // Get the author who was printed before the actual one
         /** @var \RKW\RkwAuthors\Domain\Model\Authors $authorBefore */
@@ -87,11 +85,9 @@ class CompareFirstLetterViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abst
         // 2. if: the author before hasn't the same starting letter -> return true -> print letter!
         if (substr($author->getLastName(), 0, 1) !== substr($authorBefore->getLastName(), 0, 1)) {
             return true;
-            //===
         }
 
         // 3. else: return false -> print nothing!
         return false;
-        //===
     }
 }

@@ -26,10 +26,11 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithContentArgumentAndRenderS
 /**
  * Class IfContactFormIsActiveViewHelper
  *
- * @author Maximilian Fäßler <faesslerweb@web.de>
+ * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @todo write tests
  */
 class IfContactFormIsActiveViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
@@ -39,13 +40,15 @@ class IfContactFormIsActiveViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\A
     /**
      * Initialize arguments.
      *
+     * @return void
      * @throws \TYPO3Fluid\Fluid\Core\ViewHelper\Exception
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('author', Authors::class, 'The author-object', true);
     }
+
 
     /**
      * Static rendering
@@ -115,6 +118,7 @@ class IfContactFormIsActiveViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\A
     {
         return GeneralUtility::getTypoScriptConfiguration('Rkwauthors', $which);
     }
+
 
     /**
      * Returns logger instance
