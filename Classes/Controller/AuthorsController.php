@@ -14,44 +14,38 @@ namespace RKW\RkwAuthors\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-
+use RKW\RkwAuthors\Domain\Repository\AuthorsRepository;
+use RKW\RkwAuthors\Domain\Repository\PagesRepository;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\RootlineUtility;
 
 /**
  * Class AuthorsController
  *
- * @author Maximilian Fäßler <faesslerweb@web.de>
+ * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @author Steffen Kroggel <developer@steffenkroggel.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
+class AuthorsController extends \Madj2k\AjaxApi\Controller\AjaxAbstractController
 {
 
     /**
      * authorsRepository
      *
      * @var \RKW\RkwAuthors\Domain\Repository\AuthorsRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $authorsRepository = null;
+    protected AuthorsRepository $authorsRepository;
 
     /**
      * pagesRepository
      *
      * @var \RKW\RkwAuthors\Domain\Repository\PagesRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $pagesRepository = null;
-
-    /**
-     * departmentRepository
-     *
-     * @var \RKW\RkwBasics\Domain\Repository\DepartmentRepository
-     * @inject
-     */
-    protected $departmentRepository = null;
+    protected PagesRepository $pagesRepository;
 
 
     /**
@@ -61,7 +55,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      * @return void
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
-    public function listAction($filter = [])
+    public function listAction(array $filter = []): void
     {
 
         // get authors list
@@ -71,12 +65,8 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
             $authors = $this->authorsRepository->findAllSortByLastName();
         }
 
-        // get department list (for filter)
-        $departmentList = $this->departmentRepository->findAllByVisibility();
-
         $this->view->assign('showPid', $this->settings['showPid']);
         $this->view->assign('authors', $authors);
-        $this->view->assign('departmentList', $departmentList);
     }
 
 
@@ -84,10 +74,10 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      * action show
      *
      * @param \RKW\RkwAuthors\Domain\Model\Authors $author
-     * @ignorevalidation $author
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("author")
      * @return void
      */
-    public function showAction(\RKW\RkwAuthors\Domain\Model\Authors $author)
+    public function showAction(\RKW\RkwAuthors\Domain\Model\Authors $author): void
     {
         $this->view->assign('author', $author);
     }
@@ -98,9 +88,9 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      *
      * @return void
      */
-    public function headlineAction()
+    public function headlineAction(): void
     {
-        $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_rkwauthors_rkwauthorsdetail');
+        $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_rkwauthors_details');
         $author = null;
         if ($getParams['author']) {
             $author = $this->authorsRepository->findByIdentifier(filter_var($getParams['author'], FILTER_SANITIZE_NUMBER_INT));
@@ -108,28 +98,6 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
 
         $this->view->assign('author', $author);
 
-    }
-
-
-    /**
-     * action showWork
-     *
-     * @return void
-     * @deprecated This function is deprecated and will be removed soon
-     */
-    public function showWorkAction()
-    {
-
-        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
-
-        $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_rkwauthors_rkwauthorsdetail');
-        $author = null;
-        if ($getParams['author']) {
-            $author = $this->authorsRepository->findByIdentifier(filter_var($getParams['author'], FILTER_SANITIZE_NUMBER_INT));
-        }
-
-        $this->view->assign('author', $author);
-        $this->view->assign('listPid', $this->settings['listPid']);
     }
 
 
@@ -142,59 +110,12 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
     {
         $pid = $this->getPidForAuthors();
 
-        $result = $this->pagesRepository->findByUid($pid);
+        $result = $this->pagesRepository->findByIdentifier($pid);
         if ($result instanceof \RKW\RkwAuthors\Domain\Model\Pages) {
             $this->view->assign('page', $result);
             $this->view->assign('showPid', $this->settings['showPid']);
         }
 
-    }
-
-
-    /**
-     * Shows only the first author of a page as detail-box
-     *
-     * @return void
-     * @deprecated This function is deprecated and will be removed soon
-     */
-    public function pageBoxSmallFirstAction()
-    {
-
-        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
-
-        $pid = $this->getPidForAuthors();
-        $result = $this->pagesRepository->findByUid($pid);
-        if ($result instanceof \RKW\RkwAuthors\Domain\Model\Pages) {
-            if ($result->getTxRkwauthorsAuthorship() instanceof \TYPO3\CMS\Extbase\Persistence\ObjectStorage) {
-                $resultAsArray = $result->getTxRkwauthorsAuthorship()->toArray();
-                $this->view->assign('author', $resultAsArray[0]);
-                $this->view->assign('showPid', $this->settings['showPid']);
-            }
-        }
-    }
-
-
-    /**
-     * Shows all but the first author of a page as detail-box
-     *
-     * @return void
-     * @deprecated This function is deprecated and will be removed soon
-     */
-    public function pageBoxSmallRestAction()
-    {
-
-        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ .':' . __METHOD__ . ' will be removed soon. Do not use it any more.');
-
-        $pid = $this->getPidForAuthors();
-        $result = $this->pagesRepository->findByUid($pid);
-        if ($result instanceof \RKW\RkwAuthors\Domain\Model\Pages) {
-            if ($result->getTxRkwauthorsAuthorship() instanceof \TYPO3\CMS\Extbase\Persistence\ObjectStorage) {
-                $resultAsArray = $result->getTxRkwauthorsAuthorship()->toArray();
-                array_shift($resultAsArray);
-                $this->view->assign('authors', $resultAsArray);
-                $this->view->assign('showPid', $this->settings['showPid']);
-            }
-        }
     }
 
 
@@ -206,7 +127,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
     public function pageSchemaOrgAction()
     {
         $pid = $this->getPidForAuthors();
-        $result = $this->pagesRepository->findByUid($pid);
+        $result = $this->pagesRepository->findByIdentifier($pid);
         if ($result instanceof \RKW\RkwAuthors\Domain\Model\Pages) {
             $this->view->assign('page', $result);
         }
@@ -225,7 +146,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
     {
 
         $pid = $this->getPidForAuthors();
-        $result = $this->pagesRepository->findByUid($pid);
+        $result = $this->pagesRepository->findByIdentifier($pid);
         if ($result instanceof \RKW\RkwAuthors\Domain\Model\Pages) {
             $this->view->assign('page', $result);
         }
@@ -254,9 +175,9 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      *
      * @param \RKW\RkwAuthors\Domain\Model\Authors $author
      * @param array $contactForm
-     * @validate $contactForm \RKW\RkwAuthors\Validation\Validator\ContactFormValidator
+     * @TYPO3\CMS\Extbase\Annotation\Validate("\RKW\RkwAuthors\Validation\Validator\ContactFormValidator", param="contactForm")
      * @return void
-     * @throws \RKW\RkwMailer\Service\MailException
+     * @throws \RKW\RkwMailer\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
@@ -267,7 +188,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      */
-    public function contactFormSendAction(\RKW\RkwAuthors\Domain\Model\Authors $author, $contactForm = [])
+    public function contactFormSendAction(\RKW\RkwAuthors\Domain\Model\Authors $author, array $contactForm = [])
     {
         // above we have now set a default value to $contactForm for better URL handling. Through manually checking $contactForm
         // content we can avoid that empty requests without $contactForm-data leads to a crash:
@@ -286,13 +207,13 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
 
             // send message author
             /** @var \RKW\RkwAuthors\Service\RkwMailService $mailService */
-            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwAuthors\\Service\\RkwMailService');
+            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\RKW\RkwAuthors\Service\RkwMailService::class);
             $mailService->contactFormAuthor($author, $contactForm);
 
             // send copy to user (only if user has checked the checkbox)
             if ($contactForm['copyToUser']) {
                 /** @var \RKW\RkwAuthors\Service\RkwMailService $mailService */
-                $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwAuthors\\Service\\RkwMailService');
+                $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\RKW\RkwAuthors\Service\RkwMailService::class);
                 $mailService->contactFormUser($author, $contactForm);
             }
         }
@@ -315,21 +236,18 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
     }
 
 
-
     /**
      * Returns the page id of the authors list in the rootline recursively
      * @return int
      */
-    protected function getPidForAuthors ()
+    protected function getPidForAuthors (): int
     {
 
         if ($this->settings['recursiveAuthorList']) {
 
-            // get PageRepository and rootline
-            $repository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
-            $rootlinePages = $repository->getRootLine(intval($GLOBALS['TSFE']->id));
+            $rootlinePages = GeneralUtility::makeInstance(RootlineUtility::class, intval($GLOBALS['TSFE']->id))->get();
 
-            // fo through all pages and take the one that has a match in the corresponsing field
+            // fo through all pages and take the one that has a match in the corresponding field
             $pid = intval($GLOBALS['TSFE']->id);
             foreach ($rootlinePages as $page => $values) {
                 if (
@@ -352,7 +270,7 @@ class AuthorsController extends \RKW\RkwAjax\Controller\AjaxAbstractController
      *
      * @see \TYPO3\CMS\Extbase\Mvc\Controller\ActionController::getErrorFlashMessage()
      */
-    protected function getErrorFlashMessage()
+    protected function getErrorFlashMessage(): bool
     {
         return false;
     }

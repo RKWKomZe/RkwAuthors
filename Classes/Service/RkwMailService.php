@@ -1,11 +1,5 @@
 <?php
-
 namespace RKW\RkwAuthors\Service;
-
-use \RKW\RkwBasics\Helper\Common;
-use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use RKW\RkwEvents\Helper\DivUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -20,12 +14,18 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * The TYPO3 project - inspiring people to share!
  */
 
+use Madj2k\CoreExtended\Utility\GeneralUtility;
+use RKW\RkwMailer\Service\MailService;
+use TYPO3\CMS\Core\Log\Logger;
+use TYPO3\CMS\Core\Log\LogManager;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+
 /**
  * RkwMailService
  *
  * @author Carlos Meyer <cm@davitec.de>
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
@@ -37,16 +37,13 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @param \RKW\RkwAuthors\Domain\Model\Authors $author
      * @param array $contactForm
      * @return void
-     * @throws \RKW\RkwMailer\Service\MailException
-     * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
+     * @throws \RKW\RkwMailer\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    public function contactFormUser(\RKW\RkwAuthors\Domain\Model\Authors $author, $contactForm)
+    public function contactFormUser(\RKW\RkwAuthors\Domain\Model\Authors $author, array $contactForm)
     {
         // send contact form copy
         $this->userMail(
@@ -67,16 +64,13 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @param \RKW\RkwAuthors\Domain\Model\Authors $author
      * @param array $contactForm
      * @return void
-     * @throws \RKW\RkwMailer\Service\MailException
-     * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
+     * @throws \RKW\RkwMailer\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    public function contactFormAuthor(\RKW\RkwAuthors\Domain\Model\Authors $author, $contactForm)
+    public function contactFormAuthor(\RKW\RkwAuthors\Domain\Model\Authors $author, array $contactForm)
     {
         $this->authorMail(
             $author,
@@ -96,16 +90,13 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @param array $frontendUser
      * @param array $contactForm
      * @param string $action
-     * @throws \RKW\RkwMailer\Service\MailException
-     * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
+     * @throws \RKW\RkwMailer\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    protected function userMail(\RKW\RkwAuthors\Domain\Model\Authors $author, $frontendUser, $contactForm, $action)
+    protected function userMail(\RKW\RkwAuthors\Domain\Model\Authors $author, array $frontendUser, array $contactForm, string $action)
     {
         // get settings
         $settings = $this->getSettings(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
@@ -114,7 +105,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
         if ($settings['view']['templateRootPaths']) {
 
             /** @var \RKW\RkwMailer\Service\MailService $mailService */
-            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwMailer\\Service\\MailService');
+            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailService::class);
 
             // send new user an email with token
             $mailService->setTo($frontendUser, array(
@@ -127,23 +118,36 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 
             // Reply Address: Set author OR fallback mail OR override mail
             if (
-                ($settingsDefault['contactForm']['mail']['override']['address'] && $settingsDefault['contactForm']['mail']['override']['name'])
+                (
+                    $settingsDefault['contactForm']['mail']['override']['address']
+                    && $settingsDefault['contactForm']['mail']['override']['name']
+                )
                 || $settingsDefault['contactForm']['mail']['fallback']['address']
                 || $author->getEmail()
             ) {
                 if ($settingsDefault['contactForm']['mail']['override']['address'] && $settingsDefault['contactForm']['mail']['override']['name']) {
                     // if set: use override email first
-                    $mailService->getQueueMail()->setReplyAddress(strval($settingsDefault['contactForm']['mail']['override']['address']));
+                    $mailService->getQueueMail()->setReplyToAddress(strval($settingsDefault['contactForm']['mail']['override']['address']));
                     $mailService->getQueueMail()->setFromName(strval($settingsDefault['contactForm']['mail']['override']['name']));
                 } else {
                     // author or fallback email
-                    $mailService->getQueueMail()->setReplyAddress($author->getEmail() ? $author->getEmail() : strval($settingsDefault['contactForm']['mail']['fallback']['address']));
+                    $mailService->getQueueMail()->setReplyToAddress(
+                        $author->getEmail()
+                            ? $author->getEmail()
+                            : strval($settingsDefault['contactForm']['mail']['fallback']['address'])
+                    );
                     $mailService->getQueueMail()->setFromName($author->getFirstName() . ' ' . $author->getLastName());
                 }
 
             } else {
                 // Log: No valid email set
-                $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::ERROR, sprintf('No valid email is for author with UID %s is defined. Also no fallback or override!', $author->getUid()));
+                $this->getLogger()->log(
+                    \TYPO3\CMS\Core\Log\LogLevel::ERROR,
+                    sprintf(
+                        'No valid email is for author with UID %s is defined. Also no fallback or override!',
+                        $author->getUid()
+                    )
+                );
             }
 
             $mailService->getQueueMail()->setSubject(
@@ -173,17 +177,19 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @param array $frontendUser
      * @param array $contactForm
      * @param string $action
-     * @throws \RKW\RkwMailer\Service\MailException
-     * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
+     * @throws \RKW\RkwMailer\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    protected function authorMail(\RKW\RkwAuthors\Domain\Model\Authors $author, $frontendUser, $contactForm, $action)
-    {
+    protected function authorMail(
+        \RKW\RkwAuthors\Domain\Model\Authors $author,
+        array $frontendUser,
+        array $contactForm,
+        string $action
+    ) {
+
         // get settings
         $settings = $this->getSettings(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
         $settingsDefault = $this->getSettings();
@@ -191,32 +197,46 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
         if ($settings['view']['templateRootPaths']) {
 
             /** @var \RKW\RkwMailer\Service\MailService $mailService */
-            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwMailer\\Service\\MailService');
+            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailService::class);
 
             $emailTo = '';
             $lastName = $author->getLastName();
             $firstName = $author->getFirstName();
             // Reply Address: Set author OR fallback mail OR override mail
             if (
-                ($settingsDefault['contactForm']['mail']['override']['address'] && $settingsDefault['contactForm']['mail']['override']['name'])
+                (
+                    $settingsDefault['contactForm']['mail']['override']['address']
+                    && $settingsDefault['contactForm']['mail']['override']['name']
+                )
                 || $settingsDefault['contactForm']['mail']['fallback']['address']
                 || $author->getEmail()
             ) {
-                if ($settingsDefault['contactForm']['mail']['override']['address'] && $settingsDefault['contactForm']['mail']['override']['name']) {
+                if (
+                    $settingsDefault['contactForm']['mail']['override']['address']
+                    && $settingsDefault['contactForm']['mail']['override']['name']
+                ) {
                     // if set: use override email first
                     $emailTo = strval($settingsDefault['contactForm']['mail']['override']['address']);
-                    // @toDo: Should we have firstName & lastName vor override-Email in TS?
+                    // @todo: Should we have firstName & lastName vor override-Email in TS?
                     // -> if yes: Don't forget to edit also function "userMail"
                     $firstName = '';
                     $lastName = strval($settingsDefault['contactForm']['mail']['override']['name']);
                 } else {
                     // author or fallback email
-                    $emailTo = $author->getEmail() ? $author->getEmail() : strval($settingsDefault['contactForm']['mail']['fallback']['address']);
+                    $emailTo = $author->getEmail()
+                        ? $author->getEmail()
+                        : strval($settingsDefault['contactForm']['mail']['fallback']['address']);
                 }
 
             } else {
                 // Log: No valid email set
-                $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::ERROR, sprintf('No valid email is for author with UID %s is defined. Also no fallback or override!', $author->getUid()));
+                $this->getLogger()->log(
+                    \TYPO3\CMS\Core\Log\LogLevel::ERROR,
+                    sprintf(
+                        'No valid email is for author with UID %s is defined. Also no fallback or override!',
+                        $author->getUid()
+                    )
+                );
             }
 
             if (
@@ -239,7 +259,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                 ));
             }
 
-            $mailService->getQueueMail()->setReplyAddress(strval($frontendUser['email']));
+            $mailService->getQueueMail()->setReplyToAddress(strval($frontendUser['email']));
 
             if ($emailTo != $author->getEmail()) {
                 // by override or fallback: "contact request for xyz"
@@ -251,6 +271,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                         $settingsDefault['contactForm']['mail']['language']
                     ) . ' ' . $author->getFirstName() . ' ' . $author->getLastName() . ' ' . $author->getEmail()
                 );
+
             } else {
                 // to author directly: Just wrote "contact request by (user-email)" to subject
                 // Just an idea below: Set the email of the user to the subject for better distinction of many mails
@@ -284,9 +305,9 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @return array
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    protected function getSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
+    protected function getSettings(string $which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS): array
     {
-        return Common::getTyposcriptConfiguration('Rkwauthors', $which);
+        return GeneralUtility::getTypoScriptConfiguration('Rkwauthors', $which);
     }
 
 
@@ -295,8 +316,8 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      *
      * @return \TYPO3\CMS\Core\Log\Logger
      */
-    protected function getLogger()
+    protected function getLogger(): Logger
     {
-        return \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Log\\LogManager')->getLogger(__CLASS__);
+        return GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
     }
 }

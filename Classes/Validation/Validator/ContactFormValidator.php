@@ -2,11 +2,6 @@
 
 namespace RKW\RkwAuthors\Validation\Validator;
 
-use \TYPO3\CMS\Core\Utility\GeneralUtility;
-use \RKW\RkwBasics\Helper\Common;
-use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -20,11 +15,16 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * The TYPO3 project - inspiring people to share!
  */
 
+use Madj2k\CoreExtended\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Validation\ValidatorResolver;
+
 /**
  * Class ContactFormValidator
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
@@ -36,7 +36,7 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
      *
      * @var array
      */
-    protected $settings = null;
+    protected array $settings = [];
 
     /**
      * validation
@@ -45,14 +45,17 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
      * @return boolean
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    public function isValid($contactForm)
+    public function isValid($contactForm): bool
     {
         // initialize typoscript settings
         $settings = $this->getSettings();
-
-        $mandatoryFieldsArray = GeneralUtility::trimExplode(',', $settings['contactForm']['mandatoryFields'], TRUE);
-
         $isValid = true;
+
+        $mandatoryFieldsArray = GeneralUtility::trimExplode(
+            ',',
+            $settings['contactForm']['mandatoryFields'],
+            true
+        );
 
         // iterate given form fields
         foreach ($contactForm as $key => $formField) {
@@ -70,7 +73,6 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
                         && (! $formField)
                     )
                 ) {
-
 
                     $this->result->forProperty($key)->addError(
                         new \TYPO3\CMS\Extbase\Error\Error(
@@ -90,9 +92,9 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
 
         // E-MAIL (if filled -> looks valid?)
         if ($contactForm['email']) {
-            $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+            $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(ObjectManager::class);
             /** @var \TYPO3\CMS\Extbase\Validation\ValidatorResolver $validatorResolver */
-            $validatorResolver = $objectManager->get('TYPO3\\CMS\\Extbase\\Validation\\ValidatorResolver');
+            $validatorResolver = $objectManager->get(ValidatorResolver::class);
             $conjunctionValidator = $validatorResolver->createValidator('Conjunction');
             $conjunctionValidator->addValidator($validatorResolver->createValidator('EmailAddress'));
             $result = $conjunctionValidator->validate(strval($contactForm['email']));
@@ -137,7 +139,6 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
         }
 
         return $isValid;
-        //===
     }
 
 
@@ -148,10 +149,9 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
      * @return array
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    protected function getSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
+    protected function getSettings(string $which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS): array
     {
-        return Common::getTyposcriptConfiguration('Rkwauthors', $which);
-        //===
+        return GeneralUtility::getTypoScriptConfiguration('Rkwauthors', $which);
     }
 
 }

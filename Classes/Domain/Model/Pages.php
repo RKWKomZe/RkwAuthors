@@ -15,34 +15,37 @@ namespace RKW\RkwAuthors\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
 /**
  * Class Pages
  *
- * @author Maximilian Fäßler <faesslerweb@web.de>
+ * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @author Steffen Kroggel <developer@steffenkroggel.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Pages extends \RKW\RkwBasics\Domain\Model\Pages
+class Pages extends \Madj2k\CoreExtended\Domain\Model\Pages
 {
 
     /**
      * txRkwauthorsAuthorship
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwAuthors\Domain\Model\Authors>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwAuthors\Domain\Model\Authors>|null
      */
-    protected $txRkwauthorsAuthorship = null;
+    protected ?ObjectStorage $txRkwauthorsAuthorship = null;
+
 
     /**
      * __construct
      */
     public function __construct()
     {
-
-        //Do not remove the next line: It would break the functionality
+        // Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
     }
+
 
     /**
      * Initializes all ObjectStorage properties
@@ -57,16 +60,18 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
         $this->txRkwauthorsAuthorship = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
+
     /**
      * Adds a Authors
      *
      * @param \RKW\RkwAuthors\Domain\Model\Authors $txRkwauthorsAuthorship
      * @return void
      */
-    public function addTxRkwauthorsAuthorship(\RKW\RkwAuthors\Domain\Model\Authors $txRkwauthorsAuthorship)
+    public function addTxRkwauthorsAuthorship(Authors $txRkwauthorsAuthorship): void
     {
         $this->txRkwauthorsAuthorship->attach($txRkwauthorsAuthorship);
     }
+
 
     /**
      * Removes a Authors
@@ -74,20 +79,22 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
      * @param \RKW\RkwAuthors\Domain\Model\Authors $txRkwauthorsAuthorshipToRemove The Authors to be removed
      * @return void
      */
-    public function removeTxRkwauthorsAuthorship(\RKW\RkwAuthors\Domain\Model\Authors $txRkwauthorsAuthorshipToRemove)
+    public function removeTxRkwauthorsAuthorship(Authors $txRkwauthorsAuthorshipToRemove): void
     {
         $this->txRkwauthorsAuthorship->detach($txRkwauthorsAuthorshipToRemove);
     }
+
 
     /**
      * Returns the txRkwauthorsAuthorship
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwAuthors\Domain\Model\Authors> $txRkwauthorsAuthorship
      */
-    public function getTxRkwauthorsAuthorship()
+    public function getTxRkwauthorsAuthorship(): ObjectStorage
     {
         return $this->txRkwauthorsAuthorship;
     }
+
 
     /**
      * Sets the txRkwauthorsAuthorship
@@ -95,7 +102,7 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwAuthors\Domain\Model\Authors> $txRkwauthorsAuthorship
      * @return void
      */
-    public function setTxRkwauthorsAuthorship(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $txRkwauthorsAuthorship)
+    public function setTxRkwauthorsAuthorship(ObjectStorage $txRkwauthorsAuthorship): void
     {
         $this->txRkwauthorsAuthorship = $txRkwauthorsAuthorship;
     }

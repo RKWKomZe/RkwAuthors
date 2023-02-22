@@ -1,0 +1,28 @@
+routeEnhancers:
+  RkwAuthors:
+    type: Extbase
+    namespace: 'tx_rkwauthors_rkwauthors'
+    routes:
+      - routePath: '/rkw-authors/list/'
+        _controller: 'Authors::list'
+      - routePath: '/rkw-authors/list/{filter/letter}'
+        _controller: 'Authors::list'
+    defaultController: 'Authors::list'
+    requirements:
+      filter/letter: '[a-zA-Z]{1}'
+
+  RkwAuthors1:
+    type: Extbase
+    namespace: 'tx_rkwauthors_rkwauthorsdetail'
+    routes:
+      - routePath: '/rkw-author/{author}'
+        _controller: 'Authors::show'
+      - routePath: '/rkw-authorform/{author}'
+        _controller: 'Authors::contactFormSend'
+    defaultController: 'Authors::show'
+    aspects:
+      author:
+        type: PersistedSlugifiedPatternMapper
+        tableName: 'tx_rkwauthors_domain_model_authors'
+        routeFieldPattern: '^(.*)-(?P<uid>\d+)$'
+        routeFieldResult: '{first_name|sanitized}-{last_name|sanitized}-{uid}'

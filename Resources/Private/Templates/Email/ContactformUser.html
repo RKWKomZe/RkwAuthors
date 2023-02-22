@@ -7,19 +7,19 @@
 
 <!-- PLAINTEXT -->
 <f:section name="Plaintext">
-<rkwMailer:frontend.translate key="templates_email_contactformUser.headline" languageKey="{language}" extensionName="rkwAuthors" arguments="{0 : fullName}" />
+<rkwMailer:email.translate key="templates_email_contactformUser.headline" languageKey="{language}" extensionName="rkwAuthors" arguments="{0 : fullName}" />
 
-<rkwMailer:frontend.translate key="templates_email_contactformUser.text1" languageKey="{language}" extensionName="rkwAuthors" arguments="{0: '<rkwAuthors:GetCombinedName author=\'{author}\'/>'}" />
+<rkwMailer:email.translate key="templates_email_contactformUser.text1" languageKey="{language}" extensionName="rkwAuthors" arguments="{0: '<rkwAuthors:GetCombinedName author=\'{author}\'/>'}" />
 
-<rkwMailer:frontend.translate key="templates_email_contactformUser.text2" languageKey="{language}" extensionName="rkwAuthors" />
+<rkwMailer:email.translate key="templates_email_contactformUser.text2" languageKey="{language}" extensionName="rkwAuthors" />
 <f:render partial="Email/Details" section="Plaintext" arguments="{_all}"/>
 </f:section>
 
     <!-- HTML -->
     <f:section name="Html">
-        <h1><rkwMailer:frontend.translate key="templates_email_contactformUser.headline" languageKey="{language}" extensionName="rkwAuthors" arguments="{0 : fullName}" /></h1>
-        <p><rkwMailer:frontend.translate key="templates_email_contactformUser.text1" languageKey="{language}" extensionName="rkwAuthors" arguments="{0: '<rkwAuthors:GetCombinedName author=\'{author}\'/>'}" /></p>
-        <p><strong><rkwMailer:frontend.translate key="templates_email_contactformUser.text2" languageKey="{language}" extensionName="rkwAuthors" /></strong></p>
+        <h1><rkwMailer:email.translate key="templates_email_contactformUser.headline" languageKey="{language}" extensionName="rkwAuthors" arguments="{0 : fullName}" /></h1>
+        <p><rkwMailer:email.translate key="templates_email_contactformUser.text1" languageKey="{language}" extensionName="rkwAuthors" arguments="{0: '<rkwAuthors:GetCombinedName author=\'{author}\'/>'}" /></p>
+        <p><strong><rkwMailer:email.translate key="templates_email_contactformUser.text2" languageKey="{language}" extensionName="rkwAuthors" /></strong></p>
 
         <f:render partial="Email/Details" section="Html" arguments="{_all}"/>
     </f:section>

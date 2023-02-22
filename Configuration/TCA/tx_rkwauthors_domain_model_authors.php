@@ -8,7 +8,7 @@ return [
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
-		'dividers2tabs' => TRUE,
+		'dividers2tabs' => true,
 		'default_sortby' => 'ORDER BY internal DESC, last_name ASC',
 
 		'languageField' => 'sys_language_uid',
@@ -24,7 +24,7 @@ return [
 		'iconfile' => 'EXT:rkw_authors/Resources/Public/Icons/tx_rkwauthors_domain_model_authors.gif'
 	],
 	'interface' => [
-		'showRecordFieldList' => 'sys_langufunctiage_uid, l10n_parent, l10n_diffsource, hidden, first_name, middle_name, last_name, title_before, title_after, street, company, number, city, zip, email, department, function_title, phone, phone2, fax, function_description, url, facebook_url, twitter_url, xing_url, internal, show_work, image_boxes, image_big, image_small',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, first_name, middle_name, last_name, title_before, title_after, street, company, number, city, zip, email, department, function_title, phone, phone2, fax, function_description, url, facebook_url, twitter_url, xing_url, internal, show_work, image_boxes, image_big, image_small',
 	],
 	'types' => [
 		'1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, --palette--;;1, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.names;names, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.addition;addition, department, function_title, email, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.address;address, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.phones;phones, image_boxes, image_boxes_is_logo, image_big, image_small, function_description, url, facebook_url, twitter_url, xing_url, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'],
@@ -48,18 +48,18 @@ return [
         ]
     ],
 	'columns' => [
-	
+
 		'sys_language_uid' => [
 			'exclude' => 0,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
+			'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
 			'config' => [
 				'type' => 'select',
 				'renderType' => 'selectSingle',
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => [
-					['LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1],
-					['LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0]
+					['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages', -1],
+					['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value', 0]
 				],
                 'default' => 0
 			],
@@ -67,7 +67,7 @@ return [
 		'l10n_parent' => [
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
 			'exclude' => 0,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
+			'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
 			'config' => [
 				'type' => 'select',
 				'renderType' => 'selectSingle',
@@ -86,14 +86,14 @@ return [
 
 		'hidden' => [
 			'exclude' => 0,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
+			'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
 			'config' => [
 				'type' => 'check',
 			],
 		],
 		'starttime' => [
 			'exclude' => 0,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
+			'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
 			'config' => [
 				'type' => 'input',
                 'renderType' => 'inputDateTime',
@@ -111,7 +111,7 @@ return [
 		],
 		'endtime' => [
 			'exclude' => 0,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
+			'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
 			'config' => [
 				'type' => 'input',
                 'renderType' => 'inputDateTime',
@@ -357,7 +357,7 @@ return [
                     ]
                 ]
             ]
-        ],		
+        ],
 		'image_boxes' => [
 			'exclude' => 0,
 			'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.image_boxes',

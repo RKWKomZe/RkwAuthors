@@ -1,10 +1,10 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-	xmlns:rkwAjax="http://typo3.org/ns/RKW/RkwAjax/ViewHelpers"
+	xmlns:ajaxApi="http://typo3.org/ns/Madj2k/AjaxApi/ViewHelpers"
 	xmlns:rkwAuthors="http://typo3.org/ns/RKW/RkwAuthors/ViewHelpers"
 	data-namespace-typo3-fluid="true">
 
 	<div id="tx-rkwauthors-list">
-		<rkwAjax:ajaxWrapper ajaxHelper="{ajaxHelper}" ajaxAction="replace" ajaxId="1">
+		<ajaxApi:ajaxWrapper ajaxHelper="{ajaxHelper}" ajaxAction="replace" ajaxId="1">
 			<div aria-live="assertive" aria-atomic="true" role="main">
 	
 				<f:if condition="<f:count>{authors}</f:count>">
@@ -31,6 +31,6 @@
 					</f:else>
 				</f:if>
 			</div>
-		</rkwAjax:ajaxWrapper>
+		</ajaxApi:ajaxWrapper>
 	</div>
 </html>

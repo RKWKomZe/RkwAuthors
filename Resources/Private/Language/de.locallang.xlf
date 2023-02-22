@@ -180,7 +180,6 @@
             </trans-unit>
 
 
-
 			<!-- VALIDATION -->
 			<trans-unit id="tx_rkwauthors_validator.not_filled">
                 <source>Please fill out the field '%s'.</source>

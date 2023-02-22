@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-	xmlns:rkwBasics="http://typo3.org/ns/RKW/RkwBasics/ViewHelpers"
+	xmlns:coreExtended="http://typo3.org/ns/Madj2k/CoreExtended/ViewHelpers"
 	xmlns:rkwAuthors="http://typo3.org/ns/RKW/RkwAuthors/ViewHelpers"
 	data-namespace-typo3-fluid="true">
 
@@ -35,7 +35,7 @@
 				</f:then>
 			</f:if>
 			"name" : "<rkwAuthors:GetCombinedName author="{author}"/>",
-			"email" : "<rkwBasics:uri.typolink.plainEmail email="{author.email}"/>"
+			"email" : "<coreExtended:uri.typolink.plainEmail email="{author.email}"/>"
 		}
 		<f:if condition="{iterator.isLast}">
 			<f:then>
