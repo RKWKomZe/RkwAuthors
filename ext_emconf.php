@@ -38,6 +38,7 @@ $EM_CONF[$_EXTKEY] = [
 		'conflicts' => [
 		],
 		'suggests' => [
-		],
+            'sr_freecap' => '2.5.0-2.5.99'
+        ],
 	],
 ];

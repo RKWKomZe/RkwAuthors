@@ -16,6 +16,8 @@ namespace RKW\RkwAuthors\Validation\Validator;
  */
 
 use Madj2k\CoreExtended\Utility\GeneralUtility;
+use SJBR\SrFreecap\Validation\Validator\CaptchaValidator;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Validation\ValidatorResolver;
@@ -132,6 +134,30 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
                         \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                             'form.error.privacy', 'rkw_authors'
                         ), 1588941914
+                    )
+                );
+                $isValid = false;
+            }
+        }
+
+        // CAPTCHA
+        // do not check if key exists, to avoid validation issue on manipulated forms.
+        // -> Means: If sr_freecap is activated, it must also be part of the form. Otherwise, we will DIE here while using $contactForm['captchaResponse'] ....
+        if (
+            ExtensionManagementUtility::isLoaded('sr_freecap')
+            && $settings['contactForm']['captcha']
+        ) {
+
+            $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+            $captchaValidator = $objectManager->get(CaptchaValidator::class);
+
+            if ($captchaValidator->validate($contactForm['captchaResponse'])->hasErrors()) {
+                $this->result->forProperty('captchaResponse')->addError(
+                    new Error(
+                        LocalizationUtility::translate(
+                            '9221561048',
+                            'srfreecap'
+                        ), 1670643884
                     )
                 );
                 $isValid = false;

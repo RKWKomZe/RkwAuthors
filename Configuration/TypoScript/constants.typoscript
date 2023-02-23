@@ -57,6 +57,9 @@ plugin.tx_rkwauthors {
             # cat=plugin.tx_rkwauthors//f; type=string; label=mandatory fields for contactform (e.g. email, message)
             mandatoryFields = salutation, firstName, lastName, email, message
 
+            # cat=plugin.tx_rkwauthors; type=integer; label=use captcha (requires EXT sr_freecap! (optional))
+            captcha = 1
+
             mail {
 
                 # cat=plugin.tx_rkwauthors//a; type=string; label=set language for author email with "de", or "en" etc
