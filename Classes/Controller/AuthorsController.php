@@ -175,7 +175,6 @@ class AuthorsController extends \Madj2k\AjaxApi\Controller\AjaxAbstractControlle
      *
      * @param \RKW\RkwAuthors\Domain\Model\Authors $author
      * @param array $contactForm
-     * @TYPO3\CMS\Extbase\Annotation\Validate("\RKW\RkwAuthors\Validation\Validator\ContactFormValidator", param="contactForm")
      * @return void
      * @throws \RKW\RkwMailer\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
@@ -187,6 +186,7 @@ class AuthorsController extends \Madj2k\AjaxApi\Controller\AjaxAbstractControlle
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+     * @TYPO3\CMS\Extbase\Annotation\Validate("\RKW\RkwAuthors\Validation\Validator\ContactFormValidator", param="contactForm")
      */
     public function contactFormSendAction(\RKW\RkwAuthors\Domain\Model\Authors $author, array $contactForm = [])
     {
