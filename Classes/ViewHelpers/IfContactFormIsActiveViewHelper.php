@@ -74,11 +74,11 @@ class IfContactFormIsActiveViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\A
 
             // Warning: Log if function is activated, but not usable
             if (
-                !\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('rkw_mailer')
+                !\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('postmaster')
             ) {
                 self::getLogger()->log(
                     \TYPO3\CMS\Core\Log\LogLevel::WARNING,
-                    'The optional contact form function of the rkw_authors extension is only available, if also the additional extension rkw_mailer are activated.'
+                    'The optional contact form function of the rkw_authors extension is only available, if also the additional extension postmaster are activated.'
                 );
                 return false;
             }

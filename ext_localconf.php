@@ -9,7 +9,7 @@ call_user_func(
         //=================================================================
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'RKW.' . $extKey,
-            'main',
+            'Main',
             array(
                 'Authors' => 'list, pageBox, pageSchemaOrg, pageCommaList',
             ),
@@ -21,7 +21,7 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'RKW.' . $extKey,
-            'details',
+            'Details',
             array(
                 'Authors' => 'show, contactFormSend',
 
@@ -34,7 +34,7 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'RKW.' . $extKey,
-            'headline',
+            'Headline',
             array(
                 'Authors' => 'headline',
             ),
@@ -46,7 +46,7 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'RKW.' . $extKey,
-            'contact',
+            'Contact',
             array(
                 'Authors' => 'contactBox',
             ),
