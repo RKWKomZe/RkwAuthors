@@ -176,7 +176,7 @@ class AuthorsController extends \Madj2k\AjaxApi\Controller\AjaxAbstractControlle
      * @param \RKW\RkwAuthors\Domain\Model\Authors $author
      * @param array $contactForm
      * @return void
-     * @throws \RKW\RkwMailer\Exception
+     * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
@@ -203,7 +203,7 @@ class AuthorsController extends \Madj2k\AjaxApi\Controller\AjaxAbstractControlle
             );
         }
 
-        if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('rkw_mailer')) {
+        if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('postmaster')) {
 
             // send message author
             /** @var \RKW\RkwAuthors\Service\RkwMailService $mailService */

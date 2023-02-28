@@ -15,7 +15,7 @@ namespace RKW\RkwAuthors\Service;
  */
 
 use Madj2k\CoreExtended\Utility\GeneralUtility;
-use RKW\RkwMailer\Service\MailService;
+use Madj2k\Postmaster\Service\MailService;
 use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
@@ -37,7 +37,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @param \RKW\RkwAuthors\Domain\Model\Authors $author
      * @param array $contactForm
      * @return void
-     * @throws \RKW\RkwMailer\Exception
+     * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException
@@ -64,7 +64,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @param \RKW\RkwAuthors\Domain\Model\Authors $author
      * @param array $contactForm
      * @return void
-     * @throws \RKW\RkwMailer\Exception
+     * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException
@@ -90,7 +90,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @param array $frontendUser
      * @param array $contactForm
      * @param string $action
-     * @throws \RKW\RkwMailer\Exception
+     * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException
@@ -104,7 +104,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 
         if ($settings['view']['templateRootPaths']) {
 
-            /** @var \RKW\RkwMailer\Service\MailService $mailService */
+            /** @var \Madj2k\Postmaster\Service\MailService $mailService */
             $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailService::class);
 
             // send new user an email with token
@@ -151,7 +151,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
             }
 
             $mailService->getQueueMail()->setSubject(
-                \RKW\RkwMailer\Utility\FrontendLocalizationUtility ::translate(
+                \Madj2k\Postmaster\Utility\FrontendLocalizationUtility ::translate(
                     'rkwMailService.' . strtolower($action) . 'User.subject',
                     'rkw_authors',
                     null,
@@ -177,7 +177,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @param array $frontendUser
      * @param array $contactForm
      * @param string $action
-     * @throws \RKW\RkwMailer\Exception
+     * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException
@@ -196,7 +196,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 
         if ($settings['view']['templateRootPaths']) {
 
-            /** @var \RKW\RkwMailer\Service\MailService $mailService */
+            /** @var \Madj2k\Postmaster\Service\MailService $mailService */
             $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailService::class);
 
             $emailTo = '';
@@ -264,7 +264,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
             if ($emailTo != $author->getEmail()) {
                 // by override or fallback: "contact request for xyz"
                 $mailService->getQueueMail()->setSubject(
-                    \RKW\RkwMailer\Utility\FrontendLocalizationUtility ::translate(
+                    \Madj2k\Postmaster\Utility\FrontendLocalizationUtility ::translate(
                         'rkwMailService.' . strtolower($action) . 'Author.subjectFor',
                         'rkw_authors',
                         null,
@@ -276,7 +276,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                 // to author directly: Just wrote "contact request by (user-email)" to subject
                 // Just an idea below: Set the email of the user to the subject for better distinction of many mails
                 $mailService->getQueueMail()->setSubject(
-                    \RKW\RkwMailer\Utility\FrontendLocalizationUtility ::translate(
+                    \Madj2k\Postmaster\Utility\FrontendLocalizationUtility ::translate(
                         'rkwMailService.' . strtolower($action) . 'Author.subjectBy',
                         'rkw_authors',
                         null,
