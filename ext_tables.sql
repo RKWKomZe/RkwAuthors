@@ -28,13 +28,11 @@ CREATE TABLE tx_rkwauthors_domain_model_authors (
 	twitter_url varchar(255) DEFAULT '' NOT NULL,
 	xing_url varchar(255) DEFAULT '' NOT NULL,
 	internal tinyint(1) unsigned DEFAULT '0' NOT NULL,
-	show_work tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	department int(11) unsigned DEFAULT '0' NOT NULL,
 
-	image_small int(11) unsigned NOT NULL default '0',
 	image_big int(11) unsigned NOT NULL default '0',
 	image_boxes int(11) unsigned NOT NULL default '0',
-    image_boxes_is_logo tinyint(1) unsigned DEFAULT '0' NOT NULL,
+  image_boxes_is_logo tinyint(1) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

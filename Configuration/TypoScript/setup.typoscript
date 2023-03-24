@@ -80,6 +80,7 @@ plugin.tx_rkwauthors {
         partialRootPaths {
             0 = EXT:rkw_authors/Resources/Private/Partials/
             1 = {$plugin.tx_rkwauthors.view.partialRootPath}
+            2 = {$plugin.tx_coreextended.view.partialRootPath}
         }
 	}
 	persistence {
@@ -98,69 +99,33 @@ plugin.tx_rkwauthors {
 	#===============================================================
 	settings {
 
-		# cat=plugin.tx_rkwauthors//a; type=string; label=BaseUrl for schema.org images of authors
 		baseUrlSchemaOrg = {$plugin.tx_rkwauthors.settings.baseUrlSchemaOrg}
 
-		# cat=plugin.tx_rkwauthors//a; type=string; label=list pid
 		listPid = {$plugin.tx_rkwauthors.settings.listPid}
-
-		# cat=plugin.tx_rkwauthors//a; type=string; label=show pid
 		showPid = {$plugin.tx_rkwauthors.settings.showPid}
 
-        # cat=plugin.tx_rkwauthors//a; type=boolean; label=Sets all detail-link with target=_blank
         detailLinkTargetBlank = {$plugin.tx_rkwauthors.settings.detailLinkTargetBlank}
-
-        # cat=plugin.tx_rkwauthors//a; type=integer; label=Show department instead of full function of author (1=instead of, 2=in addition)
         showDepartmentAsFunction = {$plugin.tx_rkwauthors.settings.showDepartmentAsFunction}
-
-        # cat=plugin.tx_rkwauthors//a; type=boolean; label=Get authors recursive
         recursiveAuthorList = {$plugin.tx_rkwauthors.settings.recursiveAuthorList}
-
-        # cat=plugin.tx_rkwauthors//a; type=integer; label=Phone extension length
         phoneExtensionLength = {$plugin.tx_rkwauthors.settings.phoneExtensionLength}
-
-        # cat=plugin.tx_rkwauthors//a; type=boolean; label=Show small boxes when more than one author
         noSmallBoxes = {$plugin.tx_rkwauthors.settings.noSmallBoxes}
 
-        # optional: Use contact form instead of the direct authors email links
         contactForm {
 
-            # cat=plugin.tx_rkwauthors//a; type=boolean; label=Activates the form instead of the direct email-link
             isActive = {$plugin.tx_rkwauthors.settings.contactForm.isActive}
-
-            # cat=plugin.tx_rkwauthors//a; type=boolean; label=Activates the possibility to get a copy of the message
             allowSendCopyToUser = {$plugin.tx_rkwauthors.settings.contactForm.allowSendCopyToUser}
-
-            # cat=plugin.tx_rkwauthors//a; type=integer; label=pid of terms
             termsPid = {$plugin.tx_rkwauthors.settings.contactForm.termsPid}
-
-            # cat=plugin.tx_rkwauthors//a; type=integer; label=pid of privacy
             privacyPid = {$plugin.tx_rkwauthors.settings.contactForm.privacyPid}
-
-            # cat=plugin.tx_rkwauthors//f; type=string; label=mandatory fields for contactform (e.g. email, message)
             mandatoryFields = {$plugin.tx_rkwauthors.settings.contactForm.mandatoryFields}
 
-            # cat=plugin.tx_rkwauthors; type=integer; label=use captcha (requires EXT sr_freecap! (optional))
-            captcha = {$plugin.tx_rkwauthors.settings.contactForm.captcha}
-
             mail {
-
-                # cat=plugin.tx_rkwauthors//a; type=string; label=set language for author email with "de", or "en" etc
                 language = {$plugin.tx_rkwauthors.settings.contactForm.mail.language}
-
-                # if an author has no mail address
                 fallback {
-                    # cat=plugin.tx_rkwauthors//a; type=string; label=global mail to address if no author address is set
                     address = {$plugin.tx_rkwauthors.settings.contactForm.mail.fallback.address}
                 }
 
-                # override the authors mail address and mail name
                 override {
-
-                    # cat=plugin.tx_rkwauthors//a; type=string; label=global mail to address (overrides authors mail address!)
                     address = {$plugin.tx_rkwauthors.settings.contactForm.mail.override.address}
-
-                    # cat=plugin.tx_rkwauthors//a; type=string; label=global mail to name (overrides authors name!)
                     name = {$plugin.tx_rkwauthors.settings.contactForm.mail.override.name}
                 }
             }

@@ -48,8 +48,6 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
 
     /**
-     * titleAfter
-     *
      * @var string
      */
     protected string $titleAfter = '';

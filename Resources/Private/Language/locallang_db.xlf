@@ -77,15 +77,6 @@
 			<trans-unit id="tx_rkwauthors_domain_model_authors.internal.I.enabled" xml:space="preserve">
 				<source>Internal Author</source>
 			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.show_work">
-				<source>Show Work</source>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.show_work.I.enabled" xml:space="preserve">
-				<source>Show Work in Detailpage</source>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.image_small">
-				<source>Image small (deprecated!)</source>
-			</trans-unit>
 			<trans-unit id="tx_rkwauthors_domain_model_authors.image_big">
 				<source>Image big</source>
 			</trans-unit>

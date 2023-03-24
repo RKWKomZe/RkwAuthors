@@ -332,19 +332,6 @@ return [
                 ]
 			]
 		],
-		'show_work' => [
-			'exclude' => 0,
-			'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.show_work',
-			'config' => [
-				'type' => 'check',
-				'default' => 0,
-				'items' => [
-					'1' => [
-						'0' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.show_work.I.enabled'
-					]
-				]
-			]
-		],
         'image_boxes_is_logo' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.image_boxes_is_logo',
@@ -376,16 +363,6 @@ return [
 				$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),
 		],
-		'image_small' => [
-			'exclude' => 0,
-			'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.image_small',
-			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-				'image_small',
-                ['maxitems' => 1],
-				$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
-            ),
-		],
-
 		'department' => [
 			'exclude' => 0,
 			'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.department',
