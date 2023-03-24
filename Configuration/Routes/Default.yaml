@@ -1,7 +1,7 @@
 routeEnhancers:
   RkwAuthors:
     type: Extbase
-    namespace: 'tx_rkwauthors_rkwauthors'
+    namespace: 'tx_rkwauthors_main'
     routes:
       - routePath: '/rkw-authors/list/'
         _controller: 'Authors::list'
@@ -13,7 +13,7 @@ routeEnhancers:
 
   RkwAuthors1:
     type: Extbase
-    namespace: 'tx_rkwauthors_rkwauthorsdetail'
+    namespace: 'tx_rkwauthors_details'
     routes:
       - routePath: '/rkw-author/{author}'
         _controller: 'Authors::show'

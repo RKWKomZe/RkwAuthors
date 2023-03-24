@@ -7,7 +7,7 @@
 			<!-- tx_rkwauthors_domain_model_authors -->
 			<trans-unit id="tx_rkwauthors_domain_model_authors">
 				<source>RKW Authors: Authors</source>
-				<target>RKW Authors: Autoren / Ansprechpartner </target>
+				<target>RKW Authors: Ansprechpersonen</target>
 			</trans-unit>
 			<trans-unit id="tx_rkwauthors_domain_model_authors.first_name">
 				<source>First Name</source>
@@ -99,19 +99,7 @@
 			</trans-unit>
 			<trans-unit id="tx_rkwauthors_domain_model_authors.internal.I.enabled" xml:space="preserve">
 				<source>Internal Author</source>
-				<target>Interner Autor/Ansprechpartner des RKW Netzwerks</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.show_work">
-				<source>Show Work</source>
-				<target>Arbeiten anzeigen</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.show_work.I.enabled" xml:space="preserve">
-				<source>Show Work in Detailpage</source>
-				<target>Zeige die Arbeiten des Autors in seiner Detailseite an</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwauthors_domain_model_authors.image_small">
-				<source>Image small (deprecated!)</source>
-				<target>Bild für Autorenliste (veraltet, entfällt künftig!)</target>
+				<target>Interne Ansprechperson</target>
 			</trans-unit>
 			<trans-unit id="tx_rkwauthors_domain_model_authors.image_big">
 				<source>Image big</source>
@@ -188,8 +176,6 @@
                 <source>Description</source>
                 <target>Beschreibung</target>
             </trans-unit>
-
-
 
 
 			<!-- flexForm -->

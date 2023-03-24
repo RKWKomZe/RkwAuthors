@@ -11,26 +11,26 @@ call_user_func(
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
             $extKey,
             'Main',
-            'RKW Authors - List'
+            'RKW Authors: List'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
             $extKey,
             'Details',
-            'RKW Authors - Detail'
+            'RKW Authors: Detail'
         );
 
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
             $extKey,
             'Headline',
-            'RKW Authors - Headline'
+            'RKW Authors: Headline'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
             $extKey,
             'Contact',
-            'RKW Authors - Call-To-Action'
+            'RKW Authors: Call-To-Action'
         );
 
         //=================================================================

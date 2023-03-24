@@ -118,7 +118,6 @@
                     </div>
                 </f:if>
 
-
                 <!-- terms -->
                 <f:if condition="{settings.contactForm.termsPid}">
                     <div class="form__field">
@@ -144,9 +143,7 @@
                 </f:if>
 
                 <!-- captcha -->
-                <f:if condition="{settings.contactForm.captcha}">
-                    <f:render partial="Authors/Form/CaptchaElement" />
-                </f:if>
+                <f:render partial="CaptchaElement" />
                 
                 <!-- Button -->
                 <div class="form__field flex space-start full-width-narrow">
