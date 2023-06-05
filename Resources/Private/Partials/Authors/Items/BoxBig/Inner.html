@@ -21,7 +21,7 @@
         <f:if condition="{author.phone} && {author.phone2}">
     
             <div class="contact__img-text" title="{f:translate(key:'partials.authors.items.boxBig.inner.labelPhone', extensionName:'rkwAuthors')}">
-                <svg class="icon icon--16">
+                <svg class="icon icon--16" aria-label="{f:translate(key:'partials.authors.items.boxBig.inner.phoneAriaLabel', extensionName:'rkwAuthors')}">
                     <use xlink:href="#ic-phone" />
                 </svg>
                 <f:if condition="{author.internal}">
@@ -42,7 +42,7 @@
         <f:if condition="{author.email} || {settings.contactForm.isActive}">
     
             <div class="contact__img-text">
-                <svg class="icon icon--16">
+                <svg class="icon icon--16" aria-hidden="true">
                     <use xlink:href="#ic-mail" />
                 </svg>
                 <f:if condition="{settings.contactForm.isActive}">

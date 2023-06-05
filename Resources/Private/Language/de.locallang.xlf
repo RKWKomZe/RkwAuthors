@@ -47,9 +47,13 @@
 				<source>Contact</source>
 				<target>Kontakt</target>
 			</trans-unit>
-			<trans-unit id="partials.authors.items.box.inner.labelPhone">
-				<source>Phone</source>
-				<target>Telefon</target>
+			<trans-unit id="partials.authors.items.box.inner.contactAriaLabel">
+				<source>Contact data</source>
+				<target>Kontaktdaten</target>
+			</trans-unit>
+			<trans-unit id="partials.authors.items.box.inner.phoneAriaLabel">
+				<source>Phone number</source>
+				<target>Telefonnummer</target>
 			</trans-unit>
 
 
@@ -66,6 +70,11 @@
 				<source>Phone</source>
 				<target>Telefon</target>
 			</trans-unit>
+			<trans-unit id="partials.authors.items.boxBig.inner.phoneAriaLabel">
+				<source>Phone number</source>
+				<target>Telefonnummer</target>
+			</trans-unit>
+
 
 
             <!-- Partials/Authors/Items/BoxBig.html -->
@@ -84,6 +93,14 @@
 			<trans-unit id="partials.authors.list.filter.labelFilter">
 				<source>or filter by first letter:</source>
 				<target>oder nach Anfangsbuchstaben filtern:</target>
+			</trans-unit>
+			<trans-unit id="partials.authors.list.filter.filterAriaLabel">
+				<source>Filter list of employees by first letter</source>
+				<target>Liste der Mitarbeitenden nach Anfangsbuchstaben filtern</target>
+			</trans-unit>
+			<trans-unit id="partials.authors.list.filter.filterByLetterAriaLabel">
+				<source>Select first letter to filter list</source>
+				<target>Anfangsbuchstaben wählen, um Liste zu filtern</target>
 			</trans-unit>
 
 
