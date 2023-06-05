@@ -3,7 +3,7 @@
 	data-namespace-typo3-fluid="true">
 
 	<div class="filter-wrapper">
-		<div class="nav flex">
+		<nav class="nav flex" aria-label="{f:translate(key:'partials.authors.list.filter.filterAriaLabel', extensionName:'rkwAuthors')}">
 
 			<div class="filter-desc">
 				<f:link.action
@@ -15,9 +15,8 @@
 					<f:translate key="partials.authors.list.filter.labelShowAll" extensionName="rkwAuthors" />
 				</f:link.action>
 				<f:translate key="partials.authors.list.filter.labelFilter" extensionName="rkwAuthors" />
-
 			</div>
-			<ul class="filter">
+			<ul class="filter" aria-label="{f:translate(key:'partials.authors.list.filter.filterByLetterAriaLabel', extensionName:'rkwAuthors')}">
 				<f:for each="{rkwAuthors:GetFirstLetterList(authors:'{authors}')}" as="letter" >
 					<li class="filter__item">
 						<f:link.action
@@ -33,6 +32,6 @@
 					</li>
 				</f:for>
 			</ul>
-		</div>
+		</nav>
 	</div>
 </html>

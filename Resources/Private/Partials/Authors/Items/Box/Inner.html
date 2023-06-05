@@ -22,8 +22,11 @@
     
     <f:section name="Name">
         <h3 class="tile__title icon">
-            <span class="tile__title-icon">
-                <svg class="icon icon--32"><use xlink:href="#ic-contacts" /></svg>
+            <span class="tile__title-icon"> 
+                <svg class="icon icon--32" 
+                     aria-label="{f:translate(key:'partials.authors.items.box.inner.contactAriaLabel', extensionName:'rkwAuthors')}">
+                    <use xlink:href="#ic-contacts" />
+                </svg>
             </span>
             <span class="tile__title-text">
                 <f:format.crop maxCharacters="60" respectWordBoundaries="FALSE"><rkwAuthors:GetCombinedName author="{author}" /></f:format.crop>
@@ -75,8 +78,9 @@
     
     <f:section name="Phone">
         <f:if condition="{author.phone} && {author.phone2}">
-            <div class="tile__contact-text" title="{f:translate(key:'partials.authors.items.box.inner.labelPhone', extensionName:'rkwAuthors')}">
-                <svg class="icon icon--16">
+            <div class="tile__contact-text">
+                <svg class="icon icon--16"
+                     aria-label="{f:translate(key:'partials.authors.items.box.inner.phoneAriaLabel', extensionName:'rkwAuthors')}">
                     <use xlink:href="#ic-phone" />
                 </svg>
                 <f:if condition="{author.internal}">
@@ -96,7 +100,8 @@
     <f:section name="Email">
         <f:if condition="{author.email} || {settings.contactForm.isActive}">
             <div class="tile__contact-link">
-                <svg class="icon icon--16">
+                <svg class="icon icon--16"
+                     aria-hidden="true">
                     <use xlink:href="#ic-mail" />
                 </svg>
                 <f:if condition="{settings.contactForm.isActive} && {author.internal} && {settings.showPid}">
