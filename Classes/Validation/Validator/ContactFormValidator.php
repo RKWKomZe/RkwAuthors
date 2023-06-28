@@ -112,35 +112,6 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
             }
         }
 
-        // TERMS (check only, if terms pid is set via TS)
-        if ($settings['contactForm']['termsPid']) {
-            if (!$contactForm['terms']) {
-                $this->result->forProperty('terms')->addError(
-                    new Error(
-                        LocalizationUtility::translate(
-                            'form.error.terms', 'rkw_authors'
-                        ), 1587566588
-                    )
-                );
-                $isValid = false;
-            }
-        }
-
-        // PRIVACY (check only, if privacy pid is set via TS)
-        if ($settings['contactForm']['privacyPid']) {
-            if (!$contactForm['privacy']) {
-                $this->result->forProperty('privacy')->addError(
-                    new Error(
-                        LocalizationUtility::translate(
-                            'form.error.privacy', 'rkw_authors'
-                        ), 1588941914
-                    )
-                );
-                $isValid = false;
-            }
-        }
-
-
         return $isValid;
     }
 

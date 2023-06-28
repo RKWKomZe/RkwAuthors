@@ -114,8 +114,6 @@ plugin.tx_rkwauthors {
 
             isActive = {$plugin.tx_rkwauthors.settings.contactForm.isActive}
             allowSendCopyToUser = {$plugin.tx_rkwauthors.settings.contactForm.allowSendCopyToUser}
-            termsPid = {$plugin.tx_rkwauthors.settings.contactForm.termsPid}
-            privacyPid = {$plugin.tx_rkwauthors.settings.contactForm.privacyPid}
             mandatoryFields = {$plugin.tx_rkwauthors.settings.contactForm.mandatoryFields}
 
             mail {
