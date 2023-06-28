@@ -181,12 +181,11 @@ class AuthorsController extends \Madj2k\AjaxApi\Controller\AjaxAbstractControlle
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      * @TYPO3\CMS\Extbase\Annotation\Validate("RKW\RkwAuthors\Validation\Validator\ContactFormValidator", param="contactForm")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("Madj2k\FeRegister\Validation\Consent\PrivacyValidator", param="contactForm")
      * @TYPO3\CMS\Extbase\Annotation\Validate("Madj2k\CoreExtended\Validation\CaptchaValidator", param="contactForm")
      */
     public function contactFormSendAction(\RKW\RkwAuthors\Domain\Model\Authors $author, array $contactForm = [])

@@ -1,5 +1,6 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:rkwAuthors="http://typo3.org/ns/RKW/RkwAuthors/ViewHelpers"
+      xmlns:feRegister="http://typo3.org/ns/Madj2k/FeRegister/ViewHelpers"
+      xmlns:rkwAuthors="http://typo3.org/ns/RKW/RkwAuthors/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
     <h2 id="tx-rkwauthors-form"><f:translate key="partials.authors.form.default.header" /></h2>
@@ -118,29 +119,8 @@
                     </div>
                 </f:if>
 
-                <!-- terms -->
-                <f:if condition="{settings.contactForm.termsPid}">
-                    <div class="form__field">
-                        <f:form.checkbox id="tx-rkwauthors-contact-terms" class="checkbox" property="terms" value="1" />
-                        <label for="tx-rkwauthors-contact-terms" class="checkbox-label">
-                            <f:translate key="partials.authors.form.default.terms1" />
-                            <f:link.page pageUid="{settings.contactForm.termsPid}" target="_blank"><f:translate key="partials.authors.form.default.terms2" /></f:link.page>
-                            <f:translate key="partials.authors.form.default.terms3" />
-                        </label>
-                    </div>
-                </f:if>
-
                 <!-- privacy -->
-                <f:if condition="{settings.contactForm.privacyPid}">
-                    <div class="form__field">
-                        <f:form.checkbox id="tx-rkwauthors-contact-privacy" class="checkbox" property="privacy" value="1" />
-                        <label for="tx-rkwauthors-contact-privacy" class="checkbox-label">
-                            <f:translate key="partials.authors.form.default.privacy1" />
-                            <f:link.page pageUid="{settings.contactForm.privacyPid}" target="_blank"><f:translate key="partials.authors.form.default.privacy2" /></f:link.page>
-                            <f:translate key="partials.authors.form.default.privacy3" />
-                        </label>
-                    </div>
-                </f:if>
+                <feRegister:consent type="privacy" key="form" />
 
                 <!-- captcha -->
                 <f:render partial="CaptchaElement" />

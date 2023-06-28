@@ -48,12 +48,6 @@ plugin.tx_rkwauthors {
             # cat=plugin.tx_rkwauthors//a; type=boolean; label=Activates the possibility to get a copy of the message
             allowSendCopyToUser = 1
 
-            # cat=plugin.tx_rkwauthors//a; type=integer; label=pid of terms
-            termsPid =
-
-            # cat=plugin.tx_rkwauthors//a; type=integer; label=pid of privacy
-            privacyPid =
-
             # cat=plugin.tx_rkwauthors//f; type=string; label=mandatory fields for contactform (e.g. email, message)
             mandatoryFields = salutation, firstName, lastName, email, message
 
