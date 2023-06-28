@@ -4,11 +4,13 @@ defined('TYPO3_MODE') || die('Access denied.');
 call_user_func(
 
     function($extKey) {
+
+
         $tempPagesColumns = [
 
             'tx_rkwauthors_authorship' => [
                 'exclude' => 0,
-                'displayCond' => 'FIELD:tx_rkwpdf2content_is_import_sub:=:0',
+                'displayCond' => (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('rkw_pdf2content')? 'FIELD:tx_rkwpdf2content_is_import_sub:=:0' : ''),
                 'label' => 'LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_pages.tx_rkwauthors_authorship',
                 'config' => [
                     'type' => 'select',
