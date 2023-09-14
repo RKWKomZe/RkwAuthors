@@ -50,7 +50,7 @@ class GetCombinedNameViewHelper extends AbstractViewHelper
     {
         parent::initializeArguments();
         $this->registerArgument('author', Authors::class, 'The author-object', true);
-        $this->registerArgument('addTitleBefore', 'bool', 'Adds the titles that belong before the name', false, false);
+        $this->registerArgument('addTitleBefore', 'bool', 'Adds the titles that belong before the name', false, true);
         $this->registerArgument('addTitleAfter', 'bool', 'Adds the titles that belong after the name', false, false);
     }
 
