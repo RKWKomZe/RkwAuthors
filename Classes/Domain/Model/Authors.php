@@ -356,6 +356,7 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getNumber(): string
     {
+        // @extensionScannerIgnoreLine
         return $this->number;
     }
 
@@ -368,6 +369,7 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function setNumber(string $number)
     {
+        // @extensionScannerIgnoreLine
         $this->number = $number;
     }
 
