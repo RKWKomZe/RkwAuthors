@@ -18,6 +18,7 @@ use RKW\RkwAuthors\Domain\Repository\AuthorsRepository;
 use RKW\RkwAuthors\Domain\Repository\PagesRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\RootlineUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Class AuthorsController
@@ -92,8 +93,20 @@ class AuthorsController extends \Madj2k\AjaxApi\Controller\AjaxAbstractControlle
     {
         $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_rkwauthors_details');
         $author = null;
+
+        // default: Get UID from GET params
+        $authorId = $getParams['author'];
+
+        // override if: using "__identity" to get author ID from form data
+        if (
+            is_array($getParams['author'])
+            && key_exists('__identity', $getParams['author'])
+        ) {
+            $authorId = $getParams['author']['__identity'];
+        }
+
         if ($getParams['author']) {
-            $author = $this->authorsRepository->findByIdentifier(filter_var($getParams['author'], FILTER_SANITIZE_NUMBER_INT));
+            $author = $this->authorsRepository->findByIdentifier(filter_var($authorId, FILTER_SANITIZE_NUMBER_INT));
         }
 
         $this->view->assign('author', $author);
