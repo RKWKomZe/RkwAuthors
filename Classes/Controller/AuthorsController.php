@@ -18,7 +18,6 @@ use RKW\RkwAuthors\Domain\Repository\AuthorsRepository;
 use RKW\RkwAuthors\Domain\Repository\PagesRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\RootlineUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Class AuthorsController
