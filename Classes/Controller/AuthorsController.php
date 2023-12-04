@@ -16,8 +16,10 @@ namespace RKW\RkwAuthors\Controller;
 
 use RKW\RkwAuthors\Domain\Repository\AuthorsRepository;
 use RKW\RkwAuthors\Domain\Repository\PagesRepository;
+use TYPO3\CMS\Core\Http\ImmediateResponseException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\RootlineUtility;
+use TYPO3\CMS\Frontend\Controller\ErrorController;
 
 /**
  * Class AuthorsController
@@ -79,6 +81,15 @@ class AuthorsController extends \Madj2k\AjaxApi\Controller\AjaxAbstractControlle
      */
     public function showAction(\RKW\RkwAuthors\Domain\Model\Authors $author): void
     {
+        // if author is not internal, throw 404
+        if (!$author->getInternal()) {
+            $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
+                $GLOBALS['TYPO3_REQUEST'],
+                'No internal RKW author'
+            );
+            throw new ImmediateResponseException($response, 1701443010);
+        }
+
         $this->view->assign('author', $author);
     }
 
