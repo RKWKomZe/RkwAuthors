@@ -22,6 +22,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @author Steffen Kroggel <developer@steffenkroggel.de>
+ * @author Christian Dilger <c.dilger@addorange.de>
  * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
@@ -32,19 +33,28 @@ class AuthorsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * findAllSortByLastName
      *
+     * @param array $excludedInternalContacts
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function findAllSortByLastName(): QueryResultInterface
+    public function findAllSortByLastName(array $excludedInternalContacts): QueryResultInterface
     {
 
         $query = $this->createQuery();
+        $constraints = [];
+        $constraints[] = $query->equals('internal', 1);
+
+        if (! empty($excludedInternalContacts)) {
+            $constraints[] = $query->logicalNot($query->in('uid', $excludedInternalContacts));
+        }
+
+        $query->matching($query->logicalAnd($constraints));
+
         $query->setOrderings(
             array(
                 'lastName' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
             )
         );
 
-        $query->matching($query->equals('internal', 1));
         return $query->execute();
     }
 
@@ -52,16 +62,21 @@ class AuthorsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * findByFilterOptionsArray
      *
+     * @param array $excludedInternalContacts
      * @param array $filter
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
-    public function findByFilterOptionsArray(array $filter): QueryResultInterface
+    public function findByFilterOptionsArray(array $excludedInternalContacts, array $filter): QueryResultInterface
     {
 
         $query = $this->createQuery();
         $constraints = array();
         $constraints[] = $query->equals('internal', 1);
+
+        if (! empty($excludedInternalContacts)) {
+            $constraints[] = $query->logicalNot($query->in('uid', $excludedInternalContacts));
+        }
 
         // if: one filter option is set -> do filter - else: print all
         if ($filter['letter'] || $filter['department']) {

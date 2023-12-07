@@ -26,6 +26,7 @@ use TYPO3\CMS\Frontend\Controller\ErrorController;
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @author Steffen Kroggel <developer@steffenkroggel.de>
+ * @author Christian Dilger <c.dilger@addorange.de>
  * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwAuthors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
@@ -59,12 +60,13 @@ class AuthorsController extends \Madj2k\AjaxApi\Controller\AjaxAbstractControlle
      */
     public function listAction(array $filter = []): void
     {
+        $excludedInternalContacts = GeneralUtility::trimExplode(',', $this->settings['excludeInternalContacts'], true);
 
         // get authors list
         if ($filter) {
-            $authors = $this->authorsRepository->findByFilterOptionsArray($filter);
+            $authors = $this->authorsRepository->findByFilterOptionsArray($excludedInternalContacts, $filter);
         } else {
-            $authors = $this->authorsRepository->findAllSortByLastName();
+            $authors = $this->authorsRepository->findAllSortByLastName($excludedInternalContacts);
         }
 
         $this->view->assign('showPid', $this->settings['showPid']);

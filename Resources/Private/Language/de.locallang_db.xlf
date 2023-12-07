@@ -216,6 +216,10 @@
                 <source>PID Detail Page</source>
                 <target>PID Detailseite</target>
             </trans-unit>
+			<trans-unit id="flexform.list.excludeInternalContacts">
+				<source>Exclude internal contacts</source>
+				<target>Folgende interne Ansprechpersonen nicht anzeigen</target>
+			</trans-unit>
 
             <trans-unit id="flexform.detail.sheetTitle">
                 <source>Options</source>
