@@ -20,7 +20,13 @@
             "email": "maximilian@faesslerweb.de",
             "homepage": "https://faesslerweb.de",
             "role": "Developer"
-        }
+        },
+		{
+			"name": "Christian Dilger",
+			"email": "c.dilger@addorange.de",
+			"homepage": "http://addorange.de",
+			"role": "Developer"
+		}
     ],
     "require": {
         "php": ">=7.4",
