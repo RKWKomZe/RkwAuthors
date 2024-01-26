@@ -1,4 +1,8 @@
-
+/** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  * TABLE-MAPPING IS DEPRECATED SINCE TYPO3 10.4
+  * PLEASE ADD ANY CHANGES TO
+  * EXT:extension/Configuration/Extbase/Persistence/Classes.php
+  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 config.tx_extbase.persistence{
 
     classes{
@@ -30,22 +34,6 @@ config.tx_extbase.persistence{
                 recordType =
             }
         }
-
-        #===============================================
-        # Optional dependency for rkw_newsletter!
-        RKW\RkwAuthors\Domain\Model\Authors {
-            subclasses {
-                Tx_RkwNewsletter_Authors = RKW\RkwNewsletter\Domain\Model\Authors
-            }
-        }
-
-        RKW\RkwNewsletter\Domain\Model\Authors {
-            mapping {
-                tableName = tx_rkwauthors_domain_model_authors
-                recordType =
-            }
-        }
-
 
         #===============================================
         # Optional dependency for rkw_shop!

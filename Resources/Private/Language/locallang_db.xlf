@@ -168,6 +168,9 @@
             <trans-unit id="flexform.list.showPid">
                 <source>PID Detail Page</source>
             </trans-unit>
+			<trans-unit id="flexform.list.excludeInternalContacts">
+				<source>Exclude internal contacts</source>
+			</trans-unit>
 
             <trans-unit id="flexform.detail.sheetTitle">
                 <source>Options</source>

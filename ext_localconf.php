@@ -57,13 +57,31 @@ call_user_func(
         );
 
         //=================================================================
+        // Add XClasses for extending existing classes
+        //=================================================================
+
+        if (class_exists(\RKW\RkwShop\Domain\Model\Author::class)) {
+            // for TYPO3 12+
+            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\RKW\RkwAuthors\Domain\Model\Authors::class] = [
+                'className' => \RKW\RkwShop\Domain\Model\Author::class
+            ];
+
+            // for TYPO3 9.5 - 11.5 only, not required for TYPO3 12
+            \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)
+                ->registerImplementation(
+                    \RKW\RkwAuthors\Domain\Model\Authors::class,
+                    \RKW\RkwShop\Domain\Model\Author::class
+                );
+        }
+
+        //=================================================================
         // Add Rootline Fields
         //=================================================================
         $rootlineFields = &$GLOBALS['TYPO3_CONF_VARS']['FE']['addRootLineFields'];
         $newRootlineFields = 'tx_rkwauthors_authorship';
         $rootlineFields .= (empty($rootlineFields))? $newRootlineFields : ',' . $newRootlineFields;
     },
-    $_EXTKEY
+    'rkw_authors'
 );
 
 
