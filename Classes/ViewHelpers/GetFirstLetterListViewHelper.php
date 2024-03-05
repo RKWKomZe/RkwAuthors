@@ -15,7 +15,9 @@ namespace RKW\RkwAuthors\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use Madj2k\CoreExtended\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithContentArgumentAndRenderStatic;
 
@@ -71,7 +73,9 @@ class GetFirstLetterListViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abs
         /** @var \RKW\RkwAuthors\Domain\Model\Authors $author */
         $relevantLetters = array();
         foreach ($authors as $author) {
-            $firstLetter = strtolower(substr($author->getLastName(), 0, 1));
+            // use mb_substr for special sign handling
+            // use slugify to convert special signs like "Ç" to "C"
+            $firstLetter = GeneralUtility::slugify(strtolower(mb_substr($author->getLastName(), 0, 1)));
             if (!$relevantLetters[$firstLetter]) {
                 $relevantLetters[$firstLetter] = trim($prepend . ' ' . strtoupper($firstLetter));
             }
