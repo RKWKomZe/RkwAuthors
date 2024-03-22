@@ -15,8 +15,8 @@ namespace RKW\RkwAuthors\Service;
  */
 
 use Madj2k\CoreExtended\Utility\GeneralUtility;
-use Madj2k\Postmaster\Mail\MailMassage;
 use Madj2k\Postmaster\Mail\MailMessage;
+use RKW\RkwAuthors\Domain\Model\Authors;
 use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
@@ -41,10 +41,9 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
-     * @throws \TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    public function contactFormUser(\RKW\RkwAuthors\Domain\Model\Authors $author, array $contactForm)
+    public function contactFormUser(Authors $author, array $contactForm): void
     {
         // send contact form copy
         $this->userMail(
@@ -68,10 +67,9 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
-     * @throws \TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    public function contactFormAuthor(\RKW\RkwAuthors\Domain\Model\Authors $author, array $contactForm)
+    public function contactFormAuthor(Authors $author, array $contactForm): void
     {
         $this->authorMail(
             $author,
@@ -91,13 +89,13 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @param array $frontendUser
      * @param array $contactForm
      * @param string $action
+     * @return void
      * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
-     * @throws \TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    protected function userMail(\RKW\RkwAuthors\Domain\Model\Authors $author, array $frontendUser, array $contactForm, string $action)
+    protected function userMail(Authors $author, array $frontendUser, array $contactForm, string $action): void
     {
         // get settings
         $settings = $this->getSettings(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
@@ -178,18 +176,13 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @param array $frontendUser
      * @param array $contactForm
      * @param string $action
+     * @return void
      * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
-     * @throws \TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    protected function authorMail(
-        \RKW\RkwAuthors\Domain\Model\Authors $author,
-        array $frontendUser,
-        array $contactForm,
-        string $action
-    ) {
+    protected function authorMail(Authors $author, array $frontendUser, array $contactForm, string $action): void {
 
         // get settings
         $settings = $this->getSettings(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);

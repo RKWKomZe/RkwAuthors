@@ -58,8 +58,9 @@ call_user_func(
 
         //=================================================================
         // Add XClasses for extending existing classes
+        // ATTENTION: deactivated due to faulty mapping in TYPO3 9.5
         //=================================================================
-
+        /*
         if (class_exists(\RKW\RkwShop\Domain\Model\Author::class)) {
             // for TYPO3 12+
             $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\RKW\RkwAuthors\Domain\Model\Authors::class] = [
@@ -72,7 +73,7 @@ call_user_func(
                     \RKW\RkwAuthors\Domain\Model\Authors::class,
                     \RKW\RkwShop\Domain\Model\Author::class
                 );
-        }
+        }*/
 
         //=================================================================
         // Add Rootline Fields

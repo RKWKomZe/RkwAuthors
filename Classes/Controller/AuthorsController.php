@@ -39,7 +39,8 @@ class AuthorsController extends \Madj2k\AjaxApi\Controller\AjaxAbstractControlle
      * @var \RKW\RkwAuthors\Domain\Repository\AuthorsRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected AuthorsRepository $authorsRepository;
+    protected ?AuthorsRepository $authorsRepository = null;
+
 
     /**
      * pagesRepository
@@ -47,7 +48,25 @@ class AuthorsController extends \Madj2k\AjaxApi\Controller\AjaxAbstractControlle
      * @var \RKW\RkwAuthors\Domain\Repository\PagesRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected PagesRepository $pagesRepository;
+    protected ?PagesRepository $pagesRepository = null;
+
+
+    /**
+     * @var \RKW\RkwAuthors\Domain\Repository\AuthorsRepository
+     */
+    public function injectAuthorsRepository(AuthorsRepository $authorsRepository)
+    {
+        $this->authorsRepository = $authorsRepository;
+    }
+
+
+    /**
+     * @var \RKW\RkwAuthors\Domain\Repository\PagesRepository
+     */
+    public function injectPagesRepository(PagesRepository $pagesRepository)
+    {
+        $this->pagesRepository = $pagesRepository;
+    }
 
 
     /**
