@@ -40,6 +40,7 @@ class ContactFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
      */
     protected array $settings = [];
 
+
     /**
      * validation
      *
