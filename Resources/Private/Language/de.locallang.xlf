@@ -323,7 +323,7 @@
 			<!-- Partials/Authors/List/Authors.html -->
 			<trans-unit id="partials_authors_list_authors.noResult">
 				<source>Sorry, but there are currently no results.</source>
-				<target>Es gibt aktuell keinen Ansprechperson, der den ausgewählten Kriterien entspricht.</target>
+				<target>Es gibt aktuell keine Ansprechperson, die den ausgewählten Kriterien entspricht.</target>
 			</trans-unit>
 			<trans-unit id="partials_authors_list_authors.contact">
 				<source>Contact</source>
