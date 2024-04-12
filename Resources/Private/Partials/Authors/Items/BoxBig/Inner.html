@@ -6,7 +6,13 @@
     <f:section name="Image">
         <f:if condition="{author.imageBig}">
             <f:then>
-                <f:image image="{author.imageBig}" treatIdAsReference="true" width="890c" height="880c-100"/>
+                <f:render partial="ResponsiveImage" arguments="{image: author.imageBig, width: '890c', height:'880c-100'}" />
+                <f:comment>
+                    <!--
+                        <f:image image="{author.imageBig}" treatIdAsReference="true" width="890c" height="880c-100"/>
+                    -->
+                </f:comment>
+
             </f:then>
             <f:else>
                 <!-- ### set dummy if no image is available ### -->
