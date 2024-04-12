@@ -69,6 +69,7 @@ plugin.tx_rkwauthors {
             0 = EXT:rkw_authors/Resources/Private/Partials/
             1 = {$plugin.tx_rkwauthors.view.partialRootPath}
             2 = {$plugin.tx_coreextended.view.partialRootPath}
+            1712245685 = {$plugin.tx_responsiveimageshelper.view.partialRootPath}
         }
 	}
 	persistence {
@@ -86,6 +87,8 @@ plugin.tx_rkwauthors {
 	# Settings
 	#===============================================================
 	settings {
+
+	    tx_smsresponsiveimages < lib.contentElement.settings.tx_smsresponsiveimages
 
 		baseUrlSchemaOrg = {$plugin.tx_rkwauthors.settings.baseUrlSchemaOrg}
 
@@ -117,26 +120,4 @@ plugin.tx_rkwauthors {
             }
         }
 	}
-}
-
-
-// #########################################################
-// Various
-// #########################################################
-lib.txRkwAuthors {
-
-    responsiveImageThumbnail < lib.txAccelerator.responsiveImage
-    responsiveImageThumbnail {
-        settings {
-            breakpoint {
-                desktop >
-                tablet >
-                mobile2 >
-                mobile >
-            }
-            maxWidth {
-                fallback = 345
-            }
-        }
-    }
 }
