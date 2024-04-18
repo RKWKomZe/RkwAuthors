@@ -2,11 +2,11 @@
     xmlns:rkwAuthors="http://typo3.org/ns/RKW/RkwAuthors/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
-     
+
     <f:section name="Image">
         <f:if condition="{author.imageBig}">
             <f:then>
-                <f:render partial="ResponsiveImage" arguments="{image: author.imageBig, width: '890c', height:'880c-100'}" />
+                <f:render partial="Utils/Media" arguments="{file: author.imageBig, width: '890c', height:'880c-100'}" />
                 <f:comment>
                     <!--
                         <f:image image="{author.imageBig}" treatIdAsReference="true" width="890c" height="880c-100"/>
@@ -20,12 +20,12 @@
             </f:else>
         </f:if>
     </f:section>
-    
+
     <f:comment><!-- ======================================================================== --></f:comment>
-    
+
     <f:section name="Phone">
         <f:if condition="{author.phone} && {author.phone2}">
-    
+
             <div class="contact__img-text" title="{f:translate(key:'partials.authors.items.boxBig.inner.labelPhone', extensionName:'rkwAuthors')}">
                 <svg class="icon icon--16" aria-label="{f:translate(key:'partials.authors.items.boxBig.inner.phoneAriaLabel', extensionName:'rkwAuthors')}">
                     <use xlink:href="#ic-phone" />
@@ -41,12 +41,12 @@
             </div>
         </f:if>
     </f:section>
-    
+
     <f:comment><!-- ======================================================================== --></f:comment>
-    
+
     <f:section name="Email">
         <f:if condition="{author.email} || {settings.contactForm.isActive}">
-    
+
             <div class="contact__img-text">
                 <svg class="icon icon--16" aria-hidden="true">
                     <use xlink:href="#ic-mail" />
@@ -65,7 +65,7 @@
                         </f:link.email>
                     </f:else>
                 </f:if>
-    
+
             </div>
         </f:if>
     </f:section>
