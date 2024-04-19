@@ -19,9 +19,6 @@ return [
 		'searchFields' => 'first_name,middle_name,last_name,title_after,title_before,street,company,number,city,zip,function_title,function_description,email,phone,phone2,fax,facebook_url,twitter_url,xing_url,internal,show_work,image_boxes_is_logo,image_boxes,image_big,image_small,department,',
 		'iconfile' => 'EXT:rkw_authors/Resources/Public/Icons/tx_rkwauthors_domain_model_authors.gif'
 	],
-	'interface' => [
-		'showRecordFieldList' => 'sys_langufunctiage_uid, l10n_parent, l10n_diffsource, hidden, name, description',
-	],
 	'types' => [
 		'1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description'],
 	],
@@ -45,7 +42,6 @@ return [
 		],
 		'l10n_parent' => [
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
-			'exclude' => 0,
 			'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
 			'config' => [
 				'type' => 'select',
