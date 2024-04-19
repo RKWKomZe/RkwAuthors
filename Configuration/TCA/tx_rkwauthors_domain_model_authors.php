@@ -23,9 +23,6 @@ return [
 		'searchFields' => 'first_name, middle_name, last_name, title_before, title_after, street, company, number, city, zip, email, department, function_title, phone, phone2, fax, function_description, url, facebook_url, twitter_url, xing_url, internal, show_work, image_boxes, image_big, image_small,',
 		'iconfile' => 'EXT:rkw_authors/Resources/Public/Icons/tx_rkwauthors_domain_model_authors.gif'
 	],
-	'interface' => [
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, first_name, middle_name, last_name, title_before, title_after, street, company, number, city, zip, email, department, function_title, phone, phone2, fax, function_description, url, facebook_url, twitter_url, xing_url, internal, show_work, image_boxes, image_big, image_small',
-	],
 	'types' => [
         '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, --palette--;;1, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.names;names, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.addition;addition, department, function_title, email, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.address;address, --palette--;LLL:EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf:tx_rkwauthors_domain_model_authors.palettes.phones;phones, image_boxes, image_boxes_is_logo, image_big, function_description, url, facebook_url, twitter_url, xing_url, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'],
     ],
@@ -66,7 +63,6 @@ return [
 		],
 		'l10n_parent' => [
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
-			'exclude' => 0,
 			'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
 			'config' => [
 				'type' => 'select',
