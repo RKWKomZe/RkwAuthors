@@ -6,10 +6,10 @@
     <f:section name="Image">
         <f:if condition="{author.imageBig}">
             <f:then>
-                <f:render partial="Utils/Media" arguments="{file: author.imageBig, width: '890c', height:'880c-100'}" />
+                <f:image image="{author.imageBig}" treatIdAsReference="true" width="890c" height="880c-100"/>
                 <f:comment>
                     <!--
-                        <f:image image="{author.imageBig}" treatIdAsReference="true" width="890c" height="880c-100"/>
+                        <f:render partial="Utils/Media" arguments="{file: author.imageBig, width: '890c', height:'880c-100'}" />
                     -->
                 </f:comment>
 
