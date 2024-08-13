@@ -99,3 +99,27 @@ CREATE TABLE tx_rkwauthors_pages_authors_mm (
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
 );
+
+
+
+#
+# Table structure for table 'tx_news_domain_model_news'
+#
+CREATE TABLE pages (
+   tx_rkwauthors_authorship int(11) unsigned DEFAULT '0' NOT NULL,
+);
+
+#
+# Table structure for table 'tx_rkwauthors_news_authors_mm'
+#
+CREATE TABLE tx_rkwauthors_news_authors_mm (
+    uid_local int(11) unsigned DEFAULT '0' NOT NULL,
+    uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+    sorting int(11) unsigned DEFAULT '0' NOT NULL,
+    sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+
+    KEY uid_local (uid_local),
+    KEY uid_foreign (uid_foreign)
+);
+
+
