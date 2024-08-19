@@ -97,6 +97,9 @@
 			<trans-unit id="partials.authors.form.default.salutation.I.1" approved="yes">
 				<source>Mrs.</source>
 			</trans-unit>
+			<trans-unit id="partials.authors.form.default.salutation.I.2" approved="yes">
+				<source>Mx.</source>
+			</trans-unit>
 			<trans-unit id="partials.authors.form.default.firstName" approved="yes">
 				<source>First name</source>
 			</trans-unit>

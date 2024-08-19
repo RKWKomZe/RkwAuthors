@@ -23,7 +23,12 @@
                         id="tx-rkwauthors-contact-salutation"
                         property="salutation"
                         value="{f:if(condition:'{contactForm.salutation}',then:'{contactForm.salutation}',else:'{frontendUser.txFeregisterGender}')}"
-                        options="{99: '{f:translate(key: \'partials.authors.form.default.salutation.I.99\')}', 0: '{f:translate(key: \'partials.authors.form.default.salutation.I.0\')}', 1: '{f:translate(key: \'partials.authors.form.default.salutation.I.1\')}'}"
+                        options="{
+                        99: '{f:translate(key: \'partials.authors.form.default.salutation.I.99\')}',
+                        0: '{f:translate(key: \'partials.authors.form.default.salutation.I.0\')}',
+                        1: '{f:translate(key: \'partials.authors.form.default.salutation.I.1\')}',
+                        2: '{f:translate(key: \'partials.authors.form.default.salutation.I.2\')}'
+                        }"
                     />
                 </div>
 
@@ -124,7 +129,7 @@
 
                 <!-- captcha -->
                 <f:render partial="CaptchaElement" />
-                
+
                 <!-- Button -->
                 <div class="form__field flex space-start full-width-narrow">
                     <button class="btn btn--primary full-width-narrow">
