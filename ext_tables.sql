@@ -105,7 +105,7 @@ CREATE TABLE tx_rkwauthors_pages_authors_mm (
 #
 # Table structure for table 'tx_news_domain_model_news'
 #
-CREATE TABLE pages (
+CREATE TABLE tx_news_domain_model_news (
    tx_rkwauthors_authorship int(11) unsigned DEFAULT '0' NOT NULL,
 );
 

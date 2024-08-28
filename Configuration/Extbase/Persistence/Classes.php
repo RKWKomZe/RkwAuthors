@@ -5,6 +5,9 @@ return [
     \RKW\RkwAuthors\Domain\Model\Pages::class => [
         'tableName' => 'pages',
     ],
+    \RKW\RkwAuthors\Domain\Model\News::class => [
+        'tableName' => 'tx_news_domain_model_news',
+    ],
     \RKW\RkwEvents\Domain\Model\Authors::class => [
         'tableName' => 'tx_rkwauthors_domain_model_authors',
     ],

@@ -35,6 +35,7 @@ $EM_CONF[$_EXTKEY] = [
             'media_utils' => '12.4.0-12.4.99',
             'ajax_api' => '10.4.0-12.4.99',
             'fe_register' => '10.4.0-12.4.99',
+            'news' => '10.0.0-10.0.99'
 		],
 		'conflicts' => [
 		],
