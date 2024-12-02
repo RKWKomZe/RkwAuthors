@@ -4,9 +4,9 @@
 
 	<f:if condition="{author}">
 
-		<div class="contact-wrapper {f:if(condition:'!{author.imageBig}', then: 'contact-wrapper--no-image')}">
+		<aside class="contact-wrapper {f:if(condition:'!{author.imageBig}', then: 'contact-wrapper--no-image')}">
 			<f:render partial="Authors/Items/BoxBig" arguments="{_all}" />
-		</div>
+		</aside>
 
 		<f:if condition="{author.functionDescription} || {settings.contactForm.isActive}">
 			<main class="main flex-container no-padding-narrow" id="main">
