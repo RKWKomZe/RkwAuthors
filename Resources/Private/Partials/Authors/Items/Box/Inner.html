@@ -62,13 +62,23 @@
 
         <f:if condition="{author.internal} && {settings.showPid}">
             <f:then>
-                <f:link.action action="show" pageUid="{settings.showPid}" arguments="{author: '{author}'}" target="{f:if(condition: '{settings.detailLinkTargetBlank} == 1', then: '_blank')}" class="tile__link-overlay" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
+                <f:link.action
+                    action="show"
+                    pageUid="{settings.showPid}"
+                    arguments="{author: '{author}'}"
+                    target="{f:if(condition: '{settings.detailLinkTargetBlank} == 1', then: '_blank')}"
+                    class="tile__link-overlay"
+                >
                     <rkwAuthors:GetCombinedName author='{author}'/>
                 </f:link.action>
             </f:then>
             <f:else>
                 <f:if condition="{author.url}">
-                    <f:link.external uri="{author.url}" target="_blank" class="tile__link-overlay" title="<rkwAuthors:GetCombinedName author='{author}'/>" >
+                    <f:link.external
+                        uri="{author.url}"
+                        target="_blank"
+                        class="tile__link-overlay"
+                    >
                         <rkwAuthors:GetCombinedName author='{author}'/>
                     </f:link.external>
                 </f:if>
